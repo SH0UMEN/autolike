@@ -2,13 +2,18 @@
 
 .dropdown-menu
     border-radius: 3px
-    border: 1px solid #D9D9D9
+    border: 1px solid $white-color
     overflow: visible
     position: relative
     user-select: none
+    background-color: transparent
+    transition: border-color .2s, background-color .2s
+
+    &:hover
+        border-color: #D9D9D9
 
     &__label
-        padding: 9px 15px
+        padding: 9px 16px
         display: flex
         cursor: pointer
         align-items: center
@@ -24,17 +29,19 @@
         position: absolute
         padding: 8px 0
         color: $white-color
-        top: 100%
-        display: none
+        top: -2000%
+        display: flex
         background-color: $secondary-color
         flex-direction: column
         left: -1px
         right: -1px
         border: 1px solid $secondary-color
         border-radius: 0 0 3px 3px
+        opacity: 0
+        transition: opacity 0.2s, top .0001s .2s
 
     &__item
-        padding: 8px 15px
+        padding: 8px 16px
         cursor: pointer
 
         &_accent:hover
@@ -45,12 +52,14 @@
 
     &_opened
         background-color: $secondary-color
-        border-color: $secondary-color
+        border-color: $secondary-color !important
         border-radius: 3px 3px 0 0
         color: white
 
         .dropdown-menu__items
-            display: flex
+            opacity: 1
+            top: 100%
+            transition: top .0001s, opacity .2s
 
         .dropdown-menu__arrow
             transform: rotate(180deg)

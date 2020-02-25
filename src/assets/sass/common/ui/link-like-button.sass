@@ -1,10 +1,15 @@
 @import "../vars"
 
 .link-like-button
+    display: block
+    padding: 14px 16px
+    background-color: transparent
     color: $accent-color
+    border-radius: 3px
+    border: 1px solid transparent
     cursor: pointer
-    background: transparent
-    border: none
+    transition: border .3s, background-color .3s
 
-    &_underline
-        text-decoration: underline
+    &:hover
+        background-color: #E5E8FF
+        border: 1px solid #E5E8FF

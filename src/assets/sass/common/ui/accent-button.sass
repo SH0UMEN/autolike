@@ -2,9 +2,14 @@
 
 .accent-button
     display: block
-    padding: 10px 27px
+    padding: 14px 30px
     background-color: $accent-color
     color: $white-color
     border-radius: 3px
     border: none
     cursor: pointer
+    box-shadow: 0 0 0 rgba(0,0,0,0)
+    transition: box-shadow .3s
+
+    &:hover
+        box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.15)
