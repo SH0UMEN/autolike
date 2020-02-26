@@ -1,0 +1,145 @@
+@import "../../common/vars"
+
+.order-list
+    &__container
+        flex-direction: column
+
+    &__type-selector
+        margin-top: 45px
+        margin-bottom: 35px
+        font-size: 24px
+        font-weight: bold
+
+    &__type-selector-item
+        position: relative
+        cursor: pointer
+        margin-right: 25px
+
+        span
+            color: #C8C8C8
+            transition: color .3s
+
+        input
+            position: absolute
+            height: 0
+            width: 0
+            visibility: hidden
+
+            &:checked+span
+                color: $secondary-color
+
+        &:hover
+            span
+                color: $secondary-color
+                text-decoration: underline
+
+    &__list
+        list-style: none
+        padding-left: 0
+
+    &__item
+        display: flex
+        align-items: flex-start
+        padding: 15px
+
+        &:hover
+            background-color: #F4F4F4
+
+    &__item-photo
+        max-width: 56px
+        height: auto
+        margin-right: 25px
+
+    &__select-status
+        width: 170px
+
+    &__item-title
+        font-weight: 600
+        font-size: 16px
+        text-decoration: none
+        color: $secondary-color
+
+        &:hover
+            text-decoration: underline
+            color: $accent-color
+
+    &__item-info-top
+        display: flex
+        align-items: center
+
+    &__item-status
+        display: flex
+        font-size: 12px
+        align-items: center
+
+    &__item-status-flag
+        height: 26px
+        padding: 0 12px
+        border-radius: 3px
+        font-size: 12px
+        display: flex
+        align-items: center
+        color: white
+        margin: 0 16px
+
+        &_completed
+            background-color: $access-color
+
+        &_doing
+            background-color: $accent-color
+
+        &_error
+            background-color: $error-color
+
+        &_handling
+            background-color: $handling-color
+
+        &_not-paid
+            background-color: $secondary-color
+
+    &__item-info-bottom
+        margin-top: 9px
+
+    &__item-price
+        margin: 0 16px
+
+    &__item-date
+        opacity: .6
+
+    &__filter-panel
+        display: flex
+        align-items: center
+
+    &__filter-icon
+        margin-left: 25px
+        margin-right: 13px
+
+    &__filter-list
+        display: flex
+
+    &__filter-item
+        -webkit-user-select: none
+        -moz-user-select: none
+        -ms-user-select: none
+        user-select: none
+        margin-left: 25px
+        cursor: pointer
+        color: $accent-color
+        font-weight: normal
+        display: flex
+        align-items: center
+
+        img
+            margin-left: 10px
+            display: none
+
+        &_selected
+            color: $secondary-color
+            font-weight: 600
+
+            img
+                display: block
+
+    &__triangle
+        &_rotated
+            transform: rotate(180deg)

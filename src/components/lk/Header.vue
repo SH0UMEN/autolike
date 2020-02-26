@@ -1,5 +1,5 @@
 <template>
-    <div class="lk-header">
+    <header class="lk-header">
         <div class="lk-header__container container">
             <div class="lk-header__left-side">
                 <a href="#" class="lk-header__logo">Autolike</a>
@@ -13,13 +13,13 @@
                 <dropdown-menu class="lk-header__profile-dropdown" :label="dropdownOptions.label" :items="dropdownOptions.items"></dropdown-menu>
             </div>
         </div>
-    </div>
+    </header>
 </template>
 
 <script>
-    import AccentButton from "../../../components/common/ui/AccentButton"
-    import LinkLikeButton from "../../../components/common/ui/LinkLikeButton"
-    import DropdownMenu from "../../../components/common/ui/DropdownMenu"
+    import AccentButton from "../common/ui/AccentButton"
+    import LinkLikeButton from "../common/ui/LinkLikeButton"
+    import DropdownMenu from "../common/ui/Dropdown"
 
     export default {
         name: "lk_header",
@@ -52,5 +52,5 @@
 </script>
 
 <style lang="sass" scoped>
-    @import "../../../assets/sass/lk/header/header"
+    @import "../../assets/sass/lk/header/header"
 </style>
