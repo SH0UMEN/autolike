@@ -101,11 +101,16 @@
     &__item-info-bottom
         margin-top: 9px
 
+    &__item-quantity
+        white-space: nowrap
+
     &__item-price
         margin: 0 16px
+        white-space: nowrap
 
     &__item-date
         opacity: .6
+        white-space: nowrap
 
     &__filter-panel
         display: flex
@@ -160,3 +165,47 @@
     &__next-page
         img
             margin-left: 12px
+
+    @media screen and (max-width: $md)
+        .order-list
+            &__type-selector
+                margin-top: 35px
+                margin-bottom: 25px
+                font-size: 18px
+
+            &__filter-panel
+                flex-wrap: wrap
+
+            &__filter-list
+                margin-top: 10px
+                width: 100%
+                justify-content: space-around
+
+            &__filter-item
+                &:first-child
+                    margin-left: 0px
+
+            &__list
+                margin-top: 20px
+                margin-bottom: 20px
+
+    @media screen and (max-width: $sm)
+        .order-list
+            &__item
+                justify-content: center
+
+            &__item-info-top
+                display: block
+
+            &__item-status
+                margin-top: 10px
+
+            &__item-info-bottom
+                flex-wrap: wrap
+                display: flex
+
+            &__item-date
+                //fefs
+
+            &__item-status-flag
+                margin-left: 0
