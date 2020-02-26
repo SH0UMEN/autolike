@@ -1,25 +1,26 @@
 <template>
-    <button v-if="tag == 'button'" @click="$emit('click')" class="accent-button" :class="'accent-button_'+theme">
+    <button v-if="tag == 'button'" @click="$emit('click')" class="secondary-button"
+            :class="'secondary-button_'+theme">
         <slot></slot>
     </button>
 </template>
 
 <script>
     export default {
-        name: "AccentButton",
+        name: "LinkLikeButton",
         props: {
             tag: {
                 default: "button",
                 type: String
             },
             theme: {
-                default: "accent",
+                default: 'accent',
                 type: String
             }
         }
     }
 </script>
 
-<style lang="sass">
-    @import "../../../assets/sass/common/ui/accent-button"
+<style lang="sass" scoped>
+    @import "../../../assets/sass/common/ui/secondary-button"
 </style>

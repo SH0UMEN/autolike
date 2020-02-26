@@ -1,0 +1,26 @@
+@import "../vars"
+
+.secondary-button
+    display: flex
+    padding: 14px 16px
+    background-color: transparent
+    border-radius: 3px
+    border: 1px solid transparent
+    cursor: pointer
+    transition: border .3s, background-color .3s
+    align-items: center
+    justify-content: center
+
+    &_accent
+        color: $accent-color
+
+        &:hover
+            background-color: #E5E8FF
+            border: 1px solid #E5E8FF
+
+    &_dark
+        color: $secondary-color
+
+        &:hover
+            background-color: #F4F4F4
+            border: 1px solid #F4F4F4

@@ -16,7 +16,7 @@ export default {
                 status: 4,
                 type: "subscribes",
                 quantity: 100000,
-                price: 10000,
+                price: 103200,
                 date: "12:33, 22.02.2020"
             },
             {
@@ -25,6 +25,24 @@ export default {
                 status: 3,
                 type: "subscribes",
                 quantity: 1000,
+                price: 100,
+                date: "12:33, 22.02.2020"
+            },
+            {
+                photoURL: "/images/photo2.png",
+                title: "Страница olga1972",
+                status: 1,
+                type: "subscribes",
+                quantity: 100000,
+                price: 100,
+                date: "12:33, 22.02.2020"
+            },
+            {
+                photoURL: "/images/photo2.png",
+                title: "Страница olga1972",
+                status: 0,
+                type: "subscribes",
+                quantity: 10200,
                 price: 1000,
                 date: "12:33, 22.02.2020"
             }

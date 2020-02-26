@@ -1,5 +1,5 @@
 <template>
-    <div class="dropdown" :class="{ 'dropdown_opened': isOpened}" v-click-outside="closeDropdown">
+    <div class="dropdown" :class="{ 'dropdown_opened': isOpened, 'dropdown_up': direction == 'up' }" v-click-outside="closeDropdown">
         <div class="dropdown__label" @click="isOpened = !isOpened">
             <span v-if="type == 'menu'" class="dropdown__title">{{ label.title }}</span>
             <span v-if="type == 'select'" class="dropdown__title">{{ selectedItem.title}}</span>
@@ -40,6 +40,10 @@
             type: {
                 type: String,
                 default: "menu"
+            },
+            direction: {
+                type: String,
+                default: 'down'
             }
         },
         data() {

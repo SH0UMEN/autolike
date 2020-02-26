@@ -13,11 +13,12 @@
         border-color: #D9D9D9
 
     &__label
-        padding: 9px 16px
+        padding: 0 16px
         display: flex
         cursor: pointer
         align-items: center
         justify-content: space-between
+        min-height: 44px
 
     &__arrow
         transform: rotate(0)
@@ -36,7 +37,7 @@
         border: 1px solid $secondary-color
         border-radius: 0 0 3px 3px
         opacity: 0
-        transition: opacity 0.2s, top .0001s .2s
+        transition: opacity 0.2s, top .0001s .2s, bottom .0001s .2s
 
     &__item
         padding: 8px 16px
@@ -57,10 +58,23 @@
         .dropdown__items
             opacity: 1
             top: 100%
-            transition: top .0001s, opacity .2s
+            transition: top .0001s, opacity .2s, bottom .0001s
 
         .dropdown__arrow
             transform: rotate(180deg)
 
             *
                 stroke: white
+
+    &_up
+        .dropdown__items
+            top: unset
+            bottom: -2000%
+            border-radius: 3px 3px 0 0
+
+    &_opened.dropdown_up
+        border-radius: 0 0 3px 3px
+
+        .dropdown__items
+            top: unset
+            bottom: 100%

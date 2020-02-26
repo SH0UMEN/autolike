@@ -37,7 +37,7 @@
             </div>
 
             <ul class="order-list__list">
-                <li class="order-list__item" v-for="order in $store.getters.getOrders">
+                <li class="order-list__item" v-for="order in orders">
                     <img class="order-list__item-photo" :src="order.photoURL">
                     <div class="order-list__item-info">
                         <div class="order-list__item-info-top">
@@ -70,20 +70,60 @@
                     </div>
                 </li>
             </ul>
+            <accent-button class="order-list__more" theme="dark">Показать ещё</accent-button>
+
+            <div class="order-list__pagination">
+                <div class="order-list__pages">
+                    <secondary-button theme="dark">1</secondary-button>
+                    <secondary-button theme="dark">2</secondary-button>
+                    <secondary-button theme="dark">3</secondary-button>
+                    <secondary-button theme="dark">4</secondary-button>
+                    <secondary-button theme="dark">5</secondary-button>
+                    <secondary-button class="order-list__next-page" theme="dark">
+                        Следующая <img src="/images/arrow-left.svg" alt="">
+                    </secondary-button>
+                </div>
+                <div class="order-list__pages-to-view">
+                    <dropdown class="order-list__select-pages-to-view" v-model="paginationValue" :items="paginationValues" type="select" direction="up"></dropdown>
+                </div>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
     import Dropdown from '../common/ui/Dropdown'
+    import AccentButton from '../common/ui/AccentButton'
+    import SecondaryButton from '../common/ui/SecondaryButton'
 
     export default {
         name: "OrderList",
         components: {
-            Dropdown
+            Dropdown,
+            AccentButton,
+            SecondaryButton
         },
         data() {
             return {
+                orders: [],
+                paginationValues: [
+                    {
+                        title: "Показывать по 12",
+                        value: 12,
+                        hoverColor: "accent"
+                    },
+                    {
+                        title: "Показывать по 24",
+                        value: 24,
+                        hoverColor: "accent"
+                    },
+                    {
+                        title: "Показывать по 48",
+                        value: 48,
+                        hoverColor: "accent"
+                    }
+                ],
+                paginationValue: null,
                 selectOptions: {
                     items: [
                         {
@@ -128,6 +168,8 @@
         },
         mounted() {
             this.filter.status = this.selectOptions.items[0];
+            this.paginationValue = this.paginationValues[0];
+            this.orders = this.$store.getters.getOrders;
         },
         methods: {
             changeStatusFilter(e) {

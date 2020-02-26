@@ -8,7 +8,7 @@
 
             <div class="lk-header__right-side">
                 <accent-button class="lk-header__order">Оформить заказ</accent-button>
-                <link-like-button class="lk-header__put-money">Пополнить баланс</link-like-button>
+                <secondary-button class="lk-header__put-money">Пополнить баланс</secondary-button>
                 <span class="lk-header__balance">0 руб.</span>
                 <dropdown-menu class="lk-header__profile-dropdown" :label="dropdownOptions.label" :items="dropdownOptions.items"></dropdown-menu>
             </div>
@@ -18,14 +18,14 @@
 
 <script>
     import AccentButton from "../common/ui/AccentButton"
-    import LinkLikeButton from "../common/ui/LinkLikeButton"
+    import SecondaryButton from "../common/ui/SecondaryButton"
     import DropdownMenu from "../common/ui/Dropdown"
 
     export default {
         name: "lk_header",
         components: {
             AccentButton,
-            LinkLikeButton,
+            SecondaryButton,
             DropdownMenu
         },
         data() {
@@ -51,6 +51,6 @@
     }
 </script>
 
-<style lang="sass" scoped>
+<style lang="sass">
     @import "../../assets/sass/lk/header/header"
 </style>
