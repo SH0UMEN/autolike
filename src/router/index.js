@@ -1,11 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import LK from './lk/index'
+import Auth from './auth/index'
 
 Vue.use(VueRouter)
 
 const routes = [
-  LK
+    ...LK,
+    ...Auth
 ];
 
 const router = new VueRouter({
