@@ -1,2 +1,69 @@
 @import "../../common/vars"
 
+.text-input
+    display: flex
+    position: relative
+    user-select: none
+    margin-top: 8px
+
+    &__label
+        position: absolute
+        top: 0
+        left: 50%
+        display: flex
+        align-items: center
+        justify-content: center
+        height: 0
+        font-size: 12px
+        font-weight: 600
+        width: 0
+
+    &__label-span
+        background-color: $white-color
+        white-space: nowrap
+        padding: 0 8px
+        color: $secondary-color
+        transition: color .3s
+
+    &__input
+        width: 100%
+        display: block
+        font-size: 16px
+        border: 1px solid #D9D9D9
+        text-align: center
+        padding: 13px 10px
+        border-radius: 3px
+        transition: border-color .3s
+
+        &[type='password']
+            letter-spacing: 0.25em
+
+        &::placeholder
+            color: #A7A7A7
+            -webkit-text-fill-color: #A7A7A7
+
+        //&:valid
+        //    +.text-input__label
+        //        .text-input__label-span
+        //            color: #7A7A7A
+
+        &:hover
+            border-color: black
+
+        &:focus
+            border-color: $accent-color
+
+            +.text-input__label
+                .text-input__label-span
+                    color: $accent-color
+
+        &_error
+            border-color: $error-color !important
+
+    &__label-error
+        padding: 0 8px
+        background-color: $white-color
+        color: $error-color
+        white-space: nowrap
+
+

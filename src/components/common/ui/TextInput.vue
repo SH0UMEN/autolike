@@ -1,9 +1,20 @@
 <template>
     <label class="text-input">
-        <span class="text-input__label">
-            <slot></slot>
-        </span>
-        <input type="text">
+        <input class="text-input__input"
+               :type="type"
+               :placeholder="placeholder"
+               v-model.trim="tValue"
+               @input="$emit('input', tValue)"
+               @blur="$emit('blur', tValue)"
+               :name="name" :class="{ 'text-input__input_error': error != '' }">
+        <div class="text-input__label">
+            <span v-if="error != ''" class="text-input__label-error">
+                {{ error }}
+            </span>
+            <span v-else class="text-input__label-span">
+                <slot></slot>
+            </span>
+        </div>
     </label>
 </template>
 
@@ -21,13 +32,21 @@
             value: {
                 type: String,
                 default: ""
+            },
+            name: {
+                type: String,
+                required: true
+            },
+            error: {
+                default: "",
+                type: String
             }
         },
         data() {
             return {
                 tValue: this.value,
             }
-        }
+        },
     }
 </script>
 

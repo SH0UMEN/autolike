@@ -1,14 +1,42 @@
 @import "../common/vars"
 
-.auth-container
-    display: flex
-    flex-direction: column
-    align-items: center
+.auth
+    &-container
+        display: flex
+        flex-direction: column
+        align-items: center
+        width: 100%
 
-.auth-title
-    font-size: 24px
-    font-weight: bold
+    &-title
+        font-size: 24px
+        font-weight: bold
 
-.auth-form
-    margin-top: 43px
-    margin-bottom: 12px
+    &-form
+        margin-top: 43px
+        margin-bottom: 12px
+        width: 100%
+
+    &-advice
+        margin-top: 12px
+        text-align: center
+
+        span
+            margin-right: 8px
+
+    &-input
+        &:not(:first-child)
+            margin-top: 32px
+
+    &-submit
+        margin-top: 32px
+        width: 100%
+        font-size: 16px
+
+    &-description
+        font-size: 16px
+        text-align: center
+        margin: 12px 0 0 0
+        line-height: 150%
+
+    &-message+&-advice
+        margin-top: 0

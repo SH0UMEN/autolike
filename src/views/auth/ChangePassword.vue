@@ -1,31 +1,21 @@
 <template>
-    <div class="registration auth-container">
-        <span class="registration__title auth-title">Регистрация</span>
-        <form class="registration__form auth-form" @submit.prevent="registration">
-            <text-input class="auth-input" name="login"
-                        v-model="login"
-                        placeholder="Придумайте логин"
-                        :error="$v.login.$error ? 'Не менее 5 символов' : ''"
-                        @blur="$v.login.$touch()">Логин</text-input>
-            <text-input class="auth-input" name="email"
-                        v-model="email"
-                        placeholder="example@gmail.com"
-                        :error="$v.email.$error ? 'Некорректный email' : ''"
-                        @blur="$v.email.$touch()">Электронная почта</text-input>
+    <div class="auth-container">
+        <span class="login__title auth-title">Установите новый пароль</span>
+        <form class="login__form auth-form" @submit.prevent="checkForm">
             <text-input class="auth-input" name="password"
                         v-model="password"
                         :error="$v.password.$error ? 'Не менее 5 символов' : ''"
                         type="password"
-                        @blur="$v.password.$touch()">Пароль</text-input>
+                        @blur="$v.password.$touch()">Новый пароль</text-input>
             <text-input class="auth-input" name="repeat_password"
                         v-model="repeatPassword"
                         :error="$v.repeatPassword.$error ? 'Пароли не совпадают' : ''"
                         type="password"
                         @blur="$v.repeatPassword.$touch()">Повторите пароль</text-input>
             <accent-button class="auth-submit" type="submit"
-                           :disabled="!formIsValid">Зарегистрироваться</accent-button>
+                           :disabled="!formIsValid">Установить</accent-button>
             <div class="auth-advice">
-                <span>Есть личный кабинет?</span>
+                <span>Вспопнили пароль?</span>
                 <router-link :to="{ name: 'login' }">Войти</router-link>
             </div>
         </form>
@@ -38,28 +28,18 @@
     import { required, minLength, email, sameAs } from 'vuelidate/lib/validators'
 
     export default {
-        name: "Registration",
+        name: "ChangePassword",
         components: {
             TextInput,
             AccentButton
         },
         data() {
             return {
-                login: "",
-                email: "",
                 password: "",
                 repeatPassword: ""
             }
         },
         validations: {
-            login: {
-                required,
-                minLength: minLength(5)
-            },
-            email: {
-                required,
-                email: email
-            },
             password: {
                 required,
                 minLength: minLength(5)
@@ -71,16 +51,14 @@
         },
         computed: {
             formIsValid() {
-                return !(this.$v.email.$invalid || this.$v.email.$anyError ||
-                         this.$v.login.$invalid || this.$v.login.$anyError ||
-                         this.$v.password.$invalid || this.$v.password.$anyError ||
+                return !(this.$v.password.$invalid || this.$v.password.$anyError ||
                          this.$v.repeatPassword.$invalid || this.$v.repeatPassword.$anyError)
             }
         },
         methods: {
-            registration() {
+            checkForm() {
                 if(this.formIsValid) {
-                    this.$router.push({ name: 'confirming' })
+                    this.$router.push({ name: 'restore-successful' })
                 }
             }
         }
