@@ -4,6 +4,7 @@
             <span v-if="type == 'menu'" class="dropdown__title">{{ label.title }}</span>
             <span v-if="type == 'select'" class="dropdown__title">{{ selectedItem.title}}</span>
             <img v-if="type == 'menu' && label.image" class="dropdown__icon" :src="label.image" alt="">
+            <img v-if="type == 'select' && selectedItem.image" class="dropdown__icon" :src="selectedItem.image" alt="">
             <svg class="dropdown__arrow" width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1 1L5 5L9 1" stroke="black" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
             </svg>

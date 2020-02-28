@@ -7,7 +7,7 @@
     position: relative
     user-select: none
     background-color: transparent
-    transition: border-color .2s, background-color .2s
+    transition: border-color .2s
 
     &:hover
         border-color: #D9D9D9
@@ -37,7 +37,7 @@
         border: 1px solid $secondary-color
         border-radius: 0 0 3px 3px
         opacity: 0
-        transition: opacity 0.2s, top .0001s .2s, bottom .0001s .2s
+        transition: top .0001s .2s, bottom .0001s .2s
 
     &__item
         padding: 8px 16px
@@ -49,6 +49,11 @@
         &_error:hover
             background-color: $error-color
 
+    &__title, &__item
+        white-space: nowrap
+        text-overflow: ellipsis
+        overflow: hidden
+
     &_opened
         background-color: $secondary-color
         border-color: $secondary-color !important
@@ -58,7 +63,7 @@
         .dropdown__items
             opacity: 1
             top: 100%
-            transition: top .0001s, opacity .2s, bottom .0001s
+            transition: top .0001s, bottom .0001s
 
         .dropdown__arrow
             transform: rotate(180deg)
@@ -78,3 +83,7 @@
         .dropdown__items
             top: unset
             bottom: 100%
+
+    @media screen and (max-width: $md)
+        &:hover
+            border-color: transparent

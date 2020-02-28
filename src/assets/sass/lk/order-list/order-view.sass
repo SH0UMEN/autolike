@@ -1,0 +1,133 @@
+@import "../../common/vars"
+
+.order-item
+    display: flex
+    align-items: flex-start
+    padding: 15px 50px 15px 15px
+    position: relative
+
+    &:hover
+        background-color: #F4F4F4
+
+    &__photo
+        margin-right: 25px
+        position: relative
+        min-width: 56px
+        width: 56px
+        display: flex
+        align-items: center
+        justify-content: center
+
+        img
+            max-width: 100%
+            height: auto
+
+    &__status-mini
+        display: none
+        height: 14px
+        width: 14px
+        border: 2px solid $white-color
+        position: absolute
+        left: -2px
+        top: -2px
+        border-radius: 50%
+
+    &__title
+        font-weight: 600
+        font-size: 16px
+        text-decoration: none
+        color: $secondary-color
+        max-width: 100%
+        white-space: nowrap
+        -ms-text-overflow: ellipsis
+        text-overflow: ellipsis
+        display: block
+        overflow: hidden
+
+        &:hover
+            text-decoration: underline
+            color: $accent-color
+
+    &__info-top
+        display: flex
+        align-items: center
+
+    &__status
+        display: flex
+        font-size: 12px
+        align-items: center
+
+    &__status-flag
+        height: 26px
+        padding: 0 12px
+        border-radius: 3px
+        font-size: 12px
+        display: flex
+        align-items: center
+        color: white
+        margin: 0 16px
+
+    &__status-flag, &__status-mini
+        &_completed
+            background-color: $access-color
+
+        &_doing
+            background-color: $accent-color
+
+        &_error
+            background-color: $error-color
+
+        &_handling
+            background-color: $handling-color
+
+        &_not-paid
+            background-color: $secondary-color
+
+    &__info
+        width: 100%
+        overflow: hidden
+
+    &__info-bottom
+        margin-top: 9px
+        white-space: nowrap
+        overflow: hidden
+        width: 100%
+        -ms-text-overflow: ellipsis
+        text-overflow: ellipsis
+
+    &__price
+        margin: 0 16px
+
+    &__date
+        opacity: .6
+
+    &__info-more
+        position: absolute
+        right: 0
+        top: 0
+        height: 100%
+        display: flex
+        align-items: center
+        padding: 0 20px
+
+    &__info-more-icon
+        cursor: pointer
+
+    @media screen and (max-width: $sm)
+        margin-left: -7px
+        margin-right: -7px
+        padding: 12px 50px 12px 10px
+
+        &__date, &__status
+            display: none
+
+        &__photo
+            margin-right: 10px
+            max-width: 48px
+            width: 48px
+
+        &__status-mini
+            display: block
+
+        &__info-more
+            padding: 0 15px

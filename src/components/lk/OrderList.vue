@@ -1,6 +1,7 @@
 <template>
     <div class="order-list">
         <div class="order-list__container container">
+            <accent-button class="order-list__order-button">Оформить заказ</accent-button>
             <div class="order-list__type-selector">
                 <label class="order-list__type-selector-item">
                     <input value="all" v-model="filter.type" type="radio"> <span>Все заказы</span>
@@ -14,9 +15,16 @@
             </div>
 
             <div class="order-list__filter-panel">
-                <dropdown class="order-list__select-status" type="select" @input="changeStatusFilter" :items="selectOptions.items"></dropdown>
+                <dropdown class="order-list__select-filter" type="select"
+                          @input="changeStatusFilter"
+                          :items="filter.filterOptions">
+                </dropdown>
+                <dropdown class="order-list__select-status" type="select"
+                          @input="changeStatusFilter"
+                          :items="selectOptions.items">
+                </dropdown>
                 <img class="order-list__filter-icon" src="/images/filter.svg" alt="">
-                <span>Сортировать по:</span>
+                <span class="order-list__filter-marker">Сортировать по:</span>
                 <div class="order-list__filter-list">
                     <span class="order-list__filter-item"
                           :class="{ 'order-list__filter-item_selected': filter.filterType == 'date' }" @click="changeFilterType('date')">
@@ -37,50 +45,23 @@
             </div>
 
             <ul class="order-list__list">
-                <li class="order-list__item" v-for="order in orders">
-                    <img class="order-list__item-photo" :src="order.photoURL">
-                    <div class="order-list__item-info">
-                        <div class="order-list__item-info-top">
-                            <a href="#" class="order-list__item-title">{{ order.title }}</a>
-                            <div class="order-list__item-status">
-                                <span class="order-list__item-status-flag"
-                                      :class="{ 'order-list__item-status-flag_completed': order.status == 0,
-                                                 'order-list__item-status-flag_doing': order.status == 1,
-                                                 'order-list__item-status-flag_handling': order.status == 2,
-                                                 'order-list__item-status-flag_not-paid': order.status == 3,
-                                                 'order-list__item-status-flag_error': order.status == 4}"
-                                      v-html="order.status == 0 ? 'Выполнен':
-                                              order.status == 1 ? 'Выполняется':
-                                              order.status == 2 ? 'В обработке':
-                                              order.status == 3 ? 'Не оплачено':
-                                              order.status == 4 ? 'Ошибка' : ''">
-                                </span>
-                                <a v-if="order.status == 4" href="#">Что делать?</a>
-                                <a v-if="order.status == 3" href="#">Оплатить</a>
-                            </div>
-                        </div>
-                        <div class="order-list__item-info-bottom">
-                            <span class="order-list__item-quantity" v-html="order.quantity + ' ' + (
-                                                                            order.type == 'likes' ? 'лайков' :
-                                                                            order.type == 'subscribes' ? 'подписок' : '')">
-                            </span>
-                            <span class="order-list__item-price">{{ order.price }} руб.</span>
-                            <span class="order-list__item-date">{{ order.date }}</span>
-                        </div>
-                    </div>
-                </li>
+                <order-view class="order-list__list-item" v-for="order in orders" :order="order"></order-view>
             </ul>
+
             <accent-button class="order-list__more" theme="dark">Показать ещё</accent-button>
 
             <div class="order-list__pagination">
                 <div class="order-list__pages">
-                    <secondary-button theme="dark">1</secondary-button>
-                    <secondary-button theme="dark">2</secondary-button>
-                    <secondary-button theme="dark">3</secondary-button>
-                    <secondary-button theme="dark">4</secondary-button>
-                    <secondary-button theme="dark">5</secondary-button>
+                    <secondary-button class="order-list__prev-page" theme="dark">
+                        <img src="/images/arrow-left.svg" alt=""> <span>Предыдущая</span>
+                    </secondary-button>
+                    <secondary-button class="order-list__page-select" theme="dark">1</secondary-button>
+                    <secondary-button class="order-list__page-select" theme="dark">2</secondary-button>
+                    <secondary-button class="order-list__page-select" theme="dark">3</secondary-button>
+                    <secondary-button class="order-list__page-select" theme="dark">4</secondary-button>
+                    <secondary-button class="order-list__page-select" theme="dark">5</secondary-button>
                     <secondary-button class="order-list__next-page" theme="dark">
-                        Следующая <img src="/images/arrow-left.svg" alt="">
+                        <span>Следующая</span> <img src="/images/arrow-left.svg" alt="">
                     </secondary-button>
                 </div>
                 <div class="order-list__pages-to-view">
@@ -95,13 +76,15 @@
     import Dropdown from '../common/ui/Dropdown'
     import AccentButton from '../common/ui/AccentButton'
     import SecondaryButton from '../common/ui/SecondaryButton'
+    import OrderView from '../lk/OrderView'
 
     export default {
         name: "OrderList",
         components: {
             Dropdown,
             AccentButton,
-            SecondaryButton
+            SecondaryButton,
+            OrderView
         },
         data() {
             return {
@@ -163,6 +146,50 @@
                     status: null,
                     filterType: "date",
                     sortDirection: "DESC",
+                    filterOptions: [
+                        {
+                            filterType: "date",
+                            sortDirection: "DESC",
+                            title: "Дате (по убыванию)",
+                            hoverColor: "accent",
+                            image: "/images/filter.svg"
+                        },
+                        {
+                            filterType: "date",
+                            sortDirection: "ASC",
+                            title: "Дате (по возрастанию)",
+                            hoverColor: "accent",
+                            image: "/images/filter.svg"
+                        },
+                        {
+                            filterType: "price",
+                            sortDirection: "DESC",
+                            title: "Цене (по убыванию)",
+                            hoverColor: "accent",
+                            image: "/images/filter.svg"
+                        },
+                        {
+                            filterType: "price",
+                            sortDirection: "ASC",
+                            title: "Цене (по возрастанию)",
+                            hoverColor: "accent",
+                            image: "/images/filter.svg"
+                        },
+                        {
+                            filterType: "quantity",
+                            sortDirection: "DESC",
+                            title: "Кол-ву лайков/подписок (по убыванию)",
+                            hoverColor: "accent",
+                            image: "/images/filter.svg"
+                        },
+                        {
+                            filterType: "quantity",
+                            sortDirection: "ASC",
+                            title: "Кол-ву лайков/подписок (по возрастанию)",
+                            hoverColor: "accent",
+                            image: "/images/filter.svg"
+                        },
+                    ]
                 }
             }
         },

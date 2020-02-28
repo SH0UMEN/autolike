@@ -34,11 +34,18 @@
         position: relative
         top: -1.5px
 
+        &_mini
+            display: none
+
     &__put-money
         margin: 0 16px
 
     &__profile-dropdown
         width: 217px
+        display: none
+
+        &_desktop
+            display: block
 
     &__balance
         font-size: 16px
@@ -57,3 +64,86 @@
             position: absolute
             right: 0
             top: 0
+
+    @media screen and (max-width: $lg)
+        .lk-header
+            &__marker
+                display: none
+
+                &_mini
+                    display: block
+
+            &__put-money, &__order
+                display: none
+
+            &__profile-dropdown
+                display: none
+
+                &_laptop
+                    display: block
+
+            &__balance
+                font-size: 14px
+
+    @media screen and (max-width: $sm)
+        padding-top: 0
+        padding-bottom: 0
+        height: 46px
+
+        &__profile-dropdown
+            position: absolute
+            right: 0
+            width: 216px
+            z-index: 101
+            border-radius: 0 0 3px 3px
+            transition: border-color .2s
+            top: 0
+
+            &_laptop
+                display: none !important
+
+            &_mobile
+                display: block !important
+
+            &:hover
+                border-color: transparent
+
+            .dropdown
+                &__title
+                    display: none
+                    max-width: 117px
+                    text-overflow: ellipsis
+                    overflow: hidden
+                    white-space: nowrap
+
+                &__label
+                    justify-content: flex-end
+
+                &__icon
+                    margin-left: 15px
+                    margin-right: 15px
+
+            &.dropdown_opened
+                .dropdown__title
+                    display: block
+
+                .dropdown__item
+                    &:hover
+                        background-color: transparent !important
+
+        &__container
+            padding-right: 0
+            height: 100%
+
+        &__balance
+            margin-right: 85px
+            padding-right: 0
+
+            &:after
+                display: none
+
+        &__marker
+            font-size: 12px
+
+        &__logo
+            margin-right: 10px

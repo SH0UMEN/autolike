@@ -13,7 +13,9 @@
     &__type-selector-item
         position: relative
         cursor: pointer
-        margin-right: 25px
+
+        &:not(:last-child)
+            margin-right: 25px
 
         span
             color: #C8C8C8
@@ -33,84 +35,19 @@
                 color: $secondary-color
                 text-decoration: underline
 
+    &__order-button
+        display: none
+
+    &__select-filter
+        display: none
+
     &__list
         list-style: none
         padding-left: 0
         margin: 30px 0
 
-    &__item
-        display: flex
-        align-items: flex-start
-        padding: 15px
-
-        &:hover
-            background-color: #F4F4F4
-
-    &__item-photo
-        max-width: 56px
-        height: auto
-        margin-right: 25px
-
     &__select-status
         width: 170px
-
-    &__item-title
-        font-weight: 600
-        font-size: 16px
-        text-decoration: none
-        color: $secondary-color
-
-        &:hover
-            text-decoration: underline
-            color: $accent-color
-
-    &__item-info-top
-        display: flex
-        align-items: center
-
-    &__item-status
-        display: flex
-        font-size: 12px
-        align-items: center
-
-    &__item-status-flag
-        height: 26px
-        padding: 0 12px
-        border-radius: 3px
-        font-size: 12px
-        display: flex
-        align-items: center
-        color: white
-        margin: 0 16px
-
-        &_completed
-            background-color: $access-color
-
-        &_doing
-            background-color: $accent-color
-
-        &_error
-            background-color: $error-color
-
-        &_handling
-            background-color: $handling-color
-
-        &_not-paid
-            background-color: $secondary-color
-
-    &__item-info-bottom
-        margin-top: 9px
-
-    &__item-quantity
-        white-space: nowrap
-
-    &__item-price
-        margin: 0 16px
-        white-space: nowrap
-
-    &__item-date
-        opacity: .6
-        white-space: nowrap
 
     &__filter-panel
         display: flex
@@ -162,6 +99,11 @@
     &__select-pages-to-view
         width: 191px
 
+    &__prev-page
+        img
+            transform: rotate(180deg)
+            margin-right: 12px
+
     &__next-page
         img
             margin-left: 12px
@@ -181,31 +123,82 @@
                 width: 100%
                 justify-content: space-around
 
-            &__filter-item
-                &:first-child
-                    margin-left: 0px
-
             &__list
                 margin-top: 20px
                 margin-bottom: 20px
 
+            &__filter-marker, &__filter-list, &__filter-icon
+                display: none
+
+            &__select-status
+                right: 0
+
+            &__filter-panel
+                position: relative
+                height: 46px
+
+            &__select-filter, &__select-status
+                position: absolute
+                top: 0
+                width: 48%
+
+            &__select-filter
+                left: 0
+                display: block
+                z-index: 10
+                transition: border-color .2s
+
+                .dropdown
+                    &__arrow
+                        display: none
+
+                    &__label
+                        flex-direction: row-reverse
+                        justify-content: flex-end
+
+                    &__icon
+                        margin-right: 13px
+
+                &.dropdown_opened
+                    width: 100%
+                    transition: border-color .2s, background-color .2s, width .0001s
+
+                    .dropdown
+                        &__icon
+                            filter: invert(1)
+
     @media screen and (max-width: $sm)
         .order-list
-            &__item
-                justify-content: center
-
-            &__item-info-top
+            &__order-button
                 display: block
+                margin-top: 20px
 
-            &__item-status
-                margin-top: 10px
+            &__type-selector
+                margin: 15px 0
 
-            &__item-info-bottom
-                flex-wrap: wrap
-                display: flex
+            &__type-selector-item
+                &:not(:last-child)
+                    margin-right: 19px
 
-            &__item-date
-                //fefs
+            &__prev-page, &__next-page
+                img
+                    margin: 0
 
-            &__item-status-flag
-                margin-left: 0
+                span
+                    display: none
+
+            &__prev-page, &__next-page, &__page-select
+                padding: 12px 14px
+
+            &__pagination
+                flex-direction: column
+                margin-bottom: 24px
+
+            &__pages
+                justify-content: space-between
+
+            &__pages-to-view
+                width: 100%
+
+            &__select-pages-to-view
+                width: 100%
