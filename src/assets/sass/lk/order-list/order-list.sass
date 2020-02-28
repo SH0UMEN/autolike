@@ -39,6 +39,7 @@
         display: none
 
     &__select-filter
+        position: relative
         display: none
 
     &__list
@@ -48,6 +49,8 @@
 
     &__select-status
         width: 170px
+        z-index: 9
+        position: relative
 
     &__filter-panel
         display: flex
@@ -87,11 +90,85 @@
         &_rotated
             transform: rotate(180deg)
 
+    &__order-more-info
+        margin: 0
+        padding: 10px
+        padding-top: 16px
+        padding-bottom: 27px
+
+        &:hover
+            background-color: transparent
+
+        .order-item
+            &__info-more
+                display: none
+
+    &__order-more-modal
+        .modal
+            &__content
+                margin-top: -12px
+
     &__pagination
         display: flex
         margin-top: 18px
         margin-bottom: 48px
         justify-content: space-between
+
+    &__order-more-date
+        opacity: .6
+        font-size: 12px
+
+    &__order-more-status
+        height: 26px
+        padding: 0 12px
+        border-radius: 3px
+        font-size: 12px
+        display: inline-flex
+        align-items: center
+        color: white
+        margin-right: 12px
+        position: relative
+
+        &:after
+            position: absolute
+            content: ""
+            display: block
+            left: 9.5px
+            bottom: -10px
+            width: 0
+            height: 0
+            border-style: solid
+            border-width: 10px 7.5px 0 7.5px
+
+        &_completed
+            background-color: $access-color
+
+            &:after
+                border-color: $access-color transparent transparent transparent
+
+        &_doing
+            background-color: $accent-color
+
+            &:after
+                border-color: $accent-color transparent transparent transparent
+
+        &_error
+            background-color: $error-color
+
+            &:after
+                border-color: $error-color transparent transparent transparent
+
+        &_handling
+            background-color: $handling-color
+
+            &:after
+                border-color: $handling-color transparent transparent transparent
+
+        &_not-paid
+            background-color: $secondary-color
+
+            &:after
+                border-color: $secondary-color transparent transparent transparent
 
     &__pages
         display: flex

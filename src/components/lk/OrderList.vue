@@ -45,7 +45,10 @@
             </div>
 
             <ul class="order-list__list">
-                <order-view class="order-list__list-item" v-for="order in orders" :order="order"></order-view>
+                <order-view class="order-list__list-item"
+                            v-for="order in orders" :order="order"
+                            @click="orderMoreOpen($event)"
+                            :key="order.id"></order-view>
             </ul>
 
             <accent-button class="order-list__more" theme="dark">Показать ещё</accent-button>
@@ -69,6 +72,26 @@
                 </div>
             </div>
         </div>
+        <main-modal name="order-more" :show="orderMoreShown"
+                    @closed="orderMoreClosed" class="order-list__order-more-modal">
+            <div class="order-list__order-more-top" v-if="currentOrder">
+                <span class="order-list__order-more-status"
+                      :class="{ 'order-list__order-more-status_completed': currentOrder.status == 0,
+                                 'order-list__order-more-status_doing': currentOrder.status == 1,
+                                 'order-list__order-more-status_handling': currentOrder.status == 2,
+                                 'order-list__order-more-status_not-paid': currentOrder.status == 3,
+                                 'order-list__order-more-status_error': currentOrder.status == 4}"
+                      v-html="currentOrder.status == 0 ? 'Выполнен':
+                              currentOrder.status == 1 ? 'Выполняется':
+                              currentOrder.status == 2 ? 'В обработке':
+                              currentOrder.status == 3 ? 'Не оплачено':
+                              currentOrder.status == 4 ? 'Ошибка' : ''">
+                </span>
+                <span class="order-list__order-more-date">{{ currentOrder.date }}</span>
+            </div>
+            <order-view class="order-list__order-more-info"
+                        :order="currentOrder"></order-view>
+        </main-modal>
     </div>
 </template>
 
@@ -77,6 +100,7 @@
     import AccentButton from '../common/ui/AccentButton'
     import SecondaryButton from '../common/ui/SecondaryButton'
     import OrderView from '../lk/OrderView'
+    import MainModal from '../common/ui/MainModal'
 
     export default {
         name: "OrderList",
@@ -84,7 +108,8 @@
             Dropdown,
             AccentButton,
             SecondaryButton,
-            OrderView
+            OrderView,
+            MainModal
         },
         data() {
             return {
@@ -190,7 +215,9 @@
                             image: "/images/filter.svg"
                         },
                     ]
-                }
+                },
+                currentOrder: null,
+                orderMoreShown: false,
             }
         },
         mounted() {
@@ -201,7 +228,6 @@
         methods: {
             changeStatusFilter(e) {
                 this.filter.status = e.target.value;
-                console.log(this.filter.status)
             },
             changeFilterType(type) {
                 if(this.filter.filterType == type) {
@@ -214,6 +240,15 @@
                     this.filter.filterType = type;
                     this.filter.sortDirection = "DESC"
                 }
+            },
+            orderMoreOpen(id) {
+                if(window.innerWidth <= 540) {
+                    this.currentOrder = this.$store.getters.getOrderByID(id);
+                    this.orderMoreShown = true;
+                }
+            },
+            orderMoreClosed() {
+                this.orderMoreShown = false;
             }
         },
     }

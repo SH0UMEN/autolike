@@ -1,0 +1,34 @@
+@import "../vars"
+
+.v--modal-box
+    max-width: 552px
+    width: 100% !important
+    margin-left: auto
+    left: 0 !important
+    margin-right: auto
+
+.v--modal-background-click
+    box-sizing: border-box
+    padding-left: 15px
+    padding-right: 15px
+
+.modal
+    &__header
+        padding: 10px
+        display: flex
+        justify-content: flex-end
+
+    &__close-modal
+        cursor: pointer
+
+        *
+            stroke: black
+            transition: stroke .3s
+
+        &:hover
+            *
+                stroke: $error-color
+
+    &__content
+        padding-left: 12px
+        padding-right: 12px

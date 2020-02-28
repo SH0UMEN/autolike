@@ -1,5 +1,5 @@
 <template>
-    <li class="order-item">
+    <li class="order-item" @click="$emit('click', order.id)">
         <div class="order-item__photo">
             <span class="order-item__status-mini"
                   :class="{ 'order-item__status-mini_completed': order.status == 0,

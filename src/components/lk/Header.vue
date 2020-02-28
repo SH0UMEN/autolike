@@ -8,7 +8,7 @@
             </div>
 
             <div class="lk-header__right-side">
-                <accent-button class="lk-header__order">Оформить заказ</accent-button>
+                <accent-button class="lk-header__order" @click="$store.commit('openOrderModal')">Оформить заказ</accent-button>
                 <secondary-button class="lk-header__put-money">Пополнить баланс</secondary-button>
                 <span class="lk-header__balance">0 руб.</span>
                 <dropdown-menu class="lk-header__profile-dropdown lk-header__profile-dropdown_desktop"
