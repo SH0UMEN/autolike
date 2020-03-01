@@ -7,3 +7,57 @@
     &__text-input
         margin-top: 32px
         width: 100%
+
+        .text-input__input
+            padding-top: 11px
+            padding-bottom: 11px
+
+    &__quantity
+        display: flex
+        max-width: 360px
+        width: 100%
+        align-items: flex-end
+        justify-content: center
+        margin-top: 32px
+        position: relative
+        
+        .order-modal__quantity-control
+            background-color: #F4F4F4
+
+            svg
+                *
+                    stroke: black
+
+            &:hover
+                background-color: $secondary-color
+
+                svg
+                    *
+                        stroke: $white-color
+
+        &-min
+            left: 58px
+
+        &-max
+            right: 58px
+
+        &-max, &-min
+            bottom: -20px
+            color: #A7A7A7
+            font-size: 12px
+            font-weight: 600
+            position: absolute
+            transition: color .3s
+
+            &_triggered
+                color: $error-color
+
+        &-input
+            font-size: 16px
+            margin-left: 8px
+            margin-right: 8px
+            width: 100%
+
+            .text-input__input
+                padding-top: 11px
+                padding-bottom: 11px

@@ -9,7 +9,7 @@
                :name="name" :class="{ 'text-input__input_error': error != '' }">
         <div class="text-input__label">
             <span v-if="error != ''" class="text-input__label-error">
-                {{ error }}
+                <img src="/images/alert-triangle.svg" alt=""> {{ error }}
             </span>
             <span v-else class="text-input__label-span">
                 <slot></slot>
@@ -30,8 +30,7 @@
                 type: String
             },
             value: {
-                type: String,
-                default: ""
+                required: true
             },
             name: {
                 type: String,
