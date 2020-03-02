@@ -20,24 +20,19 @@
                     </text-input>
 
                     <div class="order-modal__quantity">
-                        <secondary-button class="order-modal__quantity-control">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M3.33337 8H12.6667" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </secondary-button>
-                        <text-input class="order-modal__quantity-input"
+                        <number-input v-model="quantity"
+                                      :h="likesQuantityStep"
+                                      class="order-modal__quantity-input"
+                                      :error="quantity < $v.quantity.$params.between.min ? 'Cлишком маленькое кол-во' :
+                                            quantity > $v.quantity.$params.between.max ? 'Cлишком большое кол-во' :
+                                            quantity % likesQuantityStep != 0 ? `Число не кратно ${likesQuantityStep}` : ''">Количество</number-input>
+                        <!--<text-input class="order-modal__quantity-input"
                                     name="quantity" type="number"
                                     @blur="$v.quantity.$touch()"
                                     v-model="quantity"
                                     :error="quantity < $v.quantity.$params.between.min ? 'Cлишком маленькое кол-во' :
                                             quantity > $v.quantity.$params.between.max ? 'Cлишком большое кол-во' :
-                                            quantity % likesQuantityStep != 0 ? `Число не кратно ${likesQuantityStep}` : ''">Количество</text-input>
-                        <secondary-button class="order-modal__quantity-control">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M8 3.3335V12.6668" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                <path d="M3.33325 8H12.6666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </secondary-button>
+                                            quantity % likesQuantityStep != 0 ? `Число не кратно ${likesQuantityStep}` : ''">Количество</text-input>-->
                         <span class="order-modal__quantity-min"
                               :class="{ 'order-modal__quantity-min_triggered': quantity < $v.quantity.$params.between.min }">
                             Минимум 1000
@@ -46,6 +41,18 @@
                               :class="{ 'order-modal__quantity-max_triggered': quantity > $v.quantity.$params.between.max }">
                             Максимум 150 000
                         </span>
+                    </div>
+
+                    <div class="order-modal__price-block">
+                        <span class="order-modal__price-label" :class="{ 'order-modal__price-label_error': orderPrice > $store.getters.getUser.balance }">
+                            <img src="/images/alert-triangle.svg" alt="">
+                            Стоимость заказа
+                        </span>
+                        <span class="order-modal__price">{{ orderPrice }} руб.</span>
+                        <div v-if="orderPrice > $store.getters.getUser.balance" class="order-modal__price-error">
+                            <span class="order-modal__price-error-text">Вам не хватает {{ orderPrice - $store.getters.getUser.balance  }} руб</span>
+                            <button class="order-modal__price-error-link" @click="toBalance">Пополнить баланс</button>
+                        </div>
                     </div>
                 </div>
 
@@ -64,6 +71,7 @@
     import TextInput from "../../../components/common/ui/TextInput"
     import AccentButton from "../../../components/common/ui/AccentButton"
     import SecondaryButton from "../../../components/common/ui/SecondaryButton"
+    import NumberInput from "../../../components/common/ui/NumberInput"
     import { required, between, url } from 'vuelidate/lib/validators'
 
     export default {
@@ -73,12 +81,14 @@
             MainModal,
             TextInput,
             AccentButton,
-            SecondaryButton
+            SecondaryButton,
+            NumberInput
         },
         data() {
             return {
                 quantity: 1000,
                 instagram: "",
+                priceForOne: 10,
                 likesQuantityStep: 500,
                 subscribesQuantityStep: 500,
                 resultData: {
@@ -106,9 +116,18 @@
                 url
             }
         },
+        computed: {
+            orderPrice() {
+                return this.quantity*this.priceForOne;
+            }
+        },
         methods: {
             setType(event) {
                 this.resultData.type = event.value;
+            },
+            toBalance() {
+                this.$store.commit('closeOrderModal');
+                this.$store.commit('openBalanceModal');
             }
         }
     }

@@ -13,27 +13,9 @@
             padding-bottom: 11px
 
     &__quantity
-        display: flex
         max-width: 360px
-        width: 100%
-        align-items: flex-end
-        justify-content: center
         margin-top: 32px
         position: relative
-        
-        .order-modal__quantity-control
-            background-color: #F4F4F4
-
-            svg
-                *
-                    stroke: black
-
-            &:hover
-                background-color: $secondary-color
-
-                svg
-                    *
-                        stroke: $white-color
 
         &-min
             left: 58px
@@ -52,12 +34,88 @@
             &_triggered
                 color: $error-color
 
-        &-input
-            font-size: 16px
-            margin-left: 8px
-            margin-right: 8px
-            width: 100%
+    &__price
+        font-size: 24px
+        line-height: 26px
+        font-weight: bold
 
-            .text-input__input
-                padding-top: 11px
-                padding-bottom: 11px
+        &-label
+            font-size: 16px
+            display: flex
+            align-items: center
+            transition: color .3s
+
+            img
+                width: 16px
+                margin-right: 8px
+                position: relative
+                bottom: -1px
+                display: none
+
+            &_error
+                color: $error-color
+
+                img
+                    display: block
+
+        &-block
+            margin-top: 56px
+            display: flex
+            justify-content: space-between
+            align-items: flex-end
+            width: 100%
+            position: relative
+
+        &-error
+            display: flex
+            width: 100%
+            position: absolute
+            justify-content: space-between
+            bottom: -23px
+
+            &-text
+                color: $error-color
+
+            &-link
+                border: none
+                background-color: transparent
+                color: $accent-color
+                text-decoration: underline
+                cursor: pointer
+
+    @media screen and (max-width: $sm)
+        .order-modal
+            &__price
+                font-size: 20px
+                order: 1
+
+                &-label
+                    order: 2
+                    justify-content: center
+                    width: 100%
+                    margin-top: 4px
+                    margin-bottom: 4px
+
+                &-block
+                    flex-wrap: wrap
+                    justify-content: center
+
+                &-error
+                    flex-wrap: wrap
+                    position: relative
+                    bottom: 0
+                    justify-content: center
+                    order: 3
+
+                    &-link
+                        margin-top: 4px
+
+
+            &__quantity
+                &-min
+                    left: 0
+
+                &-max
+                    right: 0
+
+

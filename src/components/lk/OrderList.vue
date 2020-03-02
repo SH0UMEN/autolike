@@ -1,7 +1,8 @@
 <template>
     <div class="order-list">
         <div class="order-list__container container">
-            <accent-button class="order-list__order-button">Оформить заказ</accent-button>
+            <accent-button class="order-list__order-button"
+                           @click="$store.commit('openOrderModal')">Оформить заказ</accent-button>
             <div class="order-list__type-selector">
                 <label class="order-list__type-selector-item">
                     <input value="all" v-model="filter.type" type="radio"> <span>Все заказы</span>

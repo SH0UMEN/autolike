@@ -1,8 +1,10 @@
 import order from "./order.js"
+import balance from "./balance"
 
 export default {
     state: {
         ...order.state,
+        ...balance.state,
         orders: [
             {
                 photoURL: "/images/photo1.png",
@@ -58,6 +60,7 @@ export default {
     },
     getters: {
         ...order.getters,
+        ...balance.getters,
         getOrders(state) {
             return state.orders;
         },
@@ -70,9 +73,11 @@ export default {
         }
     },
     actions: {
-        ...order.actions
+        ...order.actions,
+        ...balance.actions
     },
     mutations: {
-        ...order.mutations
+        ...order.mutations,
+        ...balance.mutations
     }
 }

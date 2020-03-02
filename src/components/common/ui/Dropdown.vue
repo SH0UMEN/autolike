@@ -10,7 +10,9 @@
             </svg>
         </div>
         <div v-if="type == 'menu'" class="dropdown__items">
-            <span class="dropdown__item" v-for="item in items" :class="'dropdown__item_'+item.hoverColor">
+            <span class="dropdown__item" v-for="item in items"
+                  :class="'dropdown__item_'+item.hoverColor"
+                  @click="item.callback ? startCallback(item) : null">
                 {{ item.title }}
             </span>
         </div>
@@ -61,6 +63,10 @@
                 this.selectedItem = this.items[item];
                 this.$emit("input", this.selectedItem);
                 this.closeDropdown();
+            },
+            startCallback(item) {
+                this.isOpened = false;
+                setTimeout(item.callback, 1)
             }
         }
     }

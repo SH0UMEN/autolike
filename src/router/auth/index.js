@@ -53,7 +53,7 @@ export default [
                 component: RestoreSuccessful
             },
             {
-                path: '/auth/restore/change-password',
+                path: '/auth/change-password',
                 name: 'change-password',
                 component: ChangePassword
             }

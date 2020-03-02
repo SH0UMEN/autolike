@@ -3,8 +3,8 @@
         <input class="text-input__input"
                :type="type"
                :placeholder="placeholder"
-               v-model.trim="tValue"
-               @input="$emit('input', tValue)"
+               v-model="tValue"
+               @input="$emit('input', type == 'number' ? parseInt(tValue) : tValue)"
                @blur="$emit('blur', tValue)"
                :name="name" :class="{ 'text-input__input_error': error != '' }">
         <div class="text-input__label">
@@ -46,6 +46,11 @@
                 tValue: this.value,
             }
         },
+        watch: {
+            value() {
+                this.tValue = this.value
+            }
+        }
     }
 </script>
 

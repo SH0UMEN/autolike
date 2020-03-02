@@ -1,0 +1,31 @@
+@import "../vars"
+
+.number-input
+    display: flex
+    width: 100%
+    align-items: flex-end
+    justify-content: center
+
+    .number-input__quantity-control
+        background-color: #F4F4F4
+
+        svg
+            *
+                stroke: black
+
+        &:hover
+            background-color: $secondary-color
+
+            svg
+                *
+                    stroke: $white-color
+
+    &__quantity-input
+        font-size: 16px
+        margin-left: 8px
+        margin-right: 8px
+        width: 100%
+
+        .text-input__input
+            padding-top: 11px
+            padding-bottom: 11px
