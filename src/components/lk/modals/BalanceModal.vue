@@ -9,7 +9,8 @@
                     <number-input v-model="money"
                                   class="balance-modal__balance-input"
                                   @blur="$v.money.$touch()"
-                                  :error="money < 1 ? 'Не менее 1 рубля' : ''">
+                                  :error="money < 1 ? 'Не менее 1 рубля' :
+                                          !$v.money.integer ? 'Введите число' : ''">
                         Cумма для пополнения
                     </number-input>
                 </div>
@@ -34,7 +35,7 @@
     import AccentButton from "../../../components/common/ui/AccentButton"
     import SecondaryButton from "../../../components/common/ui/SecondaryButton"
     import NumberInput from "../../../components/common/ui/NumberInput"
-    import { required, minValue } from 'vuelidate/lib/validators'
+    import { required, minValue, integer } from 'vuelidate/lib/validators'
 
     export default {
         name: "BalanceModal",
@@ -53,7 +54,8 @@
         validations: {
             money: {
                 required,
-                minValue: minValue(1)
+                minValue: minValue(1),
+                integer: integer
             }
         }
     }

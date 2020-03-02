@@ -26,6 +26,15 @@
         margin-right: 8px
         width: 100%
 
-        .text-input__input
-            padding-top: 11px
-            padding-bottom: 11px
+        .text-input
+            &__input
+                padding-top: 12px
+                padding-bottom: 12px
+
+
+    @media screen and (max-width: $sm)
+        .number-input
+            &__quantity-input
+                .text-input
+                    &__label
+                        top: -14px

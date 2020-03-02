@@ -15,7 +15,7 @@
             <accent-button class="auth-submit" type="submit"
                            :disabled="!formIsValid">Установить</accent-button>
             <div class="auth-advice">
-                <span>Вспопнили пароль?</span>
+                <span>Вспомнили пароль?</span>
                 <router-link :to="{ name: 'login' }">Войти</router-link>
             </div>
         </form>

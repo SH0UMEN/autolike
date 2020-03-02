@@ -25,6 +25,7 @@
                                       class="order-modal__quantity-input"
                                       :error="quantity < $v.quantity.$params.between.min ? 'Cлишком маленькое кол-во' :
                                             quantity > $v.quantity.$params.between.max ? 'Cлишком большое кол-во' :
+                                            !$v.quantity.integer ? 'Введите число' :
                                             quantity % likesQuantityStep != 0 ? `Число не кратно ${likesQuantityStep}` : ''">Количество</number-input>
                         <!--<text-input class="order-modal__quantity-input"
                                     name="quantity" type="number"
@@ -43,7 +44,7 @@
                         </span>
                     </div>
 
-                    <div class="order-modal__price-block">
+                    <div class="order-modal__price-block" v-if="$v.quantity.integer">
                         <span class="order-modal__price-label" :class="{ 'order-modal__price-label_error': orderPrice > $store.getters.getUser.balance }">
                             <img src="/images/alert-triangle.svg" alt="">
                             Стоимость заказа
@@ -72,7 +73,7 @@
     import AccentButton from "../../../components/common/ui/AccentButton"
     import SecondaryButton from "../../../components/common/ui/SecondaryButton"
     import NumberInput from "../../../components/common/ui/NumberInput"
-    import { required, between, url } from 'vuelidate/lib/validators'
+    import { required, between, url, integer } from 'vuelidate/lib/validators'
 
     export default {
         name: "OrderModal",
@@ -109,11 +110,12 @@
         validations: {
             quantity: {
                 required,
-                between: between(1000, 150000)
+                between: between(1000, 150000),
+                integer: integer
+
             },
             instagram: {
                 required,
-                url
             }
         },
         computed: {

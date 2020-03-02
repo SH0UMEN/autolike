@@ -59,7 +59,7 @@
                     <secondary-button class="order-list__prev-page" theme="dark">
                         <img src="/images/arrow-left.svg" alt=""> <span>Предыдущая</span>
                     </secondary-button>
-                    <secondary-button class="order-list__page-select" theme="dark">1</secondary-button>
+                    <secondary-button class="order-list__page-select order-list__page-select_current" theme="dark">1</secondary-button>
                     <secondary-button class="order-list__page-select" theme="dark">2</secondary-button>
                     <secondary-button class="order-list__page-select" theme="dark">3</secondary-button>
                     <secondary-button class="order-list__page-select" theme="dark">4</secondary-button>

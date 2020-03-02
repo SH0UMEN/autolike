@@ -7,6 +7,7 @@ import ChangePassword from "../../views/auth/ChangePassword"
 import RestoreSuccessful from "../../views/auth/RestoreSuccessful"
 import RegistrationConfirming from "../../views/auth/RegistrationConfirming"
 import RegistrationSuccessful from "../../views/auth/RegistationSuccessful"
+import DonationSuccessful from "../../views/auth/DonationSuccessful"
 
 export default [
     {
@@ -56,6 +57,11 @@ export default [
                 path: '/auth/change-password',
                 name: 'change-password',
                 component: ChangePassword
+            },
+            {
+                path: '/donation-successful',
+                name: 'donation-successful',
+                component: DonationSuccessful
             }
         ]
     }
