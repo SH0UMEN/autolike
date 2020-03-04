@@ -1,0 +1,48 @@
+@import "../common/vars"
+
+.example
+    display: flex
+    flex-direction: column
+
+    &__card
+        border: 1px solid rgba(0, 0, 0, 0.15)
+        border-radius: 3px
+        padding: 16px 16px 0 16px
+        margin-bottom: 16px
+
+    &__order
+        &-description
+            margin-top: 16px
+            margin-bottom: 16px
+            display: flex
+            align-items: center
+            justify-content: space-between
+
+            span
+                color: $secondary-color
+                opacity: .6
+                font-weight: 600
+
+        &-picture
+            max-width: 100%
+
+            &-block
+                user-select: none
+                position: relative
+
+            &-description
+                top: 50%
+                left: 50%
+                display: flex
+                align-items: center
+                justify-content: center
+                width: 0
+                height: 0
+                flex-direction: column
+                position: absolute
+
+            &-text
+                color: $white-color
+                font-size: 18px
+                text-align: center
+                margin-top: 15px

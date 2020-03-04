@@ -1,0 +1,28 @@
+@import "../common/vars"
+
+.faq
+    &__item
+        &:not(:last-child)
+            margin-bottom: 24px
+
+    .dropdown
+        &__items
+            height: 0
+            position: static
+            padding: 0 120px 0 0
+
+        &__title, &__item
+            font-size: 18px
+
+        &.dropdown_opened
+            .dropdown
+                &__items
+                    height: auto
+                    padding: 8px 120px 8px 0px
+
+                &__title, &__item
+                    white-space: normal
+                    line-height: 150%
+
+                &__title
+                    opacity: .6

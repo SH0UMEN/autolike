@@ -1,0 +1,74 @@
+@import "../common/vars"
+
+.landing
+    .landing-footer
+        background-color: $secondary-color
+
+        &__logo
+            color: $white-color
+            opacity: .6
+
+        &__link
+            color: $white-color
+
+            &.router-link-exact-active.router-link-active
+                opacity: .6
+
+        &__contact-button
+            &:hover
+                background-color: #383838 !important
+                border-color: #383838 !important
+
+            &.landing-footer__contact-button-support
+                width: auto
+                padding: 0 16px
+                color: $white-color
+                display: flex
+                align-items: center
+                overflow: hidden
+                position: relative
+
+                span
+                    margin-right: 20px
+
+                img:last-child
+                    top: 0
+                    transition: top .7s
+                    position: relative
+
+                img:nth-child(2)
+                    width: 20px
+                    right: 17px
+                    height: 20px
+                    position: absolute
+                    bottom: -25px
+                    transition: bottom .7s
+
+                &:hover
+                    img:nth-child(2)
+                        bottom: 12px
+
+                    img:last-child
+                        top: -35px
+
+
+        &__copy
+            opacity: .6
+            color: $white-color
+            margin-left: 53px
+
+    @media screen and (max-width: $lg)
+        .landing-footer
+            height: 44px
+            align-items: center
+            display: flex
+            justify-content: center
+
+            &__left-side
+                display: none
+
+            &__contact-button
+                display: none
+
+                &-support
+                    display: none !important

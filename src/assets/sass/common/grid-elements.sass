@@ -7,3 +7,20 @@
     display: flex
     padding-left: $column-padding
     padding-right: $column-padding
+    box-sizing: border-box
+
+    &.container-min
+        padding-left: 36px
+        padding-right: 36px
+        max-width: $min-template-width
+
+    &.container-xs
+        max-width: $xs-template-width
+        box-sizing: content-box
+
+    @media screen and (max-width: $md)
+        &.container-min
+            padding-left: 15px
+            padding-right: 15px
+            margin-right: -15px
+            margin-left: -15px

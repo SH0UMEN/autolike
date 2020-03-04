@@ -1,0 +1,201 @@
+@import "../common/vars"
+
+.doer
+    .content-margins
+        margin: 97px 0
+
+    section
+        &.main-screen
+            .main-screen
+                &__image
+                    max-width: 450px
+
+                &__title
+                    text-align: center
+                    font-size: 64px
+                    font-weight: bold
+                    line-height: 120%
+                    margin-top: 24px
+
+                &__next-section
+                    position: absolute
+                    bottom: 50px
+                    left: 50%
+                    width: 0
+                    display: flex
+                    flex-direction: column
+                    align-items: center
+
+                    &-icon
+                        position: relative
+                        top: 0
+                        transition: top .4s
+
+                    &-label
+                        white-space: nowrap
+                        color: $doer-color
+                        margin-bottom: 8px
+                        padding: 8px
+                        cursor: pointer
+                        font-size: 18px
+
+                        &:hover+.main-screen__next-section-icon
+                            top: 8px
+
+        &.instructions
+            .container
+                align-items: center
+
+            .instructions
+                &__arrow
+                    width: 0
+                    height: 0
+                    position: absolute
+                    display: flex
+                    align-items: center
+                    justify-content: center
+                    top: 13px
+
+                    &:first-child
+                        left: 33.33%
+
+                    &:nth-child(2)
+                        left: 66.66%
+
+                &__content
+                    position: relative
+                    display: flex
+                    flex-wrap: wrap
+                    width: 100%
+
+                    .col
+                        box-sizing: border-box
+                        width: 33.33%
+                        display: flex
+                        flex-direction: column
+                        align-items: center
+
+            .instruction
+                &__title
+                    font-size: 18px
+                    font-weight: 600
+                    margin-top: 15px
+                    margin-bottom: 8px
+
+                &__text
+                    margin: 0
+                    text-align: center
+                    opacity: .6
+
+        &.examples
+            .examples
+                &__content
+                    display: flex
+                    flex-wrap: wrap
+
+                    .col
+                        box-sizing: border-box
+                        width: 33.33%
+
+        &.final
+            padding-bottom: 180px
+
+            .section-title
+                font-size: 64px
+                line-height: 120%
+                font-weight: bold
+
+            .final
+                &__container
+                    flex-direction: row
+
+                &__content
+                    width: 66.66%
+
+                &__picture
+                    width: 33.33%
+
+                    img
+                        width: 100%
+                        height: auto
+
+                &__instruction
+                    display: flex
+                    align-items: center
+                    margin-top: 40px
+                    margin-bottom: 64px
+
+                    img
+                        margin: 0 24px
+
+                    span
+                        font-size: 16px
+                        opacity: .6
+
+    @media screen and (max-width: $xl)
+        section
+            &.main-screen
+                .main-screen
+                    &__title
+                        font-size: 48px
+
+            &.final
+                .section-title
+                    font-size: 48px
+
+    @media screen and (max-width: $lg)
+        .content-margins
+            margin: 66px 0
+
+        section
+            &.instructions
+                .instructions
+                    &__content
+                        justify-content: center
+
+                        .col
+                            width: 50%
+
+                            &:last-child
+                                margin-top: 50px
+
+                    &__arrow
+                        &:first-child
+                            left: 50%
+
+                        &:nth-child(2)
+                            left: unset
+                            right: 30%
+                            transform: rotate(140deg)
+                            top: 160px
+
+            &.examples
+                .examples
+                    &__content
+                        justify-content: center
+
+                        .col
+                            width: 50%
+
+                            &:last-child
+                                margin-top: 40px
+
+            &.final
+                .section-title
+                    text-align: center
+                    display: block
+
+                .final
+                    &__container
+                        margin-left: 0
+                        margin-right: 0
+
+                    &__picture
+                        display: none
+
+                    &__content
+                        width: 100%
+
+
+
+    @media screen and (max-width: $md)
