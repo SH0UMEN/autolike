@@ -3,6 +3,11 @@
             :class="'secondary-button_'+theme">
         <slot></slot>
     </button>
+    <a :class="'secondary-button_'+theme" v-else-if="tag == 'a'"
+       @click="$emit('click')"
+       :href="to" class="secondary-button">
+        <slot></slot>
+    </a>
 </template>
 
 <script>
@@ -15,6 +20,10 @@
             },
             theme: {
                 default: 'accent',
+                type: String
+            },
+            to: {
+                default: "#",
                 type: String
             }
         }

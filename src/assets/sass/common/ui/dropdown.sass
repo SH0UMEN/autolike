@@ -24,6 +24,11 @@
         transform: rotate(0)
         transition: transform .2s
 
+    &__menu-burger
+        height: 24px
+        width: 24px
+        margin-left: 15px
+
     &__items
         position: absolute
         padding: 8px 0
@@ -43,11 +48,47 @@
         padding: 8px 16px
         cursor: pointer
 
+        a
+            text-decoration: none
+            color: $white-color
+
         &_accent:hover
             background-color: $accent-color
 
         &_error:hover
             background-color: $error-color
+
+        &-contacts
+            display: flex
+            position: relative
+            margin-top: 15px
+            padding-top: 10px
+            padding-bottom: 0
+
+            &:after
+                content: ""
+                display: block
+                position: absolute
+                left: 16px
+                right: 16px
+                top: 0
+                background-color: #434343
+                height: 1px
+
+    &__contact-button
+        height: 44px
+        width: 44px
+        padding: 0 !important
+
+        &:hover
+            background-color: #383838 !important
+            border-color: #383838 !important
+
+        &:first-child
+            margin-right: 4px
+
+        &:last-child
+            margin-left: auto
 
     &__title, &__item
         white-space: nowrap

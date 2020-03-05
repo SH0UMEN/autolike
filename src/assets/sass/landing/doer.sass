@@ -97,6 +97,12 @@
                         box-sizing: border-box
                         width: 33.33%
 
+        &.faq
+            overflow: hidden
+
+            .content-margins
+                margin-bottom: 0
+
         &.final
             padding-bottom: 180px
 
@@ -106,6 +112,12 @@
                 font-weight: bold
 
             .final
+                &__picture-mobile
+                    display: none
+                    max-width: 100%
+                    margin-top: 40px
+                    margin-bottom: 30px
+
                 &__container
                     flex-direction: row
 
@@ -182,7 +194,6 @@
 
             &.final
                 .section-title
-                    text-align: center
                     display: block
 
                 .final
@@ -196,6 +207,72 @@
                     &__content
                         width: 100%
 
+    @media screen and (max-width: $sm)
+        section
+            &.main-screen
+                .main-screen
+                    &__title
+                        font-size: 32px
 
+                    &__image
+                        max-width: 250px
 
-    @media screen and (max-width: $md)
+            &.instructions
+                .instructions
+                    &__arrow
+                        justify-content: flex-start
+                        left: 50% !important
+                        transform: rotate(90deg) !important
+
+                        &:first-child
+                            top: 23%
+
+                        &:nth-child(2)
+                            top: 64%
+
+                    &__content
+                        .col
+                            width: 100%
+
+                            &:not(:nth-child(3))
+                                margin-top: 120px
+
+            &#pluses
+                .instructions
+                    &__content
+                        .col
+                            &:first-child
+                                margin-top: 0
+
+                            &:not(:first-child)
+                                margin-top: 60px
+
+            &.examples
+                .examples
+                    &__content
+                        .col
+                            width: 100%
+
+                            &:not(:first-child)
+                                margin-top: 40px
+
+            &.final
+                padding-bottom: 140px
+
+                .section-title
+                    text-align: center
+                    font-size: 32px
+
+                .landing-button
+                    margin-left: auto
+                    margin-right: auto
+
+                .final
+                    &__instruction
+                        display: none
+
+                    &__picture-mobile
+                        max-width: 250px
+                        margin-left: auto
+                        margin-right: auto
+                        display: block

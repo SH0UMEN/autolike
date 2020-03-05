@@ -121,6 +121,7 @@
                         <img src="/images/landing/arrow-2.svg" alt="">
                         <span>Получай деньги</span>
                     </div>
+                    <img src="/images/money-2.png" class="final__picture-mobile">
                     <landing-button tag="router-link" to="/auth/registration"
                                     theme="doer" radius="circled">Зарегистрироваться</landing-button>
                 </div>
@@ -200,7 +201,6 @@
         methods: {
             scrollToSecondSection() {
                 let scrollTarget = this.$refs['instructions'].offsetTop;
-
                 let animation = setInterval(()=>{
                     window.scroll(0, window.scrollY+8);
 

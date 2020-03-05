@@ -65,6 +65,7 @@
     height: 100%
 
     section
+        overflow-x: hidden
         padding-top: 140px
 
         .container
@@ -98,3 +99,8 @@
         section
             .big-padding-size-col
                 padding: 0 15px
+
+    @media screen and (max-width: $sm)
+        section
+            .section-title
+                font-size: 24px

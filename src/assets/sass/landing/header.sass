@@ -13,6 +13,16 @@
         &__right-side.landing-header__right-side_mobile
             display: none
 
+            .dropdown.dropdown_opened
+                border-radius: 3px 0 0 0
+                width: 219px
+
+            .dropdown
+                .dropdown
+                    &__title
+                        color: #7A7A7A
+
+
         &__link
             color: $secondary-color
 
@@ -32,11 +42,11 @@
 
         &_default
             .landing-header
-            &__logo
-                color: $secondary-color
+                &__logo
+                    color: $secondary-color
 
         @media screen and (max-width: $md)
-            position: absolute
+            position: fixed
             margin-bottom: 0
             border-bottom: 1px solid #D9D9D9
             box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.15)
@@ -50,6 +60,13 @@
 
                     &_mobile
                         display: flex
+
+        @media screen and (max-width: $sm)
+            padding-top: 0 !important
+            padding-bottom: 0 !important
+
+            .container
+                padding-right: 0
 
 
 //    padding-top: 10px
