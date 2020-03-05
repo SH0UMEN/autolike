@@ -26,21 +26,21 @@
                         <img src="/images/landing/key.svg" alt="" class="instruction__icon">
                         <span class="instruction__title">Регистрируйся</span>
                         <p class="instruction__text">
-                            После регистрации, ты сразу же начнешь получать задания.
+                            После регистрации, ты сразу же <br class="mobile-only">начнешь получать задания.
                         </p>
                     </div>
                     <div class="col big-padding-size-col">
                         <img src="/images/landing/success.svg" alt="" class="instruction__icon">
                         <span class="instruction__title">Выполняй задания</span>
                         <p class="instruction__text">
-                            У нас много заданий, так что без дела ты сидеть не будешь :)
+                            У нас много заданий, так что <br class="mobile-only">без дела ты сидеть не будешь :)
                         </p>
                     </div>
                     <div class="col big-padding-size-col">
                         <img src="/images/landing/dollar-sign.svg" alt="" class="instruction__icon">
                         <span class="instruction__title">Получай деньги</span>
                         <p class="instruction__text">
-                            Мы сделали это удобным. На выбор более 10 способов.
+                            Мы сделали это удобным.  <br class="mobile-only">На выбор более 10 способов.
                         </p>
                     </div>
                 </div>

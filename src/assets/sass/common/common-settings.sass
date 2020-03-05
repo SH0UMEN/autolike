@@ -25,6 +25,9 @@ select:-webkit-autofill:focus
 a
     color: $accent-color
 
+.mobile-only
+    display: none
+
 body
     font-family: "Segoe UI"
     color: $secondary-color
@@ -39,3 +42,7 @@ body
     body.v--modal-block-scroll
         main, header, footer
             padding-right: 17px !important
+
+@media screen and (max-width: $sm)
+    .mobile-only
+        display: unset

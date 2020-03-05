@@ -26,6 +26,10 @@
         &__link
             color: $secondary-color
 
+            &.router-link-exact-active.router-link-active
+                text-decoration: none
+                cursor: default
+
             &-doer
                 &.router-link-exact-active.router-link-active
                     color: $doer-color
@@ -44,6 +48,11 @@
             .landing-header
                 &__logo
                     color: $secondary-color
+
+        @media screen and (max-width: $lg)
+            .landing-header
+                &__link
+                    margin-left: 16px
 
         @media screen and (max-width: $md)
             position: fixed
