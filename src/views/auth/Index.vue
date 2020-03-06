@@ -2,9 +2,9 @@
     <div class="auth">
         <auth-header></auth-header>
         <main class="auth__main">
-            <div class="auth__wrapper">
+            <vue-page-transition class="auth__wrapper page-transition" name="fade">
                 <router-view></router-view>
-            </div>
+            </vue-page-transition>
         </main>
     </div>
 </template>
