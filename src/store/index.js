@@ -7,10 +7,16 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    rootAPI: "http://62.113.114.128/api"
   },
   mutations: {
   },
   actions: {
+  },
+  getters: {
+    getAPIurl(state) {
+      return state.rootAPI
+    }
   },
   modules: {
     LK,

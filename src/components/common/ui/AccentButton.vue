@@ -3,7 +3,7 @@
             @click="$emit('click')"
             class="accent-button"
             :class="'accent-button_'+theme"
-            :type="type == 'submit' ? type : null"
+            :type="type == 'submit' ? type : 'button'"
             :disabled="disabled">
         <slot></slot>
     </button>

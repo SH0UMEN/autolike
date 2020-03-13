@@ -3,7 +3,7 @@
                 :show="$store.getters.balanceModalIsShown"
                 @closed="$store.commit('closeBalanceModal')" name="lk-balance">
         <div class="balance-modal">
-            <form @submit.prevent class="balance-modal__form modal-form">
+            <form @submit.prevent="raiseBalance" class="balance-modal__form modal-form">
                 <div class="balance-modal__form-wrapper modal-form-container">
                     <span class="balance-modal__title modal-form-title">Пополнить баланс</span>
                     <number-input v-model="money"
@@ -21,7 +21,7 @@
                 </div>
 
                 <accent-button class="modal-form-submit"
-                               :disabled="$v.money.$invalid || $v.money.$anyError">
+                               :disabled="!formIsValid">
                     Подтвердить сумму
                 </accent-button>
             </form>
@@ -51,11 +51,23 @@
                 money: 1000
             }
         },
+        computed: {
+            formIsValid() {
+                return !(this.$v.money.$invalid || this.$v.money.$anyError)
+            }
+        },
         validations: {
             money: {
                 required,
                 minValue: minValue(1),
                 integer: integer
+            }
+        },
+        methods: {
+            raiseBalance() {
+                this.$store.dispatch("donation", this.money).then(()=>{
+
+                })
             }
         }
     }

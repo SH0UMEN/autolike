@@ -1,5 +1,5 @@
 <template>
-    <button v-if="tag == 'button'" @click="$emit('click')" class="secondary-button"
+    <button type="button" v-if="tag == 'button'" @click="$emit('click')" class="secondary-button"
             :class="'secondary-button_'+theme">
         <slot></slot>
     </button>

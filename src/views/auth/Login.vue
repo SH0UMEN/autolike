@@ -1,7 +1,7 @@
 <template>
     <div class="login auth-container">
         <span class="login__title auth-title">Личный кабинет</span>
-        <form class="login__form auth-form">
+        <form class="login__form auth-form" @submit.prevent="login">
             <text-input class="auth-input" name="email"
                         :error="$v.email.$error ? 'Некорректный email' : ''"
                         v-model="email"
@@ -17,12 +17,14 @@
                 <router-link :to="{ name: 'restore' }">Восстановить</router-link>
             </div>
             <accent-button class="auth-submit" type="submit"
-                           :disabled="$v.email.$invalid || $v.email.$anyError ||
-                                      $v.password.$invalid || $v.password.$anyError">Войти</accent-button>
+                           :disabled="!formIsValid">Войти</accent-button>
             <div class="auth-advice">
                 <span>Нет личного кабинета?</span>
                 <router-link :to="{ name: 'registration' }">Зарегистрироваться</router-link>
             </div>
+            <ul class="auth-errors">
+                <li class="auth-error" v-for="error in errors">{{ error }}</li>
+            </ul>
         </form>
     </div>
 </template>
@@ -41,7 +43,8 @@
         data() {
             return {
                 email: "",
-                password: ""
+                password: "",
+                errors: []
             }
         },
         validations: {
@@ -52,6 +55,34 @@
             password: {
                 required,
                 minLength: minLength(5)
+            }
+        },
+        computed: {
+            formIsValid() {
+                return !(this.$v.email.$invalid || this.$v.email.$anyError ||
+                    this.$v.password.$invalid || this.$v.password.$anyError)
+            }
+        },
+        methods: {
+            login() {
+                if(this.formIsValid) {
+                    let params = {
+                        email: this.email,
+                        password: this.password
+                    };
+
+                    let args = {
+                        params: params,
+                        url: '/login'
+                    }
+
+                    this.$store.dispatch('auth', args).then(() => {
+                        this.errors = [];
+                        this.$router.push('/lk')
+                    }).catch(()=>{
+                        this.errors = ["Неправильный email или пароль"]
+                    })
+                }
             }
         }
     }

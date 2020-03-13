@@ -28,6 +28,11 @@
                 <span>Есть личный кабинет?</span>
                 <router-link :to="{ name: 'login' }">Войти</router-link>
             </div>
+            <ul class="auth-errors">
+                <li class="auth-error" v-for="error in errors">
+                    <div v-for="e in error">{{ e }}</div>
+                </li>
+            </ul>
         </form>
     </div>
 </template>
@@ -48,7 +53,8 @@
                 login: "",
                 email: "",
                 password: "",
-                repeatPassword: ""
+                repeatPassword: "",
+                errors: {}
             }
         },
         validations: {
@@ -72,15 +78,32 @@
         computed: {
             formIsValid() {
                 return !(this.$v.email.$invalid || this.$v.email.$anyError ||
-                         this.$v.login.$invalid || this.$v.login.$anyError ||
-                         this.$v.password.$invalid || this.$v.password.$anyError ||
-                         this.$v.repeatPassword.$invalid || this.$v.repeatPassword.$anyError)
+                    this.$v.login.$invalid || this.$v.login.$anyError ||
+                    this.$v.password.$invalid || this.$v.password.$anyError ||
+                    this.$v.repeatPassword.$invalid || this.$v.repeatPassword.$anyError)
             }
         },
         methods: {
             registration() {
                 if(this.formIsValid) {
-                    this.$router.push({ name: 'confirming' })
+                    let params = {
+                        name: this.login,
+                        password: this.password,
+                        password_confirmation: this.repeatPassword,
+                        email: this.email
+                    };
+
+                    let args = {
+                        params: params,
+                        url: '/register',
+                    }
+
+                    this.$store.dispatch('auth', args).then(() => {
+                        this.errors = {}
+                        this.$router.push({ name: 'confirming' })
+                    }).catch((err)=>{
+                        this.errors = err.response.data.errors;
+                    })
                 }
             }
         }

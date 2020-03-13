@@ -12,7 +12,7 @@
                     Вы уверены что хотите выйти из аккаунта?
                 </span>
                 <div class="logout-modal__dialog">
-                    <secondary-button class="logout-modal__dialog-button" @click="$store.commit('logout')" theme="black">Выйти</secondary-button>
+                    <secondary-button class="logout-modal__dialog-button" @click="logout" theme="black">Выйти</secondary-button>
                     <secondary-button class="logout-modal__dialog-button" @click="$store.commit('closeLogoutDialog')" theme="black">Нет</secondary-button>
                 </div>
             </main-modal>
@@ -43,6 +43,13 @@
             MainModal,
             OrderModal,
             SecondaryButton
+        },
+        methods: {
+            logout() {
+                this.$store.dispatch('logout').then(()=>{
+                    this.$router.push({ name: 'login' })
+                })
+            }
         }
     }
 </script>

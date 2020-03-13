@@ -1,3 +1,5 @@
+import axios from "axios"
+
 export default {
     state: {
         orderModalShown: false,
@@ -8,7 +10,15 @@ export default {
         }
     },
     actions: {
-
+        createOrder(context, props) {
+            return new Promise((resolve, reject) => {
+                axios.post(context.getters.getAPIurl + "/order/create", props).then((res)=>{
+                    resolve()
+                }).catch((err)=>{
+                    reject(err)
+                })
+            })
+        }
     },
     mutations: {
         openOrderModal(state) {
@@ -16,6 +26,6 @@ export default {
         },
         closeOrderModal(state) {
             state.orderModalShown = false
-        }
+        },
     }
 }

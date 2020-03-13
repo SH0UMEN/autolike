@@ -1,9 +1,13 @@
 <template>
     <main-modal class="order-modal"
                 :show="$store.getters.orderModalIsShown"
-                @closed="$store.commit('closeOrderModal')" name="lk-order">
+                @closed="closed" name="lk-order">
         <div class="order-modal">
-            <form @submit.prevent class="order-modal__form modal-form">
+            <div class="order-modal__info" :class="{ 'shown': showInfo }">
+                <img src="/images/success.svg" alt="">
+                <span class="order-modal__info-title">Заказ успешно оформлен</span>
+            </div>
+            <form @submit.prevent="createOrder" class="order-modal__form modal-form">
                 <div class="order-modal__form-wrapper modal-form-container">
                     <span class="order-modal__title modal-form-title">Оформление заказа</span>
                     <radio-switcher class="order-modal__switcher"
@@ -57,9 +61,16 @@
                     </div>
                 </div>
 
-                <accent-button class="modal-form-submit"
-                               :disabled="$v.quantity.$invalid || $v.quantity.$anyError ||
-                                          $v.instagram.$invalid || $v.instagram.$anyError">Оформить заказ
+                <accent-button v-if="!showInfo"
+                               type="submit"
+                               class="modal-form-submit"
+                               :disabled="!formIsValid">
+                    <span>Оформить заказ</span>
+                </accent-button>
+                <accent-button v-else
+                               @click="closeWindow"
+                               class="modal-form-submit">
+                    <span>Закрыть</span>
                 </accent-button>
             </form>
         </div>
@@ -92,6 +103,7 @@
                 priceForOne: 10,
                 likesQuantityStep: 500,
                 subscribesQuantityStep: 500,
+                showInfo: false,
                 resultData: {
                     type: "likes",
                 },
@@ -121,15 +133,45 @@
         computed: {
             orderPrice() {
                 return this.quantity*this.priceForOne;
+            },
+            formIsValid() {
+                return !(this.$v.quantity.$invalid  || this.$v.quantity.$anyError ||
+                         this.$v.instagram.$invalid || this.$v.instagram.$anyError);
             }
         },
         methods: {
+            closed() {
+                this.$store.commit('closeOrderModal')
+                this.showInfo = false;
+            },
             setType(event) {
                 this.resultData.type = event.value;
             },
             toBalance() {
                 this.$store.commit('closeOrderModal');
                 this.$store.commit('openBalanceModal');
+            },
+            createOrder() {
+                let props = {
+                    order_type: this.resultData.type,
+                    social_type: "instagram",
+                    url: this.instagram,
+                    count: this.quantity
+                };
+                this.$store.dispatch("createOrder", props).then(()=>{
+                    this.showInfo = true;
+                })
+            },
+            closeWindow() {
+                if(this.showInfo) {
+                    this.quantity = 1000;
+                    this.instagram = "";
+                    this.resultData = {
+                        type: "likes"
+                    }
+                    this.showInfo = false;
+                    this.$store.commit('closeOrderModal');
+                }
             }
         }
     }

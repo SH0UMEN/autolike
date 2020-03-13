@@ -95,7 +95,7 @@
                     ],
                     itemsForMobile: [
                         {
-                            title: `${this.$store.getters.getUser.balance} руб.`,
+                            title: `${ this.user ? this.user.balance : "" } руб.`,
                             hoverColor: "accent",
                         },
                         {
