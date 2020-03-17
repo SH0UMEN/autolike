@@ -138,7 +138,7 @@
                         {
                             status: -1,
                             name: "all",
-                            title: "Статус заказа",
+                            title: "Все",
                             hoverColor: "accent"
                         },
                         {

@@ -156,7 +156,8 @@
                     order_type: this.resultData.type,
                     social_type: "instagram",
                     url: this.instagram,
-                    count: this.quantity
+                    count: this.quantity,
+                    price: this.orderPrice()
                 };
                 this.$store.dispatch("createOrder", props).then(()=>{
                     this.showInfo = true;
