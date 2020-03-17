@@ -65,3 +65,34 @@
 
             &:last-child
                 border-radius: 0px 0px 3px 0px
+
+.pagination-button
+    a
+        display: flex
+        padding: 14px 16px
+        background-color: transparent
+        border-radius: 3px
+        border: 1px solid transparent
+        cursor: pointer
+        transition: border .3s, background-color .3s
+        align-items: center
+        justify-content: center
+        text-decoration: none
+        
+        color: $secondary-color
+
+
+        &:hover
+            background-color: #F4F4F4
+            border: 1px solid #F4F4F4
+
+.pagination-button.disabled
+    a
+        opacity: 0.4
+        &:hover
+            background-color: unset
+            border-color: transparent
+
+.order-list__page-select_current
+    a
+        color: $accent-color

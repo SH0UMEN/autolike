@@ -20,7 +20,7 @@
                     <a href="#" target="_blank">Политика возврата средств</a>
                 </div>
 
-                <accent-button class="modal-form-submit"
+                <accent-button type="submit" class="modal-form-submit"
                                :disabled="!formIsValid">
                     Подтвердить сумму
                 </accent-button>

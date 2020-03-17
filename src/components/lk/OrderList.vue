@@ -38,7 +38,7 @@
                         <img class="order-list__triangle" :class="{ 'order-list__triangle_rotated': filter.sortDirection == 'ASC' }" src="/images/triangle.svg" alt="">
                     </span>
                     <span class="order-list__filter-item"
-                          :class="{ 'order-list__filter-item_selected': filter.filterType == 'quantity' }" @click="changeFilterType('quantity')">
+                          :class="{ 'order-list__filter-item_selected': filter.filterType == 'count' }" @click="changeFilterType('count')">
                         <span>Кол-ву лайков/подписок</span>
                         <img class="order-list__triangle" :class="{ 'order-list__triangle_rotated': filter.sortDirection == 'ASC' }" src="/images/triangle.svg" alt="">
                     </span>
@@ -52,24 +52,23 @@
                             :key="order.id"></order-view>
             </ul>
 
-            <accent-button class="order-list__more" theme="dark">Показать ещё</accent-button>
+            <accent-button class="order-list__more" theme="dark" v-if="currentPage < pageCount" @click="changePage">Показать ещё</accent-button>
 
             <div class="order-list__pagination">
-                <div class="order-list__pages">
-                    <secondary-button class="order-list__prev-page" theme="dark">
-                        <img src="/images/arrow-left.svg" alt=""> <span>Предыдущая</span>
-                    </secondary-button>
-                    <secondary-button class="order-list__page-select order-list__page-select_current" theme="dark">1</secondary-button>
-                    <secondary-button class="order-list__page-select" theme="dark">2</secondary-button>
-                    <secondary-button class="order-list__page-select" theme="dark">3</secondary-button>
-                    <secondary-button class="order-list__page-select" theme="dark">4</secondary-button>
-                    <secondary-button class="order-list__page-select" theme="dark">5</secondary-button>
-                    <secondary-button class="order-list__next-page" theme="dark">
-                        <span>Следующая</span> <img src="/images/arrow-left.svg" alt="">
-                    </secondary-button>
-                </div>
+                <paginate
+                    v-model="currentPage"
+                    :page-count="pageCount"
+                    :click-handler="changePage"
+                    :prev-text="`<img src='/images/arrow-left.svg' alt=''> <span>Предыдущая</span>`"
+                    :prev-class="'pagination-button order-list__prev-page pagination-button_dark'"
+                    :next-class="'pagination-button order-list__next-page pagination-button_dark'"
+                    :next-text="`<span>Следующая</span> <img src='/images/arrow-left.svg' alt=''>`"
+                    :page-class="'pagination-button order-list__page-select pagination-button_dark'"
+                    :container-class="'order-list__pages'"
+                    :active-class="'order-list__page-select_current'">
+                </paginate>
                 <div class="order-list__pages-to-view">
-                    <dropdown class="order-list__select-pages-to-view" v-model="paginationValue" :items="paginationValues" type="select" direction="up"></dropdown>
+                    <dropdown class="order-list__select-pages-to-view" v-model="filter.paginationLimit" :items="paginationLimits" type="select" direction="up"></dropdown>
                 </div>
             </div>
         </div>
@@ -114,8 +113,10 @@
         },
         data() {
             return {
+                pageCount: 20,
+                currentPage: 1,
                 orders: [],
-                paginationValues: [
+                paginationLimits: [
                     {
                         title: "Показывать по 12",
                         value: 12,
@@ -132,36 +133,41 @@
                         hoverColor: "accent"
                     }
                 ],
-                paginationValue: null,
                 selectOptions: {
                     items: [
                         {
                             status: -1,
+                            name: "all",
                             title: "Статус заказа",
                             hoverColor: "accent"
                         },
                         {
                             status: 0,
+                            name: "Выполнено",
                             title: "Выполнен",
                             hoverColor: "accent"
                         },
                         {
                             status: 1,
+                            name: "В работе",
                             title: "Выполняется",
                             hoverColor: "accent"
                         },
                         {
                             status: 2,
+                            name: "Новый",
                             title: "В обработке",
                             hoverColor: "accent"
                         },
                         {
                             status: 3,
+                            name: "Пока пусто",
                             title: "Не оплачено",
                             hoverColor: "accent"
                         },
                         {
                             status: 4,
+                            name: "Ошибка",
                             title: "Ошибка",
                             hoverColor: "accent"
                         }
@@ -172,6 +178,7 @@
                     status: null,
                     filterType: "date",
                     sortDirection: "DESC",
+                    paginationLimit: null,
                     filterOptions: [
                         {
                             filterType: "date",
@@ -202,14 +209,14 @@
                             image: "/images/filter.svg"
                         },
                         {
-                            filterType: "quantity",
+                            filterType: "count",
                             sortDirection: "DESC",
                             title: "Кол-ву лайков/подписок (по убыванию)",
                             hoverColor: "accent",
                             image: "/images/filter.svg"
                         },
                         {
-                            filterType: "quantity",
+                            filterType: "count",
                             sortDirection: "ASC",
                             title: "Кол-ву лайков/подписок (по возрастанию)",
                             hoverColor: "accent",
@@ -221,14 +228,52 @@
                 orderMoreShown: false,
             }
         },
+        watch: {
+            filter: {
+                handler(val) {
+                    this.currentPage = 1
+                    this.updateOrders()
+                },
+                deep: true
+            }
+        },
         mounted() {
             this.filter.status = this.selectOptions.items[0];
-            this.paginationValue = this.paginationValues[0];
-            this.orders = this.$store.getters.getOrders;
+            this.filter.paginationLimit = this.paginationLimits[0];
+            
+            this.updateOrders()
         },
         methods: {
-            changeStatusFilter(e) {
-                this.filter.status = e.target.value;
+            changePage(number) {
+                if (number) {
+                    this.currentPage = number
+                    this.updateOrders()
+                } else {
+                    this.currentPage = this.currentPage + 1
+                    this.updateOrders(true)
+                }
+            },
+            updateOrders(next = false) {
+                let params = {}
+                params.page = this.currentPage
+                params.limit = this.filter.paginationLimit.value
+                params.filter_by_order_type = this.filter.type
+                params.filter_by_status = this.filter.status.name
+                params.sort_by = this.filter.filterType
+                params.sort_type = this.filter.sortDirection
+
+                let settings = {}
+                settings.params = params
+                settings.next = next
+
+                this.$store.dispatch('getOwnOrders', settings).then((data) => {
+                    this.orders = this.$store.getters.getOrders;
+                    this.pageCount = data.last_page
+                }).catch(()=>{
+                })
+            },
+            changeStatusFilter(status) {
+                this.filter.status = status;
             },
             changeFilterType(type) {
                 if(this.filter.filterType == type) {
