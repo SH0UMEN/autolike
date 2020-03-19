@@ -8,6 +8,9 @@
                         placeholder="example@gmail.com"
                         :error="$v.email.$error ? 'Некорректный email' : ''"
                         @blur="$v.email.$touch()">Электронная почта</text-input>
+            <div class="message-error" v-if="errors">
+                {{ errors }}
+            </div>
             <accent-button class="auth-submit" type="submit"
                            :disabled="$v.email.$invalid || $v.email.$anyError">
                 Отправить
@@ -33,7 +36,8 @@
         },
         data() {
             return {
-                email: ""
+                email: "",
+                errors: false
             }
         },
         validations: {
@@ -46,10 +50,10 @@
             sendMail() {
                 if(!(this.$v.email.$invalid || this.$v.email.$anyError)) {
                     this.$store.dispatch('requestChangePassword', this.email).then(() => {
-                        this.errors = [];
+                        this.errors = false;
                         this.$router.push({ name: 'restore-confirming' })
                     }).catch(()=>{
-                        this.errors = ["Неправильный Email"]
+                        this.errors = "Your email address was not found"
                     })
                 }
             }
