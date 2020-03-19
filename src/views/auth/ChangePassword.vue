@@ -12,6 +12,9 @@
                         :error="$v.repeatPassword.$error ? 'Пароли не совпадают' : ''"
                         type="password"
                         @blur="$v.repeatPassword.$touch()">Повторите пароль</text-input>
+            <div class="message-error" v-if="errors">
+                {{ errors}}
+            </div>
             <accent-button class="auth-submit" type="submit"
                            :disabled="!formIsValid">Установить</accent-button>
             <div class="auth-advice">
@@ -36,7 +39,8 @@
         data() {
             return {
                 password: "",
-                repeatPassword: ""
+                repeatPassword: "",
+                errors: false
             }
         },
         validations: {
@@ -58,7 +62,21 @@
         methods: {
             checkForm() {
                 if(this.formIsValid) {
-                    this.$router.push({ name: 'restore-successful' })
+
+                    let params = {
+                        email: this.$route.query.email,
+                        token: this.$route.query.token,
+                        password: this.password,
+                        password_confirmation: this.repeatPassword
+                    };
+
+                    this.$store.dispatch('changePassword', params).then(() => {
+                        this.errors = false;
+                        this.$router.push({ name: 'restore-successful' })
+                    }).catch(()=>{
+                        this.errors = "Неправильный или устаревший токен"
+                    })
+                    
                 }
             }
         }

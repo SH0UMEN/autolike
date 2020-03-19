@@ -45,7 +45,12 @@
         methods: {
             sendMail() {
                 if(!(this.$v.email.$invalid || this.$v.email.$anyError)) {
-                    this.$router.push({ name: 'restore-confirming' })
+                    this.$store.dispatch('requestChangePassword', this.email).then(() => {
+                        this.errors = [];
+                        this.$router.push({ name: 'restore-confirming' })
+                    }).catch(()=>{
+                        this.errors = ["Неправильный Email"]
+                    })
                 }
             }
         }

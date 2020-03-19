@@ -12,7 +12,7 @@
         </div>
         <div class="order-item__info">
             <div class="order-item__info-top">
-                <a href="#" class="order-item__title">{{ order.title ? order.title : "Страница olga1972" }}</a>
+                <a :href="order.url" class="order-item__title">{{ order.url }}</a>
                 <div class="order-item__status">
                                 <span class="order-item__status-flag"
                                       :class="{ 'order-item__status-flag_completed': order.status == 'Выполнено',

@@ -15,12 +15,12 @@
                                     :options="optionsForSwitcher">
                     </radio-switcher>
                     <text-input class="order-modal__text-input"
-                                placeholder="https://www.instagram.com/p/***********/"
+                                :placeholder="resultData.type == 'likes' ? 'https://www.instagram.com/p/***********/' : 'https://www.instagram.com/***********/'"
                                 name="instagram"
                                 v-model="instagram"
                                 :error="$v.instagram.$error ? 'Некорректная ссылка' : ''"
                                 @blur="$v.instagram.$touch()">
-                        Ссылка на ваш пост в Instagram
+                        Ссылка на {{ resultData.type == 'likes' ? 'ваш пост' : 'пользователя'}} в Instagram
                     </text-input>
 
                     <div class="order-modal__quantity">

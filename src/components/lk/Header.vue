@@ -48,13 +48,13 @@
                         image: "/images/profile.svg"
                     },
                     itemsForDesktop: [
-                        {
+                        /*{
                             title: "Сменить пароль",
                             hoverColor: "accent",
                             callback: () => {
                                 this.$router.push({ name: 'change-password' })
                             }
-                        },
+                        },*/
                         {
                             title: "Выйти из аккаунта",
                             hoverColor: "error",
@@ -78,13 +78,13 @@
                             },
                             hoverColor: "accent"
                         },
-                        {
+                        /*{
                             title: "Сменить пароль",
                             hoverColor: "accent",
                             callback: () => {
                                 this.$router.push({ name: 'change-password' })
                             }
-                        },
+                        },*/
                         {
                             title: "Выйти из аккаунта",
                             hoverColor: "error",
@@ -105,13 +105,13 @@
                             },
                             hoverColor: "accent"
                         },
-                        {
+                        /*{
                             title: "Сменить пароль",
                             hoverColor: "accent",
                             callback: () => {
                                 this.$router.push({ name: 'change-password' })
                             }
-                        },
+                        },*/
                         {
                             title: "Выйти из аккаунта",
                             hoverColor: "error",

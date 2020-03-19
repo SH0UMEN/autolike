@@ -66,6 +66,32 @@ export default {
                     })
             })
         },
+        changePassword(context, params) {
+            return new Promise((resolve, reject) => {
+                axios({
+                    method: "post",
+                    url: context.getters.getAPIurl + "/password/change",
+                    params: params
+                }).then((res) => {
+                    resolve(res.data)
+                }).catch((err)=>{
+                    reject(err)
+                })
+            })
+        },
+        requestChangePassword(context, email) {
+            return new Promise((resolve, reject) => {
+                axios({
+                    method: "post",
+                    url: context.getters.getAPIurl + "/password/recover?email=" + email,
+                }).then((res) => {
+                    resolve(res.data)
+                }).catch((err)=>{
+                    reject(err)
+                })
+            })
+        },
+        
     },
     mutations: {
         logout(state) {
