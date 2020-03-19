@@ -53,7 +53,7 @@
                         this.errors = false;
                         this.$router.push({ name: 'restore-confirming' })
                     }).catch(()=>{
-                        this.errors = "Your email address was not found"
+                        this.errors = "Аккаунт с данным Email не зарегистрирован"
                     })
                 }
             }
