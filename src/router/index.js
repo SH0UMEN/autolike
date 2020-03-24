@@ -4,6 +4,7 @@ import LK from './lk/index'
 import Auth from './auth/index'
 import Langing from './landing/index'
 
+
 Vue.use(VueRouter)
 
 const routes = [

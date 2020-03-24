@@ -19,7 +19,10 @@
                     font-weight: bold
                     line-height: 120%
                     margin-top: 24px
-
+                &__desc
+                    font-weight: 600
+                    font-size: 18px
+                    margin-top: 24px
                 &__next-section
                     position: absolute
                     bottom: 50px
@@ -28,20 +31,21 @@
                     display: flex
                     flex-direction: column
                     align-items: center
-
                     &-icon
                         position: relative
                         top: 0
                         transition: top .4s
-
+                    
                     &-label
                         white-space: nowrap
-                        color: $doer-color
                         margin-bottom: 8px
                         padding: 8px
                         cursor: pointer
                         font-size: 18px
-
+                        &__doer
+                            color: $doer-color
+                        &__accent
+                            color: $accent-color
                         &:hover+.main-screen__next-section-icon
                             top: 8px
 
@@ -85,6 +89,7 @@
                     font-weight: 600
                     margin-top: 15px
                     margin-bottom: 8px
+                    white-space: nowrap
 
                 &__text
                     margin: 0

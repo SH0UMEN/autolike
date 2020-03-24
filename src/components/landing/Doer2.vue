@@ -1,10 +1,28 @@
 <template>
     <main class="landing doer" ref="main">
-        <main-screen :title="'Зарабатывай, выполняя простые задания в социальных сетях'" :mainImg="'/images/money.png'"></main-screen>
+        <main-screen :title="'Увеличьте популярность своих аккаунтов в социальных сетях '" 
+                     :mainImg="'/images/arrows.png'" 
+                     :questions="'Зачем вам накрутка?'"
+                     :desc="'Накрутка - это быстрый и доступный способ увеличить приток новой аудитории.'"
+                     :color="'accent'"
+                     :arrow="'/images/arrow-down-blue.png'"></main-screen>
 
         <section id="instructions" ref="instructions" class="instructions">
             <div class="instructions__container container container-min">
-                <span class="section-title">Всё очень просто</span>
+                <span class="section-title">Вам необходима накрутка, если:</span>
+
+                <div class="instructions__content content-margins big-padding-size-row">
+                   
+                    <InstructionItem :icon="'/images/landing/users.png'" :title="'Нужны первые подписчики'" descFirstLine="'Накрутка первых подписчиков облегчит'" descSecondLine="'старт и поиск своей аудитории.'" ></InstructionItem>
+                    <InstructionItem :icon="'/images/landing/users-x.png'" :title="'Нет новых подписчиков'" descFirstLine="'Накрутка поможет преодолеть “плато” и '" descSecondLine="'продолжить развиваться дальше.'" ></InstructionItem>
+                    <InstructionItem :icon="'/images/landing/trending-down.png'" :title="'Нет активности на аккаунте'" descFirstLine="'С помощью накрутки вы снова начнете'" descSecondLine="'попадать в рекомендации. '" ></InstructionItem>
+                </div>
+            </div>
+        </section>
+
+        <section class="instructions">
+            <div class="instructions__container container container-min">
+                <span class="section-title">Как это работает?</span>
 
                 <div class="instructions__content content-margins big-padding-size-row">
                     <div class="instructions__arrow">
@@ -13,66 +31,41 @@
                     <div class="instructions__arrow">
                         <img src="/images/landing/arrow.svg" alt="">
                     </div>
-                    <InstructionItem :icon="'/images/landing/key.svg'" :title="'Регистрируйся'" descFirstLine="'После регистрации, ты сразу же'" descSecondLine="'начнешь получать задания.'" ></InstructionItem>
-                    <InstructionItem :icon="'/images/landing/success.svg'" :title="'Выполняй задания'" descFirstLine="' У нас много заданий, так что'" descSecondLine="'без дела ты сидеть не будешь :)'" ></InstructionItem>
-                    <InstructionItem :icon="'/images/landing/dollar-sign.svg'" :title="'Получай деньги'" descFirstLine="' Мы сделали это удобным. '" descSecondLine="'На выбор более 10 способов.'" ></InstructionItem>
+                    <InstructionItem :icon="'/images/landing/key.svg'" :title="'Регистрируйтесь'" descFirstLine="'У вас будет личный кабинет, в котором '" descSecondLine="'вы сможете отслеживать все действия.'" ></InstructionItem>
+                    <InstructionItem :icon="'/images/landing/success.svg'" :title="'Оформите заказ'" descFirstLine="'Это безопасно. Вы платите только за '" descSecondLine="'выполненные заказы.'" ></InstructionItem>
+                    <InstructionItem :icon="'/images/landing/trending-up.png'" :title="'Поднимайтесь в топ'" descFirstLine="'Накрутка осуществляется с помощью '" descSecondLine="'ботов или реальных пользователей.'" ></InstructionItem>
                 </div>
 
-                <landing-button tag="router-link" theme="doer"
+                <landing-button tag="router-link" theme="client"
                                 radius="circled" to="/auth/registration">
                     Зарегистрироваться
                 </landing-button>
             </div>
         </section>
 
-        <section id="examples" class="examples">
-            <div class="examples__container container container-min">
-                <span class="section-title">Примеры заданий</span>
+         <section class="instructions">
+            <div class="instructions__container container container-min">
+                <span class="section-title">Преимущества</span>
 
-                <div class="examples__content content-margins big-padding-size-row">
-                    <div class="col big-padding-size-col">
-                        <example :order="examples[0]"></example>
-                    </div>
-                    <div class="col big-padding-size-col">
-                        <example :order="examples[1]"></example>
-                    </div>
-                    <div class="col big-padding-size-col">
-                        <example :order="examples[2]"></example>
-                    </div>
+                <div class="instructions__content content-margins big-padding-size-row">
+                    <InstructionItem :icon="'/images/landing/star.png'" :title="'Вы попадете в рекомендации'" descFirstLine="'Чем выше активность аккаунта, тем '" descSecondLine="'больше вероятность попасть в рекомендации.'" ></InstructionItem>
+                    <InstructionItem :icon="'/images/landing/search.png'" :title="'Ваш аккаунт проще найти'" descFirstLine="'Чем выше активность аккаунта, тем'" descSecondLine="'лучше он ранжируется в поиске.'" ></InstructionItem>
+                    <InstructionItem :icon="'/images/landing/trending-up.png'" :title="'Вы попадете в топ публикаций'" descFirstLine="'Чем выше активность аккаунта, тем '" descSecondLine="'больше вероятность попасть в топ публикаций.'" ></InstructionItem>
                 </div>
             </div>
         </section>
 
-        <section id="pluses" class="instructions">
+       <section class="instructions">
             <div class="instructions__container container container-min">
                 <span class="section-title">С нами надежно</span>
 
                 <div class="instructions__content content-margins big-padding-size-row">
-                    <div class="col big-padding-size-col">
-                        <img src="/images/landing/message-circle.svg" alt="" class="instruction__icon">
-                        <span class="instruction__title">Поддержка 24 часа</span>
-                        <p class="instruction__text">
-                            Пиши в любое время. Мы отвечаем всем.
-                        </p>
-                    </div>
-                    <div class="col big-padding-size-col">
-                        <img src="/images/landing/success.svg" alt="" class="instruction__icon">
-                        <span class="instruction__title">Удобный вывод средств</span>
-                        <p class="instruction__text">
-                            Более 10 способов вывода. Выбери удобный.
-                        </p>
-                    </div>
-                    <div class="col big-padding-size-col">
-                        <img src="/images/landing/dollar-sign.svg" alt="" class="instruction__icon">
-                        <span class="instruction__title">Выводи в любое время</span>
-                        <p class="instruction__text">
-                            Мы тебя не ограничиваем. Заработал - выводи.
-                        </p>
-                    </div>
+                    <InstructionItem :icon="'/images/landing/message-circle.png'" :title="'Поддержка 24 часа'" descFirstLine="'Пишите в любое время.'" descSecondLine="'Мы отвечаем всем.'" ></InstructionItem>
+                    <InstructionItem :icon="'/images/landing/share-2.png'" :title="'Любые социальные сети'" descFirstLine="'Мы работаем со всеми популярными'" descSecondLine="'социальными сетями'" ></InstructionItem>
+                    <InstructionItem :icon="'/images/landing/success.svg'" :title="'Проверка результата'" descFirstLine="'Результат накрутки автоматически'" descSecondLine="'проверяется.'" ></InstructionItem>
                 </div>
             </div>
         </section>
-
         <section id="faq" class="faq">
             <div class="faq__container container container-xs">
                 <span class="section-title">Остались вопросы?</span>
@@ -82,8 +75,8 @@
                 </div>
             </div>
         </section>
-
-        <final></final>
+        <final :title="'Получите результат уже сегодня'" :img="'/images/arrows-final.png'" :final__instruction="final__instruction" :theme_btn="'client'"></final>
+        
         <landing-footer></landing-footer>
     </main>
 </template>
@@ -98,12 +91,10 @@
     import Final from "../../components/landing/Final"
 
 
-
     export default {
         name: "Doer",
         components: {
             LandingButton,
-            Example,
             Faq,
             LandingFooter,
             InstructionItem,
@@ -112,33 +103,17 @@
         },
         data() {
             return {
-                examples: [
-                    {
-                        icon: "/images/landing/like.svg",
-                        picture: "/images/landing/example-1.png",
-                        task: "Поставить лайк",
-                        social: "instagram",
-                    },
-                    {
-                        icon: "/images/landing/comment.svg",
-                        picture: "/images/landing/example-2.png",
-                        task: "Написать комментарий",
-                        social: "vk",
-                    },
-                    {
-                        icon: "/images/landing/user.svg",
-                        picture: "/images/landing/example-3.png",
-                        task: "Подписаться",
-                        social: "youtube",
-                    }
-                ],
                 questions: [
                     {
                         question: "Задача организации, в особенности же рамки и место?",
                         answer: "Не следует, однако забывать, что рамки и место обучения кадров позволяет оценить значение дальнейших направлений развития. Задача организации, в особенности же рамки и место обучения кадров позволяет выполнять важные задания по разработке позиций, занимаемых участниками в отношении поставленных задач."
                     },
                     {
-                        question: "Задача организации, в особенности же рамки и место?",
+                        question: "Задача организации, в особенности же рамки и место обучения кадров в значительной степени обуславливает создание позиций, занимаемых участниками в отношении поставленных задач?",
+                        answer: "Не следует, однако забывать, что рамки и место обучения кадров позволяет оценить значение дальнейших направлений развития. Задача организации, в особенности же рамки и место обучения кадров позволяет выполнять важные задания по разработке позиций, занимаемых участниками в отношении поставленных задач."
+                    },
+                    {
+                        question: "Задача организации, в особенности же рамки и место обучения кадров в значительной степени обуславливает создание позиций?",
                         answer: "Не следует, однако забывать, что рамки и место обучения кадров позволяет оценить значение дальнейших направлений развития. Задача организации, в особенности же рамки и место обучения кадров позволяет выполнять важные задания по разработке позиций, занимаемых участниками в отношении поставленных задач."
                     },
                     {
@@ -146,18 +121,15 @@
                         answer: "Не следует, однако забывать, что рамки и место обучения кадров позволяет оценить значение дальнейших направлений развития. Задача организации, в особенности же рамки и место обучения кадров позволяет выполнять важные задания по разработке позиций, занимаемых участниками в отношении поставленных задач."
                     },
                     {
-                        question: "Задача организации, в особенности же рамки и место?",
+                        question: "Задача организации, в особенности же рамки и место обучения кадров в значительной степени обуславливает создание позиций?",
                         answer: "Не следует, однако забывать, что рамки и место обучения кадров позволяет оценить значение дальнейших направлений развития. Задача организации, в особенности же рамки и место обучения кадров позволяет выполнять важные задания по разработке позиций, занимаемых участниками в отношении поставленных задач."
                     },
                     {
-                        question: "Задача организации, в особенности же рамки и место?",
-                        answer: "Не следует, однако забывать, что рамки и место обучения кадров позволяет оценить значение дальнейших направлений развития. Задача организации, в особенности же рамки и место обучения кадров позволяет выполнять важные задания по разработке позиций, занимаемых участниками в отношении поставленных задач."
-                    },
-                    {
-                        question: "Задача организации, в особенности же рамки и место?",
+                        question: "Задача организации, в особенности же рамки и место обучения кадров в значительной степени обуславливает создание позиций, занимаемых участниками в отношении поставленных задач?",
                         answer: "Не следует, однако забывать, что рамки и место обучения кадров позволяет оценить значение дальнейших направлений развития. Задача организации, в особенности же рамки и место обучения кадров позволяет выполнять важные задания по разработке позиций, занимаемых участниками в отношении поставленных задач."
                     }
-                ]
+                ],
+                final__instruction: {first:'Регистрируйтесь', second: 'Оформляйте заказ', last: 'Поднимайтесь в топ'}
             }
         },
         methods: {
