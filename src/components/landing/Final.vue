@@ -2,7 +2,7 @@
     <section id="final" class="final">
             <div class="final__container container container-min">
                 <div class="final__content">
-                    <span class="section-title">Начни зарабатывать прямо сейчас</span>
+                    <span class="section-title">{{title}}</span>
                     <div class="final__instruction">
                         <span>{{final__instruction.first}}</span>
                         <img src="/images/landing/arrow-2.svg" alt="">
