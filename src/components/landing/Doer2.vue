@@ -13,9 +13,9 @@
 
                 <div class="instructions__content content-margins big-padding-size-row">
                    
-                    <InstructionItem :icon="'/images/landing/users.png'" :title="'Нужны первые подписчики'" descFirstLine="'Накрутка первых подписчиков облегчит'" descSecondLine="'старт и поиск своей аудитории.'" ></InstructionItem>
-                    <InstructionItem :icon="'/images/landing/users-x.png'" :title="'Нет новых подписчиков'" descFirstLine="'Накрутка поможет преодолеть “плато” и '" descSecondLine="'продолжить развиваться дальше.'" ></InstructionItem>
-                    <InstructionItem :icon="'/images/landing/trending-down.png'" :title="'Нет активности на аккаунте'" descFirstLine="'С помощью накрутки вы снова начнете'" descSecondLine="'попадать в рекомендации. '" ></InstructionItem>
+                    <InstructionItem :normal="'normal-'" :icon="'/images/landing/users.png'" :title="'Нужны первые подписчики'" :descFirstLine="'Накрутка первых подписчиков облегчит'" :descSecondLine="'старт и поиск своей аудитории.'" ></InstructionItem>
+                    <InstructionItem :normal="'normal-'" :icon="'/images/landing/users-x.png'" :title="'Нет новых подписчиков'" :descFirstLine="'Накрутка поможет преодолеть “плато” и '" :descSecondLine="'продолжить развиваться дальше.'" ></InstructionItem>
+                    <InstructionItem :normal="'normal-'" :icon="'/images/landing/trending-down.png'" :title="'Нет активности на аккаунте'" :descFirstLine="'С помощью накрутки вы снова начнете'" :descSecondLine="'попадать в рекомендации. '" ></InstructionItem>
                 </div>
             </div>
         </section>
@@ -31,9 +31,9 @@
                     <div class="instructions__arrow">
                         <img src="/images/landing/arrow.svg" alt="">
                     </div>
-                    <InstructionItem :icon="'/images/landing/key.svg'" :title="'Регистрируйтесь'" descFirstLine="'У вас будет личный кабинет, в котором '" descSecondLine="'вы сможете отслеживать все действия.'" ></InstructionItem>
-                    <InstructionItem :icon="'/images/landing/success.svg'" :title="'Оформите заказ'" descFirstLine="'Это безопасно. Вы платите только за '" descSecondLine="'выполненные заказы.'" ></InstructionItem>
-                    <InstructionItem :icon="'/images/landing/trending-up.png'" :title="'Поднимайтесь в топ'" descFirstLine="'Накрутка осуществляется с помощью '" descSecondLine="'ботов или реальных пользователей.'" ></InstructionItem>
+                    <InstructionItem :icon="'/images/landing/key.svg'" :title="'Регистрируйтесь'" :descFirstLine="'У вас будет личный кабинет, в котором '" :descSecondLine="'вы сможете отслеживать все действия.'" ></InstructionItem>
+                    <InstructionItem :icon="'/images/landing/success.svg'" :title="'Оформите заказ'" :descFirstLine="'Это безопасно. Вы платите только за '" :descSecondLine="'выполненные заказы.'" ></InstructionItem>
+                    <InstructionItem :icon="'/images/landing/trending-up.png'" :title="'Поднимайтесь в топ'" :descFirstLine="'Накрутка осуществляется с помощью '" :descSecondLine="'ботов или реальных пользователей.'" ></InstructionItem>
                 </div>
 
                 <landing-button tag="router-link" theme="client"
@@ -48,9 +48,9 @@
                 <span class="section-title">Преимущества</span>
 
                 <div class="instructions__content content-margins big-padding-size-row">
-                    <InstructionItem :icon="'/images/landing/star.png'" :title="'Вы попадете в рекомендации'" descFirstLine="'Чем выше активность аккаунта, тем '" descSecondLine="'больше вероятность попасть в рекомендации.'" ></InstructionItem>
-                    <InstructionItem :icon="'/images/landing/search.png'" :title="'Ваш аккаунт проще найти'" descFirstLine="'Чем выше активность аккаунта, тем'" descSecondLine="'лучше он ранжируется в поиске.'" ></InstructionItem>
-                    <InstructionItem :icon="'/images/landing/trending-up.png'" :title="'Вы попадете в топ публикаций'" descFirstLine="'Чем выше активность аккаунта, тем '" descSecondLine="'больше вероятность попасть в топ публикаций.'" ></InstructionItem>
+                    <InstructionItem :normal="'normal-'" :icon="'/images/landing/star.png'" :title="'Вы попадете в рекомендации'" :descFirstLine="'Чем выше активность аккаунта, тем '" :descSecondLine="'больше вероятность попасть в рекомендации.'" ></InstructionItem>
+                    <InstructionItem :normal="'normal-'" :icon="'/images/landing/search.png'" :title="'Ваш аккаунт проще найти'" :descFirstLine="'Чем выше активность аккаунта, тем'" :descSecondLine="'лучше он ранжируется в поиске.'" ></InstructionItem>
+                    <InstructionItem :normal="'normal-'" :icon="'/images/landing/trending-up.png'" :title="'Вы попадете в топ публикаций'" :descFirstLine="'Чем выше активность аккаунта, тем '" :descSecondLine="'больше вероятность попасть в топ публикаций.'" ></InstructionItem>
                 </div>
             </div>
         </section>
@@ -60,9 +60,9 @@
                 <span class="section-title">С нами надежно</span>
 
                 <div class="instructions__content content-margins big-padding-size-row">
-                    <InstructionItem :icon="'/images/landing/message-circle.png'" :title="'Поддержка 24 часа'" descFirstLine="'Пишите в любое время.'" descSecondLine="'Мы отвечаем всем.'" ></InstructionItem>
-                    <InstructionItem :icon="'/images/landing/share-2.png'" :title="'Любые социальные сети'" descFirstLine="'Мы работаем со всеми популярными'" descSecondLine="'социальными сетями'" ></InstructionItem>
-                    <InstructionItem :icon="'/images/landing/success.svg'" :title="'Проверка результата'" descFirstLine="'Результат накрутки автоматически'" descSecondLine="'проверяется.'" ></InstructionItem>
+                    <InstructionItem :normal="'normal-'" :icon="'/images/landing/message-circle.png'" :title="'Поддержка 24 часа'" :descFirstLine="'Пишите в любое время.'" :descSecondLine="'Мы отвечаем всем.'" ></InstructionItem>
+                    <InstructionItem :normal="'normal-'" :icon="'/images/landing/share-2.png'" :title="'Любые социальные сети'" :descFirstLine="'Мы работаем со всеми популярными'" :descSecondLine="'социальными сетями'" ></InstructionItem>
+                    <InstructionItem :normal="'normal-'" :icon="'/images/landing/success.svg'" :title="'Проверка результата'" :descFirstLine="'Результат накрутки автоматически'" :descSecondLine="'проверяется.'" ></InstructionItem>
                 </div>
             </div>
         </section>

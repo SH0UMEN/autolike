@@ -1,5 +1,6 @@
 <template>
-    <div class="col big-padding-size-col">
+    <div class=" big-padding-size-col"
+         :class="[ normal  + 'col']">
         <img :src="icon" alt="" class="instruction__icon">
         <span class="instruction__title">{{title}}</span>
         <p class="instruction__text">
@@ -15,7 +16,11 @@ export default {
         title: String,
         descFirstLine: String,
         descSecondLine: String,
-        icon: String
+        icon: String,
+        normal: {
+            type: String,
+            default: ''
+        }
         
     }
 }
