@@ -31,7 +31,7 @@
             },
             to: {
                 default: '/',
-                type: String
+                type: [String, Object]
             }
         },
     }

@@ -103,6 +103,7 @@
             align-items: center
             justify-content: center
             position: relative
+            text-align: center
 
             &-content
                 position: relative
@@ -110,7 +111,8 @@
             &-products
                 position: absolute
                 bottom: 100%
-                width: 100%
+                left: 0
+                right: 0
                 display: flex
                 justify-content: center
                 margin-bottom: 40px
@@ -153,6 +155,8 @@
 
                     &__title
                         font-size: 18px
+                        margin: 0 15px
+                        white-space: nowrap
 
                     &__content
                         position: absolute
@@ -174,12 +178,95 @@
             padding-top: 120px
 
     @media screen and (max-width: $md)
+        .landing-index
+            &__main-screen
+                &-content
+                    box-sizing: border-box
+                    padding-left: 15px
+                    padding-right: 15px
+
+                &-title
+                    font-size: 48px
+
+                &-product
+                    &:not(:last-child)
+                        margin-right: 40px
+
+                &-choosing
+                    .choosing
+                        &__left-hand, &__right-hand
+                            display: none
+
+                        &__content
+                            top: unset
+                            bottom: 100px
+                            flex-direction: column
+
+                        &__link
+                            margin-top: 15px
+
+                            &:nth-child(1)
+                                order: 2
+
+                            &:nth-child(3)
+                                order: 3
+
+                        &__title
+                            order: 1
+
         section
             .big-padding-size-col
                 padding: 0 15px
 
     @media screen and (max-width: $sm)
+        .landing-index
+            &__main-screen
+                &-products
+                    flex-wrap: wrap
+                    margin-bottom: 50px
+
+                &-product
+                    width: 40%
+                    margin-right: 0 !important
+
+                    &:nth-child(n+3)
+                        margin-top: 20px
+
+                    &-title
+                        margin-top: 5px
+
+                &-title
+                    font-size: 36px
+                    line-height: 48px
+
+                &-choosing
+                    .choosing
+                        &__content
+                            padding: 0
+                            bottom: 70px
+
         section
             .section-title
                 font-size: 24px
                 text-align: center
+
+    @media screen and (max-width: $xs)
+        .landing-index
+            &__main-screen
+                &-products
+                    flex-wrap: wrap
+                    margin-bottom: 30px
+
+                &-product
+                    &-title
+                        font-size: 12px
+
+                &-title
+                    font-size: 32px
+                    line-height: 36px
+
+                &-choosing
+                    .choosing
+                        &__content
+                            padding: 0
+                            bottom: 40px
