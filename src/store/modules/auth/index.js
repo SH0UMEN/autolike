@@ -48,6 +48,24 @@ export default {
                 })
             })
         },
+        refresh(context) {
+            return new Promise((resolve, reject) => {
+                axios({
+                    method: "post",
+                    url: context.getters.getAPIurl + "/refresh",
+                    headers: {
+                        'Authorization': 'Bearer ' + context.state.token
+                    }
+                }).then((res)=>{
+                    console.log(res.data);
+                    context.commit('authSuccess', res.data.token);
+                    resolve()
+                }).catch((err)=>{
+                    console.log(err.response.data);
+                    reject(err)
+                })
+            })
+        },
         auth(context, args) {
             context.commit("authProcess");
             return new Promise((resolve, reject) => {

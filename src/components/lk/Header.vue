@@ -2,7 +2,7 @@
     <header class="lk-header">
         <div class="lk-header__container container">
             <div class="lk-header__left-side">
-                <a href="#" class="lk-header__logo">Autolike</a>
+                <router-link :to="{ name: 'landing-index' }" class="lk-header__logo">Autolike</router-link>
                 <span class="lk-header__marker">Личный кабинет</span>
                 <span class="lk-header__marker lk-header__marker_mini">ЛК</span>
             </div>

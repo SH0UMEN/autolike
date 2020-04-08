@@ -30,7 +30,8 @@
                 <router-link class="landing-header__auth-link" :to="{ name: 'registration' }">Зарегистрироваться</router-link>
             </div>
             <div class="landing-header__right-side landing-header__right-side_mobile">
-                <dropdown :show-contacts="true" icon-type="burger" :items="menuItems" :label="{ title: 'Зарабатывайте' }">
+                <dropdown :show-contacts="true" icon-type="burger" :items="menuItems"
+                          :label="{ title: menuLabel }">
                 </dropdown>
             </div>
         </div>
@@ -53,26 +54,91 @@
             SecondaryButton,
             Dropdown
         },
+        mounted() {
+            this.changeDropdownItems();
+
+            this.$router.afterEach((to)=>{
+                if(to.name == "landing-doer") {
+                    this.menuLabel = "Зарабатывайте"
+                } else if(to.name == "landing-customer") {
+                    this.menuLabel = "Раскрутите аккаунт"
+                } else {
+                    this.menuLabel = ""
+                }
+                this.changeDropdownItems();
+            })
+        },
         data() {
             return {
-                menuLabel: this.$router.currentRoute.name == "landing-index" ? { title: "Зарабатывайте" } : {},
-                menuItems: [
-                    {
-                        title: 'Раскрутить аккаунт',
-                    },
-                    {
-                        title: 'Войти',
-                        type: "router-link",
-                        link: { name: "login" }
-                    },
-                    {
-                        title: 'Зарегистрироваться',
-                        type: "router-link",
-                        link: { name: "registration" }
-                    }
-                ]
+                menuLabel: this.$router.currentRoute.name == "landing-doer"? "Зарабатывайте" :
+                           this.$router.currentRoute.name == "landing-customer" ? "Раскрутите аккаунт" : "",
+                menuItems: []
             }
         },
+        methods: {
+            changeDropdownItems() {
+                if(this.$router.currentRoute.name == "landing-doer") {
+                    this.menuItems = [
+                        {
+                            title: 'Раскрутить аккаунт',
+                            type: "router-link",
+                            link: { name: "landing-customer" }
+                        },
+                        {
+                            title: 'Войти',
+                            type: "router-link",
+                            link: { name: "login" }
+                        },
+                        {
+                            title: 'Зарегистрироваться',
+                            type: "router-link",
+                            link: { name: "registration" }
+                        }
+                    ]
+                } else if (this.$router.currentRoute.name == "landing-customer") {
+                    this.menuItems = [
+                        {
+                            title: 'Заработать',
+                            type: "router-link",
+                            link: { name: "landing-doer" }
+                        },
+                        {
+                            title: 'Войти',
+                            type: "router-link",
+                            link: { name: "login" }
+                        },
+                        {
+                            title: 'Зарегистрироваться',
+                            type: "router-link",
+                            link: { name: "registration" }
+                        }
+                     ]
+                } else {
+                    this.menuItems = [
+                        {
+                            title: 'Раскрутить аккаунт',
+                            type: "router-link",
+                            link: { name: "landing-customer" }
+                        },
+                        {
+                            title: 'Заработать',
+                            type: "router-link",
+                            link: { name: "landing-doer" }
+                        },
+                        {
+                            title: 'Войти',
+                            type: "router-link",
+                            link: { name: "login" }
+                        },
+                        {
+                            title: 'Зарегистрироваться',
+                            type: "router-link",
+                            link: { name: "registration" }
+                        }
+                    ]
+                }
+            }
+        }
     }
 </script>
 
