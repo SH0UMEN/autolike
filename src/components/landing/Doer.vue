@@ -1,6 +1,8 @@
 <template>
     <main class="landing doer" ref="main">
-        <main-screen :title="'Зарабатывай, выполняя простые задания в социальных сетях'" :mainImg="'/images/money.png'"></main-screen>
+        <main-screen :title="'Зарабатывай, выполняя простые задания в социальных сетях'"
+                     :mainImg="'/images/money.png'"
+                     scroll-to="#instructions"></main-screen>
 
         <section id="instructions" ref="instructions" class="instructions">
             <div class="instructions__container container container-min">
@@ -97,8 +99,6 @@
     import MainScreen from "../../components/landing/MainScreen"
     import Final from "../../components/landing/Final"
 
-
-
     export default {
         name: "Doer",
         components: {
@@ -160,18 +160,6 @@
                 ]
             }
         },
-        methods: {
-            scrollToSecondSection() {
-                let scrollTarget = this.$refs['instructions'].offsetTop;
-                let animation = setInterval(()=>{
-                    window.scroll(0, window.scrollY+8);
-
-                    if(window.scrollY >= scrollTarget) {
-                        clearInterval(animation)
-                    }
-                },1)
-            }
-        }
     }
 </script>
 

@@ -5,6 +5,7 @@
                      :questions="'Зачем вам накрутка?'"
                      :desc="'Накрутка - это быстрый и доступный способ увеличить приток новой аудитории.'"
                      :color="'accent'"
+                     scroll-to="#instructions"
                      :arrow="'/images/arrow-down-blue.png'"></main-screen>
 
         <section id="instructions" ref="instructions" class="instructions">

@@ -5,7 +5,7 @@
             <span class="main-screen__title">{{title}}</span>
             <span class="main-screen__desc">{{desc}}</span>
             <div class="main-screen__next-section">
-                <span class="main-screen__next-section-label" :class="[ 'main-screen__next-section-label__'+color]" @click="scrollToSecondSection">{{questions}}</span>
+                <a :href="scrollTo" v-smooth-scroll class="main-screen__next-section-label" :class="[ 'main-screen__next-section-label__'+color]">{{questions}}</a>
                 <img class="main-screen__next-section-icon" :src="arrow" alt="">
             </div>
         </div>
@@ -21,15 +21,15 @@ export default {
             type: String,
             default: '/images/money.png',
         },
+        scrollTo: {
+            type: String,
+            default: ""
+        },
         questions: {
             type: String, 
             default: 'Как это работает?'
         },
         desc: String,
-        doer2: {
-            type: String,
-            default: false
-        },
         color: {
             type: String,
             default: 'doer'
@@ -38,7 +38,7 @@ export default {
             type: String,
             default: '/images/next-section-arrow.svg'
         }
-    }
+    },
 }
 </script>
 

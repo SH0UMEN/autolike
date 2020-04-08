@@ -2,11 +2,11 @@
     <header class="landing-header" :class="'landing-header_'+theme">
         <div class="landing-header__container container">
             <div class="landing-header__left-side">
-                <a href="#" class="landing-header__logo">
+                <router-link :to="{ name: 'landing-index' }" class="landing-header__logo">
                     Autolike
-                </a>
-                <router-link class="landing-header__link landing-header__link-doer" to="/">Зарабатывать</router-link>
-                <router-link class="landing-header__link landing-header__link-client" to="/later">Раскрутить аккаунт</router-link>
+                </router-link>
+                <router-link class="landing-header__link landing-header__link-doer" :to="{ name: 'landing-doer' }">Зарабатывать</router-link>
+                <router-link class="landing-header__link landing-header__link-client" :to="{ name: 'landing-customer' }">Раскрутить аккаунт</router-link>
             </div>
             <div class="landing-header__right-side">
                 <secondary-button tag="a" class="landing-header__contact-button">

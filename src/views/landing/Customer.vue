@@ -1,20 +1,17 @@
 <template>
-    <div class="landing">
-        <landing-header></landing-header>
-        <vue-page-transition class="landing__inner" name="fade">
-            <router-view></router-view>
-        </vue-page-transition>
-    </div>
+    <customer></customer>
 </template>
 
 <script>
     import LandingHeader from "../../components/landing/Header"
+    import Customer from "../../components/landing/Customer"
 
     export default {
-        name: "Index",
+        name: "Landing",
         components: {
             LandingHeader,
-        },
+            Customer
+        }
     }
 </script>
 

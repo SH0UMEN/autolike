@@ -1,6 +1,6 @@
 <template>
     <header class="auth-header">
-        <a href="#" class="auth-header__logo">Autolike</a>
+        <router-link :to="{ name: 'landing-index' }" class="auth-header__logo">Autolike</router-link>
     </header>
 </template>
 

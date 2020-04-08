@@ -6,10 +6,12 @@ import Vuelidate from 'vuelidate'
 import VModal from 'vue-js-modal'
 import VuePageTransition from 'vue-page-transition'
 import axios from "axios"
-
 import Paginate from 'vuejs-paginate'
+import vueSmoothScroll from 'vue2-smooth-scroll'
+
 Vue.config.productionTip = false
 
+Vue.use(vueSmoothScroll)
 Vue.use(VModal)
 Vue.use(Vuelidate)
 Vue.use(VuePageTransition)

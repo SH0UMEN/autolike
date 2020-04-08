@@ -34,9 +34,11 @@ export default {
             type: String,
             default: 'Начни зарабатывать прямо сейчас'
         },
-        final__instruction:{
+        final__instruction: {
             type: Object,
-            default: {first:'Регистрируйся', second:'Выполняй задания', last:'Получай деньги'}
+            default: () => {
+                return {first:'Регистрируйся', second:'Выполняй задания', last:'Получай деньги'}
+            }
         },
         img: {
             type: String,
