@@ -4,7 +4,12 @@ import store from "../../store"
 function isAuthenticated(to, from, next) {
     if(store.getters.isAuthenticated) {
         if(!store.getters.getUser) {
+            console.log("b")
             store.dispatch("getUserData").then(()=>{
+                next()
+                return
+            }).catch((err)=>{
+                console.log("f")
                 next()
                 return
             })

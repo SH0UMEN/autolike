@@ -19,15 +19,35 @@ Vue.use(require('vue-moment'))
 
 Vue.component('paginate', Paginate)
 
+const token = localStorage.getItem('token');
+
+if (token) {
+  axios.defaults.headers.common['Authorization'] = "Bearer " + token;
+}
+
+axios.interceptors.response.use(null,(err)=>{
+  if(err.response) {
+    if(err.response.data.errors) {
+      if(err.response.data.errors.token == "Token is Expired") {
+        store.dispatch('refresh').then(()=>{
+          axios({
+            method: err.response.config.method,
+            url: err.response.config.url,
+          }).then((res)=>{
+            return Promise.resolve(res);
+          })
+        });
+      } else if (err.response.data.errors.token == "Token is Invalid"){
+        store.commit('logout');
+        router.push({ name: 'login' });
+      }
+    }
+  }
+  return Promise.reject(err)
+});
 
 new Vue({
   router,
   store,
   render: h => h(App)
 }).$mount('#app')
-
-const token = localStorage.getItem('token');
-
-if (token) {
-  axios.defaults.headers.common['Authorization'] = "Bearer " + token;
-}

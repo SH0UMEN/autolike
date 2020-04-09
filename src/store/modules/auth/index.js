@@ -26,7 +26,6 @@ export default {
             return new Promise((resolve, reject) => {
                 axios.post(context.getters.getAPIurl + "/logout").then((res)=>{
                     delete axios.defaults.headers.common['Authorization'];
-                    localStorage.removeItem("token")
                     context.commit('logout');
                     resolve()
                 })
@@ -37,9 +36,6 @@ export default {
                 axios({
                     method: "post",
                     url: context.getters.getAPIurl + "/me",
-                    headers: {
-                        'Authorization': 'Bearer ' + context.state.token
-                    }
                 }).then((res) => {
                     context.commit('setUser', res.data);
                     resolve(res.data)
@@ -52,16 +48,16 @@ export default {
             return new Promise((resolve, reject) => {
                 axios({
                     method: "post",
-                    url: context.getters.getAPIurl + "/refresh",
-                    headers: {
-                        'Authorization': 'Bearer ' + context.state.token
-                    }
+                    url: context.getters.getAPIurl + "/refresh"
                 }).then((res)=>{
-                    console.log(res.data);
-                    context.commit('authSuccess', res.data.token);
-                    resolve()
+                    context.commit('authSuccess', res.data.access_token);
+                    resolve(res)
                 }).catch((err)=>{
-                    console.log(err.response.data);
+                    //console.log(err.response.data);
+                    if(err.response.data.errors.token == "Invalid update") {
+                        context.commit("logout");
+                    }
+
                     reject(err)
                 })
             })
@@ -72,8 +68,6 @@ export default {
                 axios.post(context.getters.getAPIurl + args.url, args.params)
                     .then((res)=>{
                         let token = args.url == "/register" ? res.data.token : res.data.access_token;
-                        localStorage.setItem("token", token);
-                        axios.defaults.headers.common['Authorization'] = "Bearer " + token;
                         context.commit('authSuccess', token);
                         context.dispatch("getUserData").then((res) => {
                             resolve(res)
@@ -113,12 +107,15 @@ export default {
     },
     mutations: {
         logout(state) {
+            localStorage.removeItem("token");
             state.token = "";
         },
         setUser(state, user) {
             state.user = user;
         },
         authSuccess(state, token) {
+            localStorage.setItem("token", token);
+            axios.defaults.headers.common['Authorization'] = "Bearer " + token;
             state.status = 'authenticated';
             state.token = token;
         },
