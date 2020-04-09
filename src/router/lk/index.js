@@ -8,10 +8,6 @@ function isAuthenticated(to, from, next) {
             store.dispatch("getUserData").then(()=>{
                 next()
                 return
-            }).catch((err)=>{
-                console.log("f")
-                next()
-                return
             })
         } else {
             next()

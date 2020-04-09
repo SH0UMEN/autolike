@@ -29,8 +29,8 @@ axios.interceptors.response.use(null,(err)=>{
   if(err.response) {
     if(err.response.data.errors) {
       if(err.response.data.errors.token == "Token is Expired") {
-        store.dispatch('refresh').then(()=>{
-          axios({
+        return store.dispatch('refresh').then(()=>{
+          return axios({
             method: err.response.config.method,
             url: err.response.config.url,
           }).then((res)=>{
