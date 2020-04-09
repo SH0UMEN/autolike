@@ -8,9 +8,12 @@ import VuePageTransition from 'vue-page-transition'
 import axios from "axios"
 import Paginate from 'vuejs-paginate'
 import vueSmoothScroll from 'vue2-smooth-scroll'
+import PerfectScrollbar from 'vue2-perfect-scrollbar'
+import 'vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css'
 
 Vue.config.productionTip = false
 
+Vue.use(PerfectScrollbar)
 Vue.use(vueSmoothScroll)
 Vue.use(VModal)
 Vue.use(Vuelidate)

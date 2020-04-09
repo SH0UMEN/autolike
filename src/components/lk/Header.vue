@@ -3,8 +3,7 @@
         <div class="lk-header__container container">
             <div class="lk-header__left-side">
                 <router-link :to="{ name: 'landing-index' }" class="lk-header__logo">Autolike</router-link>
-                <span class="lk-header__marker">Личный кабинет</span>
-                <span class="lk-header__marker lk-header__marker_mini">ЛК</span>
+                <span class="lk-header__marker">{{ title }}</span>
             </div>
 
             <div class="lk-header__right-side">
@@ -39,6 +38,12 @@
             AccentButton,
             SecondaryButton,
             DropdownMenu
+        },
+        props: {
+            title: {
+                type: String,
+                default: ""
+            }
         },
         data() {
             return {

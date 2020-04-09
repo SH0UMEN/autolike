@@ -1,6 +1,8 @@
 @import "../../common/vars"
 
 .order-list
+    min-height: calc(100% - 62.4px)
+
     &__container
         flex-direction: column
 
@@ -58,11 +60,12 @@
         background-color: $white-color !important
 
     &__filter-panel
+        margin-top: 15px
         display: flex
         align-items: center
 
     &__filter-icon
-        margin-left: 25px
+        margin-left: auto
         margin-right: 13px
 
     &__filter-list
@@ -191,6 +194,34 @@
         img
             margin-left: 12px
 
+    &__soc-selector
+        &-title
+            font-size: 24px
+            font-weight: bold
+            margin-bottom: 10px
+            display: inline-block
+
+        &-container
+            padding-top: 32px
+            position: relative
+
+            *
+                position: relative
+                z-index: 10
+
+            &:after
+                content: ""
+                box-sizing: border-box
+                position: absolute
+                height: 100%
+                background-color: #FAFAFA
+                left: -5000px
+                right: -5000px
+                top: 0
+                border:
+                    top: 1px solid #D5D5D5
+                    bottom: 1px solid #D5D5D5
+
     @media screen and (max-width: $md)
         .order-list
             &__type-selector
@@ -252,9 +283,13 @@
 
     @media screen and (max-width: $sm)
         .order-list
+            &__soc-selector-container
+                padding-top: 20px
+
             &__order-button
                 display: block
-                margin-top: 20px
+                width: 100%
+                margin-bottom: 10px
 
             &__type-selector
                 margin: 15px 0

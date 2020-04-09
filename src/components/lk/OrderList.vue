@@ -1,18 +1,14 @@
 <template>
     <div class="order-list">
         <div class="order-list__container container">
-            <accent-button class="order-list__order-button"
-                           @click="$store.commit('openOrderModal')">Оформить заказ</accent-button>
-            <div class="order-list__type-selector">
-                <label class="order-list__type-selector-item">
-                    <input value="all" v-model="filter.type" type="radio"> <span>Все заказы</span>
-                </label>
-                <label class="order-list__type-selector-item">
-                    <input value="likes" v-model="filter.type" type="radio"> <span>Лайки</span>
-                </label>
-                <label class="order-list__type-selector-item">
-                    <input value="subscribes" v-model="filter.type" type="radio"> <span>Подписки</span>
-                </label>
+            <div class="order-list__soc-selector-container">
+                <accent-button class="order-list__order-button"
+                               @click="$store.commit('openOrderModal')">Оформить заказ</accent-button>
+
+                <span class="order-list__soc-selector-title">
+                    Ваши заказы
+                </span>
+                <soc-selector class="order-list__soc-selector" v-model="selectedSoc" :items="socs"></soc-selector>
             </div>
 
             <div class="order-list__filter-panel">
@@ -20,10 +16,22 @@
                           @input="changeStatusFilter"
                           :items="filter.filterOptions">
                 </dropdown>
+
                 <dropdown class="order-list__select-status" type="select"
                           @input="changeStatusFilter"
                           :items="selectOptions.items">
                 </dropdown>
+
+                <dropdown class="order-list__select-status" type="select"
+                          @input="changeStatusFilter"
+                          :items="doerTypes">
+                </dropdown>
+
+                <dropdown class="order-list__select-status" type="select"
+                          @input="changeStatusFilter"
+                          :items="orderTypes">
+                </dropdown>
+
                 <img class="order-list__filter-icon" src="/images/filter.svg" alt="">
                 <span class="order-list__filter-marker">Сортировать по:</span>
                 <div class="order-list__filter-list">
@@ -39,7 +47,7 @@
                     </span>
                     <span class="order-list__filter-item"
                           :class="{ 'order-list__filter-item_selected': filter.filterType == 'count' }" @click="changeFilterType('count')">
-                        <span>Кол-ву лайков/подписок</span>
+                        <span>Объему накрутки</span>
                         <img class="order-list__triangle" :class="{ 'order-list__triangle_rotated': filter.sortDirection == 'ASC' }" src="/images/triangle.svg" alt="">
                     </span>
                 </div>
@@ -96,6 +104,7 @@
 </template>
 
 <script>
+    import SocSelector from "./SocSelector"
     import Dropdown from '../common/ui/Dropdown'
     import AccentButton from '../common/ui/AccentButton'
     import SecondaryButton from '../common/ui/SecondaryButton'
@@ -105,6 +114,7 @@
     export default {
         name: "OrderList",
         components: {
+            SocSelector,
             Dropdown,
             AccentButton,
             SecondaryButton,
@@ -116,6 +126,37 @@
                 pageCount: 20,
                 currentPage: 1,
                 orders: [],
+                selectedSoc: 0,
+                socs: [
+                    {
+                        picture: "/images/lk/instagram.svg",
+                        gradient: ['#FE3A68', '#9B1EB3']
+                    },
+                    {
+                        picture: "/images/lk/vk.svg",
+                        color: "#4D76A1"
+                    },
+                    {
+                        picture: "/images/lk/telegram.svg",
+                        color: "#039BE5"
+                    },
+                    {
+                        picture: "/images/lk/twitter.svg",
+                        color: "#03A9F4"
+                    },
+                    {
+                        picture: "/images/lk/facebook.svg",
+                        color: "#4267B2"
+                    },
+                    {
+                        picture: "/images/lk/youtube.svg",
+                        color: "#FF0000"
+                    },
+                    {
+                        picture: "/images/lk/tiktok.svg",
+                        color: "#222222"
+                    },
+                ],
                 paginationLimits: [
                     {
                         title: "Показывать по 12",
@@ -133,6 +174,48 @@
                         hoverColor: "accent"
                     }
                 ],
+
+                // Вид накрутки
+                doerTypes: [
+                    {
+                        title: "Вид накрутки",
+                        type: -1,
+                        hoverColor: "accent"
+                    },
+                    {
+                        title: "Реальные люди",
+                        type: 0,
+                        hoverColor: "accent"
+                    },
+                    {
+                        title: "Боты",
+                        type: 1,
+                        hoverColor: "accent"
+                    }
+                ],
+                doerType: -1,
+
+                // Вид накрутки
+                orderTypes: [
+                    {
+                        title: "Вид активности",
+                        type: -1,
+                        hoverColor: "accent"
+                    },
+                    {
+                        title: "Реальные люди",
+                        type: 0,
+                        hoverColor: "accent"
+                    },
+                    {
+                        title: "Боты",
+                        type: 1,
+                        hoverColor: "accent"
+                    }
+                ],
+                orderType: -1,
+
+
                 selectOptions: {
                     items: [
                         {
@@ -173,6 +256,7 @@
                         }
                     ]
                 },
+
                 filter: {
                     type: "all",
                     status: null,
@@ -211,14 +295,14 @@
                         {
                             filterType: "count",
                             sortDirection: "DESC",
-                            title: "Кол-ву лайков/подписок (по убыванию)",
+                            title: "Объему накрутки (по убыванию)",
                             hoverColor: "accent",
                             image: "/images/filter.svg"
                         },
                         {
                             filterType: "count",
                             sortDirection: "ASC",
-                            title: "Кол-ву лайков/подписок (по возрастанию)",
+                            title: "Объему накрутки (по возрастанию)",
                             hoverColor: "accent",
                             image: "/images/filter.svg"
                         },
@@ -240,8 +324,6 @@
         mounted() {
             this.filter.status = this.selectOptions.items[0];
             this.filter.paginationLimit = this.paginationLimits[0];
-            
-            this.updateOrders()
         },
         methods: {
             changePage(number) {

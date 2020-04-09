@@ -1,6 +1,6 @@
 <template>
     <div class="lk">
-        <lk-header class="lk__header"></lk-header>
+        <lk-header title="Раскрутка" class="lk__header"></lk-header>
         <main>
             <order-list class="lk__order-list"></order-list>
             <order-modal></order-modal>
