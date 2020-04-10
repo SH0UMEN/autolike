@@ -1,4 +1,4 @@
-import order from "./order.js"
+import order from "./order"
 import balance from "./balance"
 
 export default {

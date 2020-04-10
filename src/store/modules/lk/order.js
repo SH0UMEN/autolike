@@ -1,10 +1,19 @@
 import axios from "axios"
 
+let orderExample =  {
+    doerType: 0,
+    socID: 0,
+    cheatingType: 0
+}
+
 export default {
     state: {
         orderModalShown: false,
         orders: [
-        ]
+        ],
+
+        // Создание нового заказа
+        newOrder: Object.assign({}, orderExample)
     },
     getters: {
         orderModalIsShown(state) {
@@ -23,7 +32,8 @@ export default {
     },
     actions: {
         getOwnOrders(context, settings) {
-            let next = settings.next
+            let next = settings.next;
+
             return new Promise((resolve, reject) => {
                 axios.post(context.getters.getAPIurl + "/order/get", settings.params).then((res)=>{
                     context.commit("setListOrders", {res: res.data.data.data, next:next});
@@ -49,6 +59,7 @@ export default {
         },
         closeOrderModal(state) {
             state.orderModalShown = false;
+            state.newOrder = Object.assign({}, orderExample)
         },
         setListOrders(state, data) {
             if (data.next) {
@@ -57,5 +68,10 @@ export default {
                 state.orders = data.res
             }
         },
+        commitOrderFirstSlide(state, data) {
+            state.newOrder.cheatingType = data.cheatingType;
+            state.newOrder.socID = data.socID;
+            state.newOrder.doerType = data.doerType;
+        }
     }
 }

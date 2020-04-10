@@ -1,13 +1,16 @@
 <template>
-    <div class="soc-selector-mini">
-        <div class="soc-selector-mini__item" v-for="item, i in items">
-            <img :src="item.picture">
+    <perfect-scrollbar class="soc-selector-mini">
+        <div class="soc-selector-mini__item" v-for="item, i in items"
+             :title="(bot && item.noBot) ? 'Facebook, YouTube и TikTok достпуны только при накрутке реальными людьми.' : ''"
+             @click="changeValue(i)" :class="{ 'soc-selector-mini__item_success': tValue.id == (i+1),
+                                               'soc-selector-mini__item_disabled': bot && item.noBot }">
 
-            <div v-if="" class="soc-selector-mini__item-success">
-
+            <img class="soc-selector-mini__item-picture" :src="item.picture">
+            <div class="soc-selector-mini__item-success">
+                <img src="/images/check.svg" alt="">
             </div>
         </div>
-    </div>
+    </perfect-scrollbar>
 </template>
 
 <script>
@@ -16,26 +19,32 @@
         props: {
             items: {
                 type: Array,
-                default: ()=>[]
+                required: true
             },
             value: {
-                type: Number,
+                type: Object,
                 required: true
-            }
-        },
-        data() {
-            return {
-                tValue: this.value
+            },
+            bot: {
+                type: Boolean,
+                default: false
             }
         },
         computed: {
             tValue() {
                 return this.value;
             }
+        },
+        methods: {
+            changeValue(i) {
+                if(!this.items[i].noBot || !this.bot) {
+                    this.$emit('input', this.items[i])
+                }
+            }
         }
     }
 </script>
 
-<style scoped>
-
+<style lang="sass">
+    @import "../../assets/sass/lk/ui/soc-selector-mini"
 </style>

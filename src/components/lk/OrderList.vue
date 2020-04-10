@@ -8,6 +8,7 @@
                 <span class="order-list__soc-selector-title">
                     Ваши заказы
                 </span>
+
                 <soc-selector class="order-list__soc-selector" v-model="selectedSoc" :items="socs"></soc-selector>
             </div>
 
@@ -110,6 +111,7 @@
     import SecondaryButton from '../common/ui/SecondaryButton'
     import OrderView from '../lk/OrderView'
     import MainModal from '../common/ui/MainModal'
+    import socials from '../../helpers/socials'
 
     export default {
         name: "OrderList",
@@ -126,37 +128,8 @@
                 pageCount: 20,
                 currentPage: 1,
                 orders: [],
-                selectedSoc: 0,
-                socs: [
-                    {
-                        picture: "/images/lk/instagram.svg",
-                        gradient: ['#FE3A68', '#9B1EB3']
-                    },
-                    {
-                        picture: "/images/lk/vk.svg",
-                        color: "#4D76A1"
-                    },
-                    {
-                        picture: "/images/lk/telegram.svg",
-                        color: "#039BE5"
-                    },
-                    {
-                        picture: "/images/lk/twitter.svg",
-                        color: "#03A9F4"
-                    },
-                    {
-                        picture: "/images/lk/facebook.svg",
-                        color: "#4267B2"
-                    },
-                    {
-                        picture: "/images/lk/youtube.svg",
-                        color: "#FF0000"
-                    },
-                    {
-                        picture: "/images/lk/tiktok.svg",
-                        color: "#222222"
-                    },
-                ],
+                socs: socials,
+                selectedSoc: { id: 0 },
                 paginationLimits: [
                     {
                         title: "Показывать по 12",

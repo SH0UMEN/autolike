@@ -1,0 +1,52 @@
+@import "../../common/vars"
+
+.soc-selector-mini
+    display: flex
+    justify-content: space-between
+    align-items: center
+
+    &__item
+        cursor: pointer
+        position: relative
+        border-width: 2px
+        border-style: solid
+        border-color: transparent
+        border-radius: 50%
+        padding: 2px
+        display: flex
+        justify-content: center
+        align-items: center
+
+        &:hover
+            border-color: #C8C8C8
+
+        &-picture
+            border-radius: 50%
+            display: block
+
+        &-success
+            position: absolute
+            width: 20px
+            height: 20px
+            right: -6px
+            top: -7px
+            display: none
+            align-items: center
+            justify-content: center
+            background-color: $accent-color
+            -webkit-border-radius: 50%
+            -moz-border-radius: 50%
+            border-radius: 50%
+            border: 2px solid $white-color
+
+        &_success
+            border-color: $accent-color !important
+
+            .soc-selector-mini__item-success
+                display: flex
+
+        &_disabled
+            opacity: .3
+            cursor: default
+            border-color: transparent !important
+

@@ -1,13 +1,20 @@
 @import "../vars"
 
 .number-input
-    display: flex
     width: 100%
-    align-items: flex-end
-    justify-content: center
+
+    &__container
+        display: flex
+        align-items: flex-end
+        justify-content: center
+
+    &__validation
+        display: none
 
     .number-input__quantity-control
         background-color: #F4F4F4
+        width: 46.4px
+        height: 46.4px
 
         svg
             *
@@ -26,15 +33,18 @@
         margin-right: 8px
         width: 100%
 
-        .text-input
-            &__input
-                padding-top: 12px
-                padding-bottom: 12px
-
+    &.number-input_validate
+        .number-input
+            &__validation
+                font-size: 12px
+                display: flex
+                color: #A7A7A7
+                font-weight: 600
+                padding: 0 55px
+                justify-content: space-between
+                margin-top: 4px
+                left: 0
 
     @media screen and (max-width: $sm)
-        .number-input
-            &__quantity-input
-                .text-input
-                    &__label
-                        top: -14px
+        margin-top: 14px
+

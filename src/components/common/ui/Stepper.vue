@@ -7,9 +7,7 @@
                                                                          currentSlide == i ? 'stepper__step_current' : '' ">
                 <button :disabled="currentSlide <= i" @click="currentSlide = i" class="stepper__step-label">
                     <span class="stepper__step-icon stepper__step-icon_done">
-                        <svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9 1L3.5 6.5L1 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
+                        <img src="/images/check.svg" alt="">
                     </span>
 
                     <span class="stepper__step-icon">
