@@ -5,12 +5,25 @@
                         name="link" v-model="link">Ссылка на аккаунт/видео/пост/группу</text-input>
             <number-input class="order-slide-two__input"
                           v-model="quantity" :h="quantityStep"
+                          :error="!$v.quantity.minValue ? 'Слишком маленькое кол-во' :
+                                  !$v.quantity.maxValue ? 'Слишком большое кол-во' :
+                                  quantity % quantityStep != 0 ? 'Число не кратно '+quantityStep : ''"
+                          :min-error="!$v.quantity.minValue"
+                          :max-error="!$v.quantity.maxValue"
+                          @blur="$v.quantity.$touch()"
                           :value-boundaries="[1000, 150000]">Кол-во накрутки</number-input>
-            <number-input v-model="perHour" :h="perHourStep"
+            <number-input v-model="quantityPerHour" :h="quantityPerHourStep"
                           class="order-slide-two__input"
-                          :value-boundaries="[1000, 150000]">Скорость накрутки / час</number-input>
+                          :error="!$v.quantityPerHour.minValue ? 'Слишком маленькое кол-во' :
+                                  !$v.quantityPerHour.maxValue ? 'Слишком большое кол-во' :
+                                  quantityPerHour % quantityPerHourStep != 0 ? 'Число не кратно '+ quantityPerHourStep : ''"
+                          :min-error="!$v.quantityPerHour.minValue"
+                          :max-error="!$v.quantityPerHour.maxValue"
+                          @blur="$v.quantityPerHour.$touch()"
+                          :value-boundaries="[100, 15000]">Скорость накрутки / час</number-input>
         </div>
-        <accent-button data-next="1" class="stepper__main-button">Следующий шаг</accent-button>
+        <accent-button :disabled="!isValid" data-next="1"
+                       class="stepper__main-button" @click="submitData">Следующий шаг</accent-button>
     </div>
 </template>
 
@@ -18,6 +31,7 @@
     import TextInput from "../../common/ui/TextInput"
     import NumberInput from "../../common/ui/NumberInput"
     import AccentButton from "../../common/ui/AccentButton"
+    import { minValue, maxValue } from "vuelidate/lib/validators"
 
     export default {
         name: "Order2",
@@ -31,8 +45,36 @@
                 link: "",
                 quantity: 1000,
                 quantityStep: 500,
-                perHour: 150,
-                perHourStep: 50
+                quantityPerHour: 150,
+                quantityPerHourStep: 50
+            }
+        },
+        validations: {
+            quantity: {
+                minValue: minValue(1000),
+                maxValue: maxValue(150000)
+            },
+            quantityPerHour: {
+                minValue: minValue(100),
+                maxValue: maxValue(15000)
+            }
+        },
+        computed: {
+            isValid() {
+                return !(this.$v.quantity.$invalid || this.$v.quantityPerHour.$invalid ||
+                         this.quantity % this.quantityStep != 0 ||
+                         this.quantityPerHour % this.quantityPerHourStep != 0)
+            }
+        },
+        methods: {
+            submitData() {
+                let data = {
+                    quantity: this.quantity,
+                    quantityPerHour: this.quantityPerHour,
+                    link: this.link
+                }
+
+                this.$store.commit("commitOrderSecondSlide", data);
             }
         }
     }

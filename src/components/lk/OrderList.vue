@@ -6,7 +6,7 @@
                                @click="$store.commit('openOrderModal')">Оформить заказ</accent-button>
 
                 <span class="order-list__soc-selector-title">
-                    Ваши заказы
+                    Ваши заказы {{ $store.getters.orderModalIsShown }}
                 </span>
 
                 <soc-selector class="order-list__soc-selector" v-model="selectedSoc" :items="socs"></soc-selector>

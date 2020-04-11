@@ -6,19 +6,23 @@ export default [
         cheatingTypes: [
             {
                 title: "Подписка на аккаунт",
-                id: 2
+                id: 2,
+                inflectionForms: ["Подписка", "Подписки", "Подписок"]
             },
             {
                 title: "Лайк поста",
-                id: 1
+                id: 1,
+                inflectionForms: ["Лайк", "Лайка", "Лайков"]
             },
             {
                 title: "Сохранение поста",
-                id: 5
+                id: 5,
+                inflectionForms: ["Сохранение", "Сохранения", "Сохранений"]
             },
             {
                 title: "Комментарий",
-                id: 3
+                id: 3,
+                inflectionForms: ["Комментарий", "Комментария", "Комментариев"]
             }
         ]
     },
@@ -29,19 +33,23 @@ export default [
         cheatingTypes: [
             {
                 title: "Подписка на группу",
-                id: 2
+                id: 2,
+                inflectionForms: ["Подписка", "Подписки", "Подписок"]
             },
             {
                 title: "Лайк поста",
-                id: 1
+                id: 1,
+                inflectionForms: ["Лайк", "Лайка", "Лайков"]
             },
             {
                 title: "Репост поста",
-                id: 6
+                id: 6,
+                inflectionForms: ["Репост", "Репоста", "Репостов"]
             },
             {
                 title: "Комментарий под постом",
-                id: 3
+                id: 3,
+                inflectionForms: ["Комментарий", "Комментария", "Комментариев"]
             }
         ]
     },
@@ -52,11 +60,13 @@ export default [
         cheatingTypes: [
             {
                 title: "Вступление в группу",
-                id: 2
+                id: 2,
+                inflectionForms: ["Вступление", "Вступления", "Вступлений"]
             },
             {
                 title: "Просмотр постов",
-                id: 7
+                id: 7,
+                inflectionForms: ["Просмотр", "Просмотра", "Просмотров"]
             },
         ]
     },
@@ -67,15 +77,18 @@ export default [
         cheatingTypes: [
             {
                 title: "Подписка",
-                id: 2
+                id: 2,
+                inflectionForms: ["Подписка", "Подписки", "Подписок"]
             },
             {
                 title: "Лайк поста",
-                id: 1
+                id: 1,
+                inflectionForms: ["Лайк", "Лайка", "Лайков"]
             },
             {
                 title: "Ретвит поста",
-                id: 6
+                id: 6,
+                inflectionForms: ["Ретвит", "Ретвита", "Ретвитов"]
             },
         ]
     },
@@ -87,6 +100,7 @@ export default [
         cheatingTypes: [
             {
                 title: "Вступить в группу",
+                inflectionForms: ["Вступление", "Вступления", "Вступлений"],
                 id: 2
             },
         ]
@@ -99,11 +113,13 @@ export default [
         cheatingTypes: [
             {
                 title: "Подписка на канал",
+                inflectionForms: ["Подписка", "Подписки", "Подписок"],
                 id: 2
             },
             {
                 title: "Лайк видео",
-                id: 1
+                id: 1,
+                inflectionForms: ["Лайк", "Лайка", "Лайков"]
             },
         ]
     },
@@ -115,11 +131,13 @@ export default [
         cheatingTypes: [
             {
                 title: "Подписка",
-                id: 2
+                id: 2,
+                inflectionForms: ["Подписка", "Подписки", "Подписок"],
             },
             {
                 title: "Лайк",
-                id: 1
+                id: 1,
+                inflectionForms: ["Лайк", "Лайка", "Лайков"]
             },
         ]
     },

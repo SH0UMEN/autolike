@@ -1,9 +1,12 @@
 import axios from "axios"
 
 let orderExample =  {
-    doerType: 0,
-    socID: 0,
-    cheatingType: 0
+    doerType: null,
+    socID: null,
+    cheatingType: null,
+    link: null,
+    quantity: null,
+    quantityPerHour: null
 }
 
 export default {
@@ -28,6 +31,11 @@ export default {
                     return el.id == id;
                 })
             }
+        },
+
+        // Создание заказа
+        getNewOrderQuantity(state) {
+            return state.newOrder.quantity;
         }
     },
     actions: {
@@ -72,6 +80,11 @@ export default {
             state.newOrder.cheatingType = data.cheatingType;
             state.newOrder.socID = data.socID;
             state.newOrder.doerType = data.doerType;
+        },
+        commitOrderSecondSlide(state, data) {
+            state.newOrder.link = data.link;
+            state.newOrder.quantity = data.quantity;
+            state.newOrder.quantityPerHour = data.quantityPerHour;
         }
     }
 }

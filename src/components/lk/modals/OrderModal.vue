@@ -1,11 +1,13 @@
 <template>
     <main-modal class="order-modal"
                 :show="$store.getters.orderModalIsShown"
-                @closed="closed" name="lk-order">
+                @close="$store.commit('closeOrderModal')"
+                name="lk-order">
 
         <stepper :steps="steps" title="Оформление заказа">
             <order1></order1>
             <order2></order2>
+            <order3></order3>
         </stepper>
 
         <!--<div class="order-modal">-->
@@ -84,16 +86,11 @@
 </template>
 
 <script>
-    import RadioSwitcher from "../../../components/common/ui/RadioSwitcher"
-    import MainModal from "../../../components/common/ui/MainModal"
-    import TextInput from "../../../components/common/ui/TextInput"
-    import AccentButton from "../../../components/common/ui/AccentButton"
-    import SecondaryButton from "../../../components/common/ui/SecondaryButton"
-    import NumberInput from "../../../components/common/ui/NumberInput"
     import Stepper from "../../../components/common/ui/Stepper"
+    import MainModal from "../../../components/common/ui/MainModal"
     import Order1 from "../../../components/lk/steppers/Order1"
     import Order2 from "../../../components/lk/steppers/Order2"
-    import { required, between, url, integer } from 'vuelidate/lib/validators'
+    import Order3 from "../../../components/lk/steppers/Order3"
 
     export default {
         name: "OrderModal",
@@ -101,92 +98,27 @@
             Stepper,
             Order1,
             Order2,
-            RadioSwitcher,
-            MainModal,
-            TextInput,
-            AccentButton,
-            SecondaryButton,
-            NumberInput
+            Order3,
+            MainModal
         },
         data() {
             return {
                 steps: ['1 шаг', "2 шаг", "Завершение"],
-                quantity: 1000,
-                instagram: "",
-                priceForOne: 10,
-                likesQuantityStep: 500,
-                subscribesQuantityStep: 500,
-                showInfo: false,
-                resultData: {
-                    type: "likes",
-                },
-                optionsForSwitcher: [
-                    {
-                        title: 'Лайки',
-                        value: 'likes'
-                    },
-                    {
-                        title: 'Подписки',
-                        value: 'subscribes'
-                    }
-                ]
-            }
-        },
-        validations: {
-            quantity: {
-                required,
-                between: between(1000, 150000),
-                integer: integer
-
-            },
-            instagram: {
-                required,
-            }
-        },
-        computed: {
-            orderPrice() {
-                return this.quantity*this.priceForOne;
-            },
-            formIsValid() {
-                return !(this.$v.quantity.$invalid  || this.$v.quantity.$anyError ||
-                         this.$v.instagram.$invalid || this.$v.instagram.$anyError);
             }
         },
         methods: {
-            closed() {
-                this.$store.commit('closeOrderModal')
-                this.showInfo = false;
-            },
-            setType(event) {
-                this.resultData.type = event.value;
-            },
-            toBalance() {
-                this.$store.commit('closeOrderModal');
-                this.$store.commit('openBalanceModal');
-            },
-            createOrder() {
-                let props = {
-                    order_type: this.resultData.type,
-                    social_type: "instagram",
-                    url: this.instagram,
-                    count: this.quantity,
-                    price: this.quantity*this.priceForOne
-                };
-                this.$store.dispatch("createOrder", props).then(()=>{
-                    this.showInfo = true;
-                })
-            },
-            closeWindow() {
-                if(this.showInfo) {
-                    this.quantity = 1000;
-                    this.instagram = "";
-                    this.resultData = {
-                        type: "likes"
-                    }
-                    this.showInfo = false;
-                    this.$store.commit('closeOrderModal');
-                }
-            }
+            // createOrder() {
+            //     let props = {
+            //         order_type: this.resultData.type,
+            //         social_type: "instagram",
+            //         url: this.instagram,
+            //         count: this.quantity,
+            //         price: this.quantity*this.priceForOne
+            //     };
+            //     this.$store.dispatch("createOrder", props).then(()=>{
+            //         this.showInfo = true;
+            //     })
+            // },
         }
     }
 </script>

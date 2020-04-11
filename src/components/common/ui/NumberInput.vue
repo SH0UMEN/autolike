@@ -22,10 +22,12 @@
             </secondary-button>
         </div>
         <div class="number-input__validation">
-            <div class="number-input__validation-label number-input__validation-min">
+            <div class="number-input__validation-label number-input__validation-min"
+                 :class="{ 'number-input__validation-label_triggered': minError }">
                 Минимум {{ valueBoundaries[0] }}
             </div>
-            <div class="number-input__validation-label number-input__validation-max">
+            <div class="number-input__validation-label number-input__validation-max"
+                 :class="{ 'number-input__validation-label_triggered': maxError }">
                 Максимум {{ valueBoundaries[1] }}
             </div>
         </div>
@@ -58,6 +60,14 @@
             valueBoundaries: {
                 type: Array,
                 default: ()=>[0, 0]
+            },
+            minError: {
+                type: Boolean,
+                default: false
+            },
+            maxError: {
+                type: Boolean,
+                default: false
             }
         },
         data() {
