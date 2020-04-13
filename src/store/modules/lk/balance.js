@@ -4,10 +4,99 @@ import authState from "../auth/index"
 export default {
     state: {
         balanceModalShown: false,
+        history: [
+            {
+                status: 0,
+                money: 25,
+                score: 50,
+                date: "13:27 23.02.2020"
+            },
+            {
+                status: 1,
+                money: 25,
+                score: 50,
+                date: "13:27 23.02.2020"
+            },
+            {
+                status: 2,
+                money: 25,
+                score: 50,
+                date: "13:27 23.02.2020"
+            },
+            {
+                status: 0,
+                money: 25,
+                score: 50,
+                date: "13:27 23.02.2020"
+            },
+            {
+                status: 0,
+                money: 25,
+                score: 50,
+                date: "13:27 23.02.2020"
+            },
+            {
+                status: 1,
+                money: 25,
+                score: 50,
+                date: "13:27 23.02.2020"
+            },
+            {
+                status: 2,
+                money: 25,
+                score: 50,
+                date: "13:27 23.02.2020"
+            },
+            {
+                status: 0,
+                money: 25,
+                score: 50,
+                date: "13:27 23.02.2020"
+            },
+            {
+                status: 0,
+                money: 25,
+                score: 50,
+                date: "13:27 23.02.2020"
+            },
+            {
+                status: 0,
+                money: 25,
+                score: 50,
+                date: "13:27 23.02.2020"
+            },
+            {
+                status: 0,
+                money: 25,
+                score: 50,
+                date: "13:27 23.02.2020"
+            },
+            {
+                status: 0,
+                money: 25,
+                score: 50,
+                date: "13:27 23.02.2020"
+            },
+            {
+                status: 0,
+                money: 25,
+                score: 50,
+                date: "13:27 23.02.2020"
+            },
+            {
+                status: 0,
+                money: 25,
+                score: 50,
+                date: "13:27 23.02.2020"
+            }
+        ]
     },
     getters: {
         balanceModalIsShown(state) {
             return state.balanceModalShown
+        },
+        getDonationHistory(state) {
+            return state.history;
         }
     },
     actions: {

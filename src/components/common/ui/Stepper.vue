@@ -64,9 +64,9 @@
             }
         },
         watch: {
-            currentSlide(nv, ov) {
-                this.slides[ov].classList.add(this.hiddenClass);
-                this.slides[nv].classList.remove(this.hiddenClass);
+            currentSlide(ov, nv) {
+                this.slides[nv].classList.add(this.hiddenClass);
+                this.slides[ov].classList.remove(this.hiddenClass);
             }
         }
     }

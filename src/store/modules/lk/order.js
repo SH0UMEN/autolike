@@ -11,7 +11,11 @@ let orderExample =  {
 
 export default {
     state: {
+        prices: {
+            all: 0.87
+        },
         orderModalShown: false,
+        orderSuccessModalShown: false,
         orders: [
         ],
 
@@ -33,7 +37,7 @@ export default {
             }
         },
 
-        // Создание заказа
+        // Создание нового заказа
         getNewOrderQuantity(state) {
             return state.newOrder.quantity;
         }
@@ -51,9 +55,23 @@ export default {
                 })
             })
         },
-        createOrder(context, props) {
+
+        createOrder(context) {
+            let order = context.state.newOrder,
+                data = {
+                    social_type: order.socID+"",
+                    order_type: 2+"",
+                    count: order.quantity,
+                    is_bot: order.doerType,
+                    url: order.link
+                };
+
+            if(order.doerType == 1) {
+                data['speed'] = order.quantityPerHour;
+            }
+
             return new Promise((resolve, reject) => {
-                axios.post(context.getters.getAPIurl + "/order/create", props).then((res)=>{
+                axios.post(context.getters.getAPIurl + "/order/create", data).then((res)=>{
                     resolve()
                 }).catch((err)=>{
                     reject(err)
@@ -68,6 +86,12 @@ export default {
         closeOrderModal(state) {
             state.orderModalShown = false;
             state.newOrder = Object.assign({}, orderExample)
+        },
+        openOrderSuccessModal(state) {
+            state.orderSuccessModalShown = true;
+        },
+        closeOrderSuccessModal(state) {
+            state.orderSuccessModalShown = false;
         },
         setListOrders(state, data) {
             if (data.next) {

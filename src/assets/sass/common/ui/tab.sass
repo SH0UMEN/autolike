@@ -1,0 +1,57 @@
+@import "../vars"
+
+.tab
+    text-align: center
+
+    &__title
+        font-size: 24px
+        margin-bottom: 25px
+        font-weight: bold
+        display: inline-block
+
+    &__container
+        max-width: 408px
+        margin-left: auto
+        margin-right: auto
+
+    &__titles
+        display: flex
+        width: 100%
+        max-width: 408px
+        margin-left: auto
+        margin-right: auto
+        border-bottom: 1px solid #D9D9D9
+
+    &__switch-button
+        display: inline-block
+        padding: 10px 0 20px
+        background-color: transparent
+        border: none
+        font-size: 14px
+        font-weight: 600
+        position: relative
+        color: #A7A7A7
+        cursor: pointer
+
+        &_current
+            color: $secondary-color
+
+            &:after
+                position: absolute
+                bottom: -0.99px
+                left: 0
+                height: 2px
+                width: 100%
+                background-color: $accent-color
+                content: ''
+                display: block
+
+    &__main-button
+        width: calc(100% + 30px)
+        margin-left: -15px
+        font-size: 16px
+        height: 56px
+
+    &__slide
+        &_hidden
+            display: none

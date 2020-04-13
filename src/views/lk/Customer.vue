@@ -4,6 +4,7 @@
         <main>
             <order-list class="lk__order-list"></order-list>
             <order-modal></order-modal>
+            <order-success-modal></order-success-modal>
             <balance-modal></balance-modal>
             <main-modal name="logout-modal" :show="$store.getters.isLogoutDialogOpened"
                         @closed="$store.commit('closeLogoutDialog')"
@@ -30,6 +31,7 @@
     import OrderList from "../../components/lk/OrderList"
     import MainModal from "../../components/common/ui/MainModal"
     import OrderModal from "../../components/lk/modals/OrderModal"
+    import OrderSuccessModal from "../../components/lk/modals/OrderSuccessModal"
     import BalanceModal from "../../components/lk/modals/BalanceModal"
     import SecondaryButton from "../../components/common/ui/SecondaryButton"
 
@@ -42,7 +44,8 @@
             MainModal,
             OrderModal,
             SecondaryButton,
-            LkHeader
+            LkHeader,
+            OrderSuccessModal
         },
         methods: {
             logout() {

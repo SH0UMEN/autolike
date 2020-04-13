@@ -33,9 +33,12 @@ axios.interceptors.response.use(null,(err)=>{
     if(err.response.data.errors) {
       if(err.response.data.errors.token == "Token is Expired") {
         return store.dispatch('refresh').then(()=>{
+          let data = err.response.config.data;
+
           return axios({
             method: err.response.config.method,
             url: err.response.config.url,
+            data: data ? JSON.parse(data) : undefined
           }).then((res)=>{
             return Promise.resolve(res);
           })

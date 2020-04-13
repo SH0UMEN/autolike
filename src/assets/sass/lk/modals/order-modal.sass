@@ -2,6 +2,8 @@
 
 .order-modal
     .order-slide
+        min-height: 460px
+
         &-one
             &__soc-selector
                 padding: 22px 20px
@@ -38,3 +40,51 @@
 
                 &:last-child
                     margin-bottom: 87px
+
+        &-three
+            &__order-info
+                font-size: 16px
+                margin-bottom: 73px
+
+            &__soc-image
+                border-radius: 50%
+                width: 124px
+                height: 124px
+                margin-bottom: 25px
+
+            &__order-price
+                display: flex
+                justify-content: space-between
+                font-size: 16px
+                margin-bottom: 25px
+
+                &-label
+                    display: flex
+                    flex-direction: column
+                    align-items: flex-start
+
+                    &_error
+                        color: $error-color
+
+                        .order-slide-three__order-price-error
+                            display: block
+                            text-align: left
+
+                &-error
+                    display: none
+
+                &-amount
+                    display: flex
+                    flex-direction: column
+                    align-items: flex-end
+
+                &-res
+                    font-size: 24px
+                    font-weight: bold
+                    margin-top: -8px
+
+                &-per-one
+                    font-size: 14px
+                    opacity: .4
+                    font-weight: 600
+                    margin-top: 4px

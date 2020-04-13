@@ -1,12 +1,80 @@
 @import "../../common/vars"
 
 .balance-modal
+    .balance
+        &-slide
+            &-two
+                &__money
+                    color: black
+                    display: flex
+                    align-items: center
+
+                    img
+                        margin: 0 9.33px
+
+                &__date
+                    color: #999999
+
+                &__history-record
+                    display: flex
+                    margin-top: 24px
+                    font-size: 16px
+                    justify-content: space-between
+
+                    &:last-child
+                        margin-bottom: 25px
+
+                    &_error
+                        *
+                            color: $error-color
+
+            &-one
+                &__balance
+                    display: inline-block
+                    margin-top: 32px
+                    font-weight: 600
+
+                    &-bold
+                        font-size: 18px
+                        font-weight: bold
+
+                &__balance-price
+                    display: flex
+                    justify-content: space-between
+                    font-size: 16px
+                    margin-bottom: 25px
+
+                    &-label
+                        display: flex
+                        flex-direction: column
+                        align-items: flex-start
+
+                    &-amount
+                        display: flex
+                        flex-direction: column
+                        align-items: flex-end
+
+                    &-res
+                        font-size: 24px
+                        font-weight: bold
+                        margin-top: -8px
+
+                    &-per-one
+                        font-size: 14px
+                        opacity: .4
+                        font-weight: 600
+                        margin-top: 4px
+
+                &__quantity
+                    margin-top: 120px
+
     .modal-form-submit
         margin-top: 12px !important
 
     &__links
-        margin-top: 48px
+        margin-top: 4px
         text-align: center
+        margin-bottom: 105px
 
         a
             color: #7A7A7A
