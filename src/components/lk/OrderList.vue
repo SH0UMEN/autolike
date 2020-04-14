@@ -9,7 +9,7 @@
                     Ваши заказы
                 </span>
 
-                <soc-selector class="order-list__soc-selector" v-model="selectedSoc" :items="socs"></soc-selector>
+                <soc-selector @input="updateOrders(false)" class="order-list__soc-selector" v-model="selectedSoc" :items="socs"></soc-selector>
             </div>
 
             <div class="order-list__filter-panel">
@@ -23,12 +23,12 @@
                           :items="selectOptions.items">
                 </dropdown>
 
-                <dropdown class="order-list__select-status" type="select"
+                <dropdown class="order-list__select-doer" type="select"
                           @input="changeStatusFilter"
                           :items="doerTypes">
                 </dropdown>
 
-                <dropdown class="order-list__select-status" type="select"
+                <dropdown class="order-list__select-type" type="select"
                           @input="changeStatusFilter"
                           :items="orderTypes">
                 </dropdown>
@@ -316,6 +316,10 @@
                 params.filter_by_status = this.filter.status.name
                 params.sort_by = this.filter.filterType
                 params.sort_type = this.filter.sortDirection
+
+                if(this.selectedSoc.id != 0) {
+                    params.social_type = this.selectedSoc.id;
+                }
 
                 let settings = {}
                 settings.params = params

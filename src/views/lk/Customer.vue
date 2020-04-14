@@ -20,8 +20,8 @@
             <!--<main-modal class="put-money" name="lk-put-money">
 
             </main-modal>-->
-            <lk-footer></lk-footer>
         </main>
+        <lk-footer></lk-footer>
     </div>
 </template>
 

@@ -49,10 +49,13 @@
         padding-left: 0
         margin: 30px 0
 
-    &__select-status
+    &__select-status, &__select-doer, &__select-type
         width: 170px
         z-index: 9
         position: relative
+
+    &__select-status, &__select-doer
+        margin-right: 45px
 
     &__page-select_current
         color: $accent-color !important
@@ -60,6 +63,7 @@
         background-color: $white-color !important
 
     &__filter-panel
+        z-index: 100
         margin-top: 15px
         display: flex
         align-items: center
@@ -219,8 +223,48 @@
                 right: -5000px
                 top: 0
                 border:
-                    top: 1px solid #D5D5D5
                     bottom: 1px solid #D5D5D5
+
+    @media screen and (max-width: $xl)
+        .order-list
+            &__filter-panel
+                position: relative
+                padding-left: 190.25px
+
+            &__select-filter
+                display: block
+                z-index: 10
+                transition: border-color .2s
+                position: absolute
+                left: 0
+                top: 0px
+
+                .dropdown
+                    &__arrow
+                        display: none
+
+                    &__label
+                        flex-direction: row-reverse
+                        justify-content: flex-end
+
+                    &__icon
+                        margin-right: 13px
+
+                &.dropdown_opened
+                    width: 100%
+                    max-width: 300px
+                    transition: border-color .2s, background-color .2s, width .0001s
+
+                    .dropdown
+                        &__icon
+                            filter: invert(1)
+
+            &__filter-marker, &__filter-list, &__filter-icon
+                display: none
+
+            &__select-status, &__select-doer, &__select-type
+                margin-right: 0
+                margin-left: 15px
 
     @media screen and (max-width: $md)
         .order-list
@@ -241,15 +285,31 @@
                 margin-top: 20px
                 margin-bottom: 20px
 
-            &__filter-marker, &__filter-list, &__filter-icon
-                display: none
-
             &__select-status
                 right: 0
 
             &__filter-panel
-                position: relative
-                height: 46px
+                padding-left: 0
+                height: 97px
+
+            &__select-doer, &__select-type
+                bottom: 0
+                position: absolute
+                width: 48%
+
+            &__select-doer, &__select-type, &__select-status, &__select-filter
+                margin: 0
+
+                &.dropdown_opened
+                    z-index: 50
+                    width: 100%
+                    max-width: unset
+
+            &__select-doer
+                left: 0
+
+            &__select-type
+                right: 0
 
             &__select-filter, &__select-status
                 position: absolute
@@ -258,28 +318,6 @@
 
             &__select-filter
                 left: 0
-                display: block
-                z-index: 10
-                transition: border-color .2s
-
-                .dropdown
-                    &__arrow
-                        display: none
-
-                    &__label
-                        flex-direction: row-reverse
-                        justify-content: flex-end
-
-                    &__icon
-                        margin-right: 13px
-
-                &.dropdown_opened
-                    width: 100%
-                    transition: border-color .2s, background-color .2s, width .0001s
-
-                    .dropdown
-                        &__icon
-                            filter: invert(1)
 
     @media screen and (max-width: $sm)
         .order-list

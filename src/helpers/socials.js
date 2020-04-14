@@ -1,6 +1,7 @@
 export default [
     {
         picture: "/images/lk/instagram.svg",
+        pictureMini: "/images/lk/instagram-mini.svg",
         gradient: ['#FE3A68', '#9B1EB3'],
         id: 1,
         cheatingTypes: [
@@ -28,6 +29,7 @@ export default [
     },
     {
         picture: "/images/lk/vk.svg",
+        pictureMini: "/images/lk/vk-mini.svg",
         color: "#4D76A1",
         id: 2,
         cheatingTypes: [
@@ -55,6 +57,7 @@ export default [
     },
     {
         picture: "/images/lk/telegram.svg",
+        pictureMini: "/images/lk/telegram-mini.svg",
         color: "#039BE5",
         id: 3,
         cheatingTypes: [
@@ -72,6 +75,7 @@ export default [
     },
     {
         picture: "/images/lk/twitter.svg",
+        pictureMini: "/images/lk/twitter-mini.svg",
         color: "#03A9F4",
         id: 4,
         cheatingTypes: [
@@ -94,6 +98,7 @@ export default [
     },
     {
         picture: "/images/lk/facebook.svg",
+        pictureMini: "/images/lk/facebook-mini.svg",
         color: "#4267B2",
         id: 5,
         noBot: true,
@@ -107,6 +112,7 @@ export default [
     },
     {
         picture: "/images/lk/youtube.svg",
+        pictureMini: "/images/lk/youtube-mini.svg",
         color: "#FF0000",
         id: 6,
         noBot: true,
@@ -125,6 +131,7 @@ export default [
     },
     {
         picture: "/images/lk/tiktok.svg",
+        pictureMini: "/images/lk/tiktok-mini.svg",
         color: "#222222",
         id: 7,
         noBot: true,

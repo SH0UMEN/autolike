@@ -63,7 +63,8 @@ export default {
                     order_type: 2+"",
                     count: order.quantity,
                     is_bot: order.doerType,
-                    url: order.link
+                    url: order.link,
+                    price: order.quantity*context.state.prices.all
                 };
 
             if(order.doerType == 1) {
