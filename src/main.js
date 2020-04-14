@@ -46,8 +46,6 @@ axios.interceptors.response.use(null,(err)=>{
       } else if (err.response.data.errors.token == "Token is Invalid"){
         store.commit('logout');
         router.push({ name: 'login' });
-      } else {
-        console.log(err.response)
       }
     }
   }
