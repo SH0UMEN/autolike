@@ -15,17 +15,17 @@
                 <a :href="order.url" class="order-item__title">{{ order.url }}</a>
                 <div class="order-item__status">
                                 <span class="order-item__status-flag"
-                                      :class="{ 'order-item__status-flag_completed': order.status == 'TASK_DONE',
-                                                 'order-item__status-flag_doing': order.status == 'TASK_WORK',
-                                                 'order-item__status-flag_handling': order.status == 'TASK_NEW',
-                                                 'order-item__status-flag_not-paid': order.status == 'TASK_PAUSE',
-                                                 'order-item__status-flag_error': order.status == 'TASK_ERROR'}">
+                                      :class="{ 'order-item__status-flag_completed': order.status == 3,
+                                                 'order-item__status-flag_doing': order.status == 2,
+                                                 'order-item__status-flag_handling': order.status == 1,
+                                                 'order-item__status-flag_not-paid': order.status == 5,
+                                                 'order-item__status-flag_error': order.status == 4}">
                                     {{
-                                        order.status == 'TASK_DONE' ? 'Выполнен' :
-                                        order.status == 'TASK_NEW' ? 'В обработке' :
-                                        order.status == 'TASK_WORK' ? 'Выполняется' :
-                                        order.status == 'TASK_PAUSE' ? 'Не оплачено' :
-                                        order.status == 'TASK_ERROR' ? 'Ошибка' : ''
+                                        order.status == 3 ? 'Выполнен' :
+                                        order.status == 1 ? 'В обработке' :
+                                        order.status == 2 ? 'Выполняется' :
+                                        order.status == 5 ? 'Не оплачено' :
+                                        order.status == 4 ? 'Ошибка' : ''
                                     }}
                                 </span>
                     <a v-if="order.status == 'Выполнено'" href="#">Что делать?</a>
@@ -35,9 +35,9 @@
             <div class="order-item__info-bottom">
                 <img class="order-item__soc-image" :src="currentSoc.pictureMini" alt="">
                 <span class="order-item__quantity">
-                    {{ order.count }} {{ inflection }}
+                    <span class="order-item__quantity-value">{{ order.count }}</span><span class="order-item__quantity-inflection">{{ inflection }}</span>
                 </span>
-                <span class="order-item__price">{{ formatPrice(order.price) }} руб.</span>
+                <span class="order-item__price">{{ formatPrice(order.price) }} бал.</span>
                 <span class="order-item__doer">{{ order.is_bot ? 'Боты' : 'Реальные люди' }}</span>
                 <span class="order-item__date">{{ order.created_at | moment("H:mm, MM.DD.YYYY") }}</span>
             </div>

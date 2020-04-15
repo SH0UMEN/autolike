@@ -1,7 +1,9 @@
 <template>
-    <div class="dropdown" :class="{ 'dropdown_opened': isOpened, 'dropdown_up': direction == 'up' }"
+    <div class="dropdown" :class="{ 'dropdown_opened': isOpened,
+                                    'dropdown_up': direction == 'up',
+                                    'dropdown_disabled': disabled }"
          v-click-outside="closeDropdown">
-        <div class="dropdown__label" @click="isOpened = !isOpened">
+        <div class="dropdown__label" :title="disabled ? disabledMessage : ''" @click="trigger">
             <span v-if="type == 'menu'" class="dropdown__title" v-html="label.title"></span>
             <span v-if="type == 'select'" class="dropdown__title" v-html="selectedItem.title"></span>
             <img v-if="type == 'menu' && label.image" class="dropdown__icon" :src="label.image" alt="">
@@ -77,6 +79,14 @@
             SecondaryButton
         },
         props: {
+            disabled: {
+                type: Boolean,
+                default: false
+            },
+            disabledMessage: {
+                type: String,
+                default: ""
+            },
             showContacts: {
                 type: Boolean,
                 default: false
@@ -99,15 +109,33 @@
             direction: {
                 type: String,
                 default: 'down'
+            },
+            value: {
+                type: Object,
+                default: null
+            }
+        },
+        watch: {
+            value() {
+                this.selectedItem = this.value
+            },
+            items() {
+                this.selectedItem = this.items[0];
+                this.$emit('item-changed', this.selectedItem);
             }
         },
         data() {
             return {
+                selectedItem: this.value || this.items[0],
                 isOpened: false,
-                selectedItem: this.items[0]
             }
         },
         methods: {
+            trigger() {
+                if(!this.disabled) {
+                    this.isOpened = !this.isOpened
+                }
+            },
             closeDropdown(event) {
                 this.isOpened = false;
             },

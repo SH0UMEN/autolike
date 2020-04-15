@@ -9,12 +9,12 @@
                     Ваши заказы
                 </span>
 
-                <soc-selector @input="updateOrders(false)" class="order-list__soc-selector" v-model="selectedSoc" :items="socs"></soc-selector>
+                <soc-selector @input="changeSoc" class="order-list__soc-selector" :value="selectedSoc" :items="socs"></soc-selector>
             </div>
 
             <div class="order-list__filter-panel">
                 <dropdown class="order-list__select-filter" type="select"
-                          @input="changeStatusFilter"
+                          @input="changeFilter"
                           :items="filter.filterOptions">
                 </dropdown>
 
@@ -24,12 +24,15 @@
                 </dropdown>
 
                 <dropdown class="order-list__select-doer" type="select"
-                          @input="changeStatusFilter"
+                          @input="changeDoerFilter"
                           :items="doerTypes">
                 </dropdown>
 
                 <dropdown class="order-list__select-type" type="select"
-                          @input="changeStatusFilter"
+                          @input="changeOrderFilter"
+                          @item-changed="changeOrderFilterWithoutReload"
+                          :disabled="orderTypeDisabled"
+                          :disabled-message="'Чтобы воспользоваться этой функцией, вначале выберите социальную сеть из списка выше'"
                           :items="orderTypes">
                 </dropdown>
 
@@ -61,7 +64,9 @@
                             :key="order.id"></order-view>
             </ul>
 
-            <accent-button class="order-list__more" theme="dark" v-if="currentPage < pageCount" @click="changePage">Показать ещё</accent-button>
+            <accent-button class="order-list__more" v-if="currentPaginationIndex < paginationLimits.length - 1 &&
+                                                    orders.length == filter.paginationLimit.value"
+                           theme="dark" @click="raiseShownOrders">Показать ещё</accent-button>
 
             <div class="order-list__pagination">
                 <paginate
@@ -77,7 +82,8 @@
                     :active-class="'order-list__page-select_current'">
                 </paginate>
                 <div class="order-list__pages-to-view">
-                    <dropdown class="order-list__select-pages-to-view" v-model="filter.paginationLimit" :items="paginationLimits" type="select" direction="up"></dropdown>
+                    <dropdown class="order-list__select-pages-to-view" v-model="filter.paginationLimit"
+                              :items="paginationLimits" type="select" @input="changePaginationIndex" direction="up"></dropdown>
                 </div>
             </div>
         </div>
@@ -85,15 +91,15 @@
                     @closed="orderMoreClosed" class="order-list__order-more-modal">
             <div class="order-list__order-more-top" v-if="currentOrder">
                 <span class="order-list__order-more-status"
-                      :class="{ 'order-list__order-more-status_completed': currentOrder.status == 0,
-                                 'order-list__order-more-status_doing': currentOrder.status == 1,
-                                 'order-list__order-more-status_handling': currentOrder.status == 2,
-                                 'order-list__order-more-status_not-paid': currentOrder.status == 3,
+                      :class="{ 'order-list__order-more-status_completed': currentOrder.status == 3,
+                                 'order-list__order-more-status_doing': currentOrder.status == 2,
+                                 'order-list__order-more-status_handling': currentOrder.status == 1,
+                                 'order-list__order-more-status_not-paid': currentOrder.status == 5,
                                  'order-list__order-more-status_error': currentOrder.status == 4}"
-                      v-html="currentOrder.status == 0 ? 'Выполнен':
-                              currentOrder.status == 1 ? 'Выполняется':
-                              currentOrder.status == 2 ? 'В обработке':
-                              currentOrder.status == 3 ? 'Не оплачено':
+                      v-html="currentOrder.status == 3 ? 'Выполнен':
+                              currentOrder.status == 2 ? 'Выполняется':
+                              currentOrder.status == 1 ? 'В обработке':
+                              currentOrder.status == 5 ? 'Не оплачено':
                               currentOrder.status == 4 ? 'Ошибка' : ''">
                 </span>
                 <span class="order-list__order-more-date">{{ currentOrder.date }}</span>
@@ -125,26 +131,28 @@
         },
         data() {
             return {
-                pageCount: 20,
                 currentPage: 1,
-                orders: [],
                 socs: socials,
                 selectedSoc: { id: 0 },
+                currentPaginationIndex: 0,
                 paginationLimits: [
                     {
                         title: "Показывать по 12",
                         value: 12,
-                        hoverColor: "accent"
+                        hoverColor: "accent",
+                        index: 0
                     },
                     {
                         title: "Показывать по 24",
                         value: 24,
-                        hoverColor: "accent"
+                        hoverColor: "accent",
+                        index: 1
                     },
                     {
                         title: "Показывать по 48",
                         value: 48,
-                        hoverColor: "accent"
+                        hoverColor: "accent",
+                        index: 2
                     }
                 ],
 
@@ -152,7 +160,7 @@
                 doerTypes: [
                     {
                         title: "Вид накрутки",
-                        type: -1,
+                        type: 'all',
                         hoverColor: "accent"
                     },
                     {
@@ -166,57 +174,52 @@
                         hoverColor: "accent"
                     }
                 ],
-                doerType: -1,
+                doerType: 'all',
 
                 // Вид накрутки
+                orderTypeDefault: [{
+                    title: "Вид активности",
+                    id: 'all',
+                    hoverColor: "accent"
+                }],
                 orderTypes: [
                     {
                         title: "Вид активности",
-                        type: -1,
+                        id: 'all',
                         hoverColor: "accent"
                     },
-                    {
-                        title: "Реальные люди",
-                        type: 0,
-                        hoverColor: "accent"
-                    },
-                    {
-                        title: "Боты",
-                        type: 1,
-                        hoverColor: "accent"
-                    }
                 ],
-                orderType: -1,
+                orderType: null,
 
 
                 selectOptions: {
                     items: [
                         {
-                            status: -1,
+                            status: 0,
                             name: "all",
                             title: "Все статусы",
                             hoverColor: "accent"
                         },
                         {
-                            status: 0,
+                            status: 3,
                             name: "Выполнено",
                             title: "Выполнен",
                             hoverColor: "accent"
                         },
                         {
-                            status: 1,
+                            status: 2,
                             name: "В работе",
                             title: "Выполняется",
                             hoverColor: "accent"
                         },
                         {
-                            status: 2,
+                            status: 1,
                             name: "Новый",
                             title: "В обработке",
                             hoverColor: "accent"
                         },
                         {
-                            status: 3,
+                            status: 5,
                             name: "Пока пусто",
                             title: "Не оплачено",
                             hoverColor: "accent"
@@ -231,11 +234,10 @@
                 },
 
                 filter: {
-                    type: "all",
                     status: null,
                     filterType: "date",
                     sortDirection: "DESC",
-                    paginationLimit: null,
+                    paginationLimit: {},
                     filterOptions: [
                         {
                             filterType: "date",
@@ -285,6 +287,17 @@
                 orderMoreShown: false,
             }
         },
+        computed: {
+            orders() {
+                return this.$store.state.LK.orders;
+            },
+            orderTypeDisabled() {
+                return this.selectedSoc.id == 0;
+            },
+            pageCount() {
+                return this.$store.state.LK.pageCount;
+            }
+        },
         watch: {
             filter: {
                 handler(val) {
@@ -295,10 +308,20 @@
             }
         },
         mounted() {
-            this.filter.status = this.selectOptions.items[0];
             this.filter.paginationLimit = this.paginationLimits[0];
+            this.filter.status = this.selectOptions.items[0];
+            this.orderType = this.orderTypes[0];
         },
         methods: {
+            changePaginationIndex(val) {
+                this.currentPaginationIndex = val.index
+            },
+            raiseShownOrders() {
+                if(this.currentPaginationIndex < this.paginationLimits.length - 1) {
+                    this.currentPaginationIndex++;
+                    this.filter.paginationLimit = this.paginationLimits[this.currentPaginationIndex];
+                }
+            },
             changePage(number) {
                 if (number) {
                     this.currentPage = number
@@ -308,31 +331,57 @@
                     this.updateOrders(true)
                 }
             },
+            changeSoc(soc) {
+                this.orderTypes = this.orderTypeDefault.concat(soc.cheatingTypes ? soc.cheatingTypes : []);
+
+                for(let type of this.orderTypes) {
+                    type.hoverColor = "accent"
+                }
+
+                this.selectedSoc = soc;
+
+                this.$nextTick(()=>{
+                    this.updateOrders(false);
+                })
+            },
             updateOrders(next = false) {
                 let params = {}
                 params.page = this.currentPage
                 params.limit = this.filter.paginationLimit.value
-                params.filter_by_order_type = this.filter.type
-                params.filter_by_status = this.filter.status.name
+                params.filter_by_order_type = this.orderType.id
+                params.filter_by_status = this.filter.status.status != 0 ? this.filter.status.status : null
                 params.sort_by = this.filter.filterType
                 params.sort_type = this.filter.sortDirection
+                params.bot = this.doerType.type;
 
                 if(this.selectedSoc.id != 0) {
-                    params.social_type = this.selectedSoc.id;
+                    params.filter_by_social_type = this.selectedSoc.id;
                 }
 
                 let settings = {}
                 settings.params = params
                 settings.next = next
 
-                this.$store.dispatch('getOwnOrders', settings).then((data) => {
-                    this.orders = this.$store.getters.getOrders;
-                    this.pageCount = data.last_page
-                }).catch(()=>{
-                })
+                this.$store.dispatch('getOwnOrders', settings)
             },
             changeStatusFilter(status) {
                 this.filter.status = status;
+            },
+            changeDoerFilter(doer) {
+                this.doerType = doer
+                this.updateOrders(false);
+            },
+            changeOrderFilter(type) {
+                this.orderType = type;
+                this.updateOrders(false);
+            },
+            changeOrderFilterWithoutReload(type) {
+                this.orderType = type;
+            },
+            changeFilter(filter) {
+                this.filter.sortDirection = filter.sortDirection;
+                this.filter.filterType = filter.filterType;
+                this.updateOrders(false);
             },
             changeFilterType(type) {
                 if(this.filter.filterType == type) {
@@ -345,9 +394,11 @@
                     this.filter.filterType = type;
                     this.filter.sortDirection = "DESC"
                 }
+
+                this.updateOrders(false);
             },
             orderMoreOpen(id) {
-                if(window.innerWidth <= 540) {
+                if(window.innerWidth <= 767) {
                     this.currentOrder = this.$store.getters.getOrderByID(id);
                     this.orderMoreShown = true;
                 }

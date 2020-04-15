@@ -60,7 +60,7 @@
 
     &__info-bottom
         display: flex
-        align-items: center
+        align-items: center !important
 
     &__status
         display: flex
@@ -111,6 +111,9 @@
     &__date
         opacity: .6
 
+    &__quantity-value
+        margin-right: 10px
+
     &__info-more
         position: absolute
         right: 0
@@ -123,10 +126,13 @@
     &__info-more-icon
         cursor: pointer
 
-    @media screen and (max-width: $sm)
+    @media screen and (max-width: $md)
         margin-left: -7px
         margin-right: -7px
-        padding: 12px 50px 12px 10px
+        padding: 12px 10px 12px 10px
+
+        &__doer
+            display: none
 
         &__date, &__status
             display: none
@@ -141,3 +147,10 @@
 
         &__info-more
             padding: 0 15px
+
+    @media screen and (max-width: $sm)
+        &__quantity-inflection
+            display: none
+
+        &__price
+            margin-left: 0

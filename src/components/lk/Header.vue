@@ -9,7 +9,7 @@
             <div class="lk-header__right-side">
                 <accent-button class="lk-header__order" @click="$store.commit('openOrderModal')">Оформить заказ</accent-button>
                 <secondary-button class="lk-header__put-money" @click="$store.commit('openBalanceModal')">Пополнить баланс</secondary-button>
-                <span class="lk-header__balance">{{ $store.getters.getUser.balance }} руб.</span>
+                <span class="lk-header__balance">{{ $store.getters.getUser.balance }} бал.</span>
                 <dropdown-menu class="lk-header__profile-dropdown lk-header__profile-dropdown_desktop"
                                :label="dropdownOptions.label"
                                :items="dropdownOptions.itemsForDesktop">
@@ -43,6 +43,22 @@
             title: {
                 type: String,
                 default: ""
+            }
+        },
+        watch: {
+            user: {
+                deep: true,
+                handler: ()=>{
+                    this.dropdownOptions.itemsForMobile[0].title = `${ this.user ? this.user.balance : "" } бал.`
+                },
+            }
+        },
+        mounted() {
+            this.dropdownOptions.itemsForMobile[0].title = `${ this.user ? this.user.balance : "" } бал.`
+        },
+        computed: {
+            user() {
+                return this.$store.getters.getUser;
             }
         },
         data() {
@@ -100,7 +116,7 @@
                     ],
                     itemsForMobile: [
                         {
-                            title: `${ this.user ? this.user.balance : "" } руб.`,
+                            title: "",
                             hoverColor: "accent",
                         },
                         {

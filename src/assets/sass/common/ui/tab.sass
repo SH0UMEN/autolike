@@ -51,7 +51,17 @@
         margin-left: -15px
         font-size: 16px
         height: 56px
+        border-radius: 0
 
     &__slide
         &_hidden
             display: none
+
+    @media screen and (max-width: $sm)
+        .tab
+            &__main-button
+                height: 48px
+                font-size: 14px
+
+            &__switch-button
+                padding: 7px 0 14px

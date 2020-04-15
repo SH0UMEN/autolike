@@ -125,6 +125,20 @@
             top: unset
             bottom: 100%
 
+    &_disabled
+        color: #A7A7A7
+
+        .dropdown
+            &__label
+                cursor: default
+
+            &__arrow
+                *
+                    stroke: #A7A7A7
+
+        &:hover
+            border-color: transparent
+
     @media screen and (max-width: $md)
         &:hover
             border-color: transparent

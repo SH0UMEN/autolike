@@ -54,6 +54,7 @@
                 this.$store.dispatch("createOrder").then(()=>{
                     this.$store.commit("closeOrderModal");
                     this.$store.commit("openOrderSuccessModal");
+                    this.$store.dispatch("retryGetOwnOrders");
                 });
             },
         },

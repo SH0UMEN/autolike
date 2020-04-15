@@ -110,3 +110,17 @@
         &_current, &_done
             .stepper__step-icon
                 background-color: $accent-color
+
+    @media screen and (max-width: $sm)
+        .stepper
+            &__progress
+                margin-top: 25px
+                margin-bottom: 40px
+
+            &__step
+                &-title
+                    display: none !important
+
+            &__main-button
+                font-size: 14px
+                height: 48px

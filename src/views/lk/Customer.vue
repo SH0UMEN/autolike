@@ -9,7 +9,7 @@
             <main-modal name="logout-modal" :show="$store.getters.isLogoutDialogOpened"
                         @closed="$store.commit('closeLogoutDialog')"
                         class="logout-modal">
-                <span class="modal-form-title">
+                <span class="modal__title">
                     Вы уверены что хотите выйти из аккаунта?
                 </span>
                 <div class="logout-modal__dialog">

@@ -16,6 +16,8 @@ export default {
         },
         orderModalShown: false,
         orderSuccessModalShown: false,
+        lastParams: {},
+        pageCount: 0,
         orders: [
         ],
 
@@ -44,16 +46,22 @@ export default {
     },
     actions: {
         getOwnOrders(context, settings) {
+            context.state.lastParams = settings;
+            context.state.lastParams.next = false;
             let next = settings.next;
 
             return new Promise((resolve, reject) => {
                 axios.post(context.getters.getAPIurl + "/order/get", settings.params).then((res)=>{
-                    context.commit("setListOrders", {res: res.data.data.data, next:next});
+                    context.commit("setListOrders", {res: res.data.data.data, next:next, pageCount: res.data.data.last_page});
                     resolve(res.data.data)
                 }).catch((err)=>{
                     reject(err)
                 })
             })
+        },
+
+        retryGetOwnOrders(context) {
+            return context.dispatch("getOwnOrders", context.state.lastParams);
         },
 
         createOrder(context) {
@@ -95,6 +103,8 @@ export default {
             state.orderSuccessModalShown = false;
         },
         setListOrders(state, data) {
+            state.pageCount = data.pageCount;
+
             if (data.next) {
                 state.orders = state.orders.concat(data.res)
             } else {

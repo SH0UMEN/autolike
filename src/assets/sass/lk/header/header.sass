@@ -3,7 +3,7 @@
 .lk-header
     padding-top: 10px
     padding-bottom: 10px
-    z-index: 100
+    z-index: 101
     position: fixed
     top: 0
     left: 0
@@ -91,7 +91,19 @@
                 display: none
 
                 &_laptop
+                    width: 170px
                     display: block
+
+                    .dropdown
+                        &__title
+                            max-width: 117px
+                            text-overflow: ellipsis
+                            overflow: hidden
+                            white-space: nowrap
+                            margin-right: auto
+
+                        &__label
+                            justify-content: flex-end
 
             &__balance
                 font-size: 14px
@@ -103,8 +115,8 @@
 
         &__profile-dropdown
             position: absolute
-            right: 0
             width: 216px
+            right: 0
             z-index: 101
             border-radius: 0 0 3px 3px
             transition: border-color .2s
