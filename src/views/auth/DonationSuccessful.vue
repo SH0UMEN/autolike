@@ -10,6 +10,7 @@
 <script>
     import AccentButton from "../../components/common/ui/AccentButton"
     import AuthMessage from "../../components/auth/AuthMessage"
+    import getQueryParameter from "../../helpers/getQueryParameter"
 
     export default {
         name: "DonationSuccessful",
@@ -19,19 +20,11 @@
         },
         data() {
             return {
-                money: this.getQueryParam('donation') || 1000
+                money: getQueryParameter('donation') || 1000
             }
         },
         methods: {
-            getQueryParam(param) {
-                let found;
-                window.location.search.substr(1).split("&").forEach(function(item) {
-                    if (param ==  item.split("=")[0]) {
-                        found = item.split("=")[1];
-                    }
-                });
-                return found;
-            }
+
         }
     }
 </script>

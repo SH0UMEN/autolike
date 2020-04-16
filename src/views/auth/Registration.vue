@@ -40,6 +40,7 @@
 <script>
     import TextInput from "../../components/common/ui/TextInput"
     import AccentButton from "../../components/common/ui/AccentButton"
+    import getQueryParameter from "../../helpers/getQueryParameter"
     import { required, minLength, email, sameAs } from 'vuelidate/lib/validators'
 
     export default {
@@ -54,6 +55,7 @@
                 email: "",
                 password: "",
                 repeatPassword: "",
+                role: getQueryParameter("role") || 1,
                 errors: {}
             }
         },
