@@ -8,7 +8,7 @@
                              'order-item__status-mini_not-paid': order.status == 5,
                              'order-item__status-mini_error': order.status == 4}">
             </span>
-            <img :src="order.photoURL ? order.photoURL: '/images/photo1.png'">
+            <img class="order-item__picture" :src="currentSoc.pictureMini">
         </div>
         <div class="order-item__info">
             <div class="order-item__info-top">

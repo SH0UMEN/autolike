@@ -23,10 +23,19 @@
             <div class="dropdown__item" v-for="item in items"
                  :class="'dropdown__item_'+item.hoverColor"
                  @click="item.callback ? startCallback(item) : null">
-                <router-link v-if="item.type == 'router-link'" :to="item.link">
+
+                <router-link v-if="item.type == 'router-link'" :class="{ 'dropdown__item-radio': item.style == 'radio' }" :to="item.link">
+                    <span v-if="item.style == 'radio'" class="dropdown__item-circle-wrapper" :class="{ 'dropdown__item-circle_selected': item.selected }">
+                        <svg class="dropdown__item-circle" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="10" cy="10" r="9" stroke-width="2"/>
+                            <circle class="dropdown__item-circle-checker" cx="10" cy="10" r="4.5"/>
+                        </svg>
+                    </span>
                     {{ item.title }}
                 </router-link>
+
                 <a v-else-if="item.type == 'link'" :href="item.link">{{ item.title }}</a>
+
                 <span v-else>{{ item.title }}</span>
             </div>
             <div class="dropdown__item dropdown__item-contacts" v-if="showContacts">

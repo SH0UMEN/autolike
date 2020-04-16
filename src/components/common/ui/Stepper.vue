@@ -5,7 +5,7 @@
         <div class="stepper__progress">
             <div v-for="step, i in steps" class="stepper__step" :class=" currentSlide > i ? 'stepper__step_done' :
                                                                          currentSlide == i ? 'stepper__step_current' : '' ">
-                <button :disabled="currentSlide <= i" @click="currentSlide = i" class="stepper__step-label">
+                <button :disabled="currentSlide <= i" @click="changeSlide(i)" class="stepper__step-label">
                     <span class="stepper__step-icon stepper__step-icon_done">
                         <img src="/images/check.svg" alt="">
                     </span>
@@ -14,7 +14,7 @@
                         {{ (i+1) }}
                     </span>
 
-                    <span class="stepper__step-title">{{ step }}</span>
+                    <span class="stepper__step-title">{{ step.title }}</span>
                 </button>
             </div>
         </div>
@@ -61,6 +61,15 @@
                 }
 
                 this.slides[this.currentSlide].classList.remove(this.hiddenClass);
+            }
+        },
+        methods: {
+            changeSlide(i) {
+                this.currentSlide = i;
+
+                if(this.steps[i].callback) {
+                    this.steps[i].callback();
+                }
             }
         },
         watch: {

@@ -43,11 +43,11 @@
                 doerTypes: [
                     {
                         title: "Реальные люди",
-                        id: 0
+                        id: false
                     },
                     {
                         title: "Боты",
-                        id: 1
+                        id: true
                     }
                 ],
                 doerType: {},

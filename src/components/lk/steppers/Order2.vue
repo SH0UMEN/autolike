@@ -47,7 +47,6 @@
         },
         data() {
             return {
-                link: "",
                 quantity: 1000,
                 quantityStep: 500,
                 quantityPerHour: 1000,
@@ -68,6 +67,14 @@
             }
         },
         computed: {
+            link: {
+                get() {
+                    return this.$store.state.LK.newOrder.link
+                },
+                set(val) {
+                    this.$store.commit("setNewOrderLink", val)
+                }
+            },
             isValid() {
                 return !(this.$v.quantity.$invalid || this.$v.quantityPerHour.$invalid ||
                          this.$v.link.$invalid ||

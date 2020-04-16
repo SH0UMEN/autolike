@@ -30,7 +30,20 @@
         },
         data() {
             return {
-                steps: ['1 шаг', "2 шаг", "Завершение"],
+                steps: [
+                    {
+                        title: '1 шаг',
+                        callback: ()=>{
+                            this.$store.commit("clearOrderSecondSlide");
+                        }
+                    },
+                    {
+                        title: '2 шаг',
+                    },
+                    {
+                        title: 'Завершение'
+                    }
+                ],
             }
         },
         methods: {

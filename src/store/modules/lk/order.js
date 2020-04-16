@@ -120,6 +120,14 @@ export default {
             state.newOrder.link = data.link;
             state.newOrder.quantity = data.quantity;
             state.newOrder.quantityPerHour = data.quantityPerHour;
+        },
+        clearOrderSecondSlide(state) {
+            state.newOrder.link = orderExample.link;
+            state.newOrder.quantity = orderExample.quantity;
+            state.newOrder.quantityPerHour = orderExample.quantityPerHour;
+        },
+        setNewOrderLink(state, link) {
+            state.newOrder.link = link;
         }
     }
 }

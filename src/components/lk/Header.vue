@@ -77,6 +77,25 @@
                             }
                         },*/
                         {
+                            title: "Работать",
+                            style: "radio",
+                            type: 'router-link',
+                            link: { name: "lk-doer" },
+                        },
+                        {
+                            title: "Раскручивать",
+                            style: "radio",
+                            type: 'router-link',
+                            link: { name: "lk-customer" },
+                            selected: true
+                        },
+                        {
+                            title: "Сменить пароль",
+                            type: 'router-link',
+                            link: { name: 'change-password' },
+                            hoverColor: 'accent'
+                        },
+                        {
                             title: "Выйти из аккаунта",
                             hoverColor: "error",
                             callback: () => {
@@ -85,6 +104,19 @@
                         }
                     ],
                     itemsForLaptop: [
+                        {
+                            title: "Работать",
+                            style: "radio",
+                            type: 'router-link',
+                            link: { name: "lk-doer" },
+                        },
+                        {
+                            title: "Раскручивать",
+                            style: "radio",
+                            type: 'router-link',
+                            link: { name: "lk-customer" },
+                            selected: true
+                        },
                         {
                             title: "Оформить заказ",
                             callback: () => {
@@ -107,6 +139,12 @@
                             }
                         },*/
                         {
+                            title: "Сменить пароль",
+                            type: 'router-link',
+                            link: { name: 'change-password' },
+                            hoverColor: 'accent'
+                        },
+                        {
                             title: "Выйти из аккаунта",
                             hoverColor: "error",
                             callback: () => {
@@ -115,6 +153,19 @@
                         }
                     ],
                     itemsForMobile: [
+                        {
+                            title: "Работать",
+                            style: "radio",
+                            type: 'router-link',
+                            link: { name: "lk-doer" },
+                        },
+                        {
+                            title: "Раскручивать",
+                            style: "radio",
+                            type: 'router-link',
+                            link: { name: "lk-customer" },
+                            selected: true
+                        },
                         {
                             title: "",
                             hoverColor: "accent",
@@ -133,6 +184,12 @@
                                 this.$router.push({ name: 'change-password' })
                             }
                         },*/
+                        {
+                            title: "Сменить пароль",
+                            type: 'router-link',
+                            link: { name: 'change-password' },
+                            hoverColor: 'accent'
+                        },
                         {
                             title: "Выйти из аккаунта",
                             hoverColor: "error",

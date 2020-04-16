@@ -12,6 +12,63 @@
     &:hover
         border-color: #D9D9D9
 
+    &__item-circle
+        *
+            stroke: #7A7A7A
+
+        &-checker
+            fill: #7A7A7A
+            display: none
+
+        &-wrapper
+            height: 20px
+            width: 20px
+            margin-right: 10px
+            position: relative
+            display: inline-flex
+            align-items: center
+            justify-content: center
+            z-index: 1
+            left: 0.1px
+            top: 1px
+
+            &:before
+                position: absolute
+                display: none
+                border-radius: 50%
+                content: ''
+                box-sizing: border-box
+
+            &:before
+                background-color: #4E4E4E
+                width: 32px
+                height: 32px
+                left: -6px
+                top: -6px
+                z-index: -1
+
+        &_selected
+            .dropdown__item-circle
+                border-color: $white-color
+
+                *
+                    stroke: $white-color
+
+                &-checker
+                    display: inline-block
+                    fill: $white-color
+
+    &__item
+        &:hover
+            .dropdown__item-circle
+                &-wrapper
+                    &:before
+                        display: block
+
+    &__item-radio
+        display: flex
+        align-items: center
+
     &__label
         padding: 0 16px
         display: flex

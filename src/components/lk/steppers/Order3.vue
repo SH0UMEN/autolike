@@ -21,8 +21,8 @@
                     </span>
                 </div>
                 <div class="order-slide-three__order-price-amount">
-                    <span class="order-slide-three__order-price-res">{{ price }} руб.</span>
-                    <span class="order-slide-three__order-price-per-one">{{ this.$store.state.LK.prices.all }} руб. / 1 ед.</span>
+                    <span class="order-slide-three__order-price-res">{{ price }} бал.</span>
+                    <span class="order-slide-three__order-price-per-one">{{ this.$store.state.LK.prices.all }} бал. / 1 ед.</span>
                 </div>
             </div>
         </div>
