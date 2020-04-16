@@ -13,6 +13,8 @@
 </script>
 
 <style lang="sass">
+  @import "assets/fonts/SegoeUI/stylesheet.css"
+  @import "assets/fonts/Roboto/roboto.css"
   @import "assets/sass/common/common-settings"
   @import "assets/sass/common/grid-elements"
 </style>
