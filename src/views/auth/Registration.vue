@@ -88,11 +88,13 @@
         methods: {
             registration() {
                 if(this.formIsValid) {
+
                     let params = {
                         name: this.login,
                         password: this.password,
                         password_confirmation: this.repeatPassword,
-                        email: this.email
+                        email: this.email,
+                        role: parseInt(this.role)
                     };
 
                     let args = {

@@ -11,7 +11,7 @@
                         <span>{{final__instruction.last}}</span>
                     </div>
                     <img :src="img" class="final__picture-mobile">
-                    <landing-button tag="router-link" to="/auth/registration"
+                    <landing-button tag="router-link" :to="{ name: 'registration', query: { role: theme_btn == 'doer' ? 1 : 0 } }"
                                     :theme="theme_btn" radius="circled">Зарегистрироваться</landing-button>
                 </div>
                 <div class="final__picture">

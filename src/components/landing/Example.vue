@@ -21,7 +21,7 @@
         </div>
 
         <landing-button radius="rounded" theme="doer"
-                        tag="router-link" to="/auth/registration">
+                        tag="router-link" :to="{ name: 'registration', query: { role: 1 } }">
             <span>Выполнить задание</span>
             <img src="/images/landing/external-link.svg" alt="">
         </landing-button>

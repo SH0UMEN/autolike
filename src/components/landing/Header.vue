@@ -27,7 +27,10 @@
                     </svg>
                 </secondary-button>
                 <router-link class="landing-header__auth-link" :to="{ name: 'login' }">Войти</router-link>
-                <router-link class="landing-header__auth-link" :to="{ name: 'registration' }">Зарегистрироваться</router-link>
+                <router-link class="landing-header__auth-link" :to="{ name: 'registration',
+                                                                    query: currentRole != null ? { role: currentRole } : {} }">
+                    Зарегистрироваться
+                </router-link>
             </div>
             <div class="landing-header__right-side landing-header__right-side_mobile">
                 <dropdown :show-contacts="true" icon-type="burger" :items="menuItems"
@@ -60,16 +63,21 @@
             this.$router.afterEach((to)=>{
                 if(to.name == "landing-doer") {
                     this.menuLabel = "Зарабатывайте"
+                    this.currentRole = 1
                 } else if(to.name == "landing-customer") {
                     this.menuLabel = "Раскрутите аккаунт"
+                    this.currentRole = 0
                 } else {
                     this.menuLabel = ""
+                    this.currentRole = null
                 }
                 this.changeDropdownItems();
             })
         },
         data() {
             return {
+                currentRole: this.$router.currentRoute.name == "landing-doer"? 1 :
+                             this.$router.currentRoute.name == "landing-customer" ? 0 : null,
                 menuLabel: this.$router.currentRoute.name == "landing-doer"? "Зарабатывайте" :
                            this.$router.currentRoute.name == "landing-customer" ? "Раскрутите аккаунт" : "",
                 menuItems: []
