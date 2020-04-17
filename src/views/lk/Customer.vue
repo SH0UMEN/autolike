@@ -6,6 +6,7 @@
             <order-modal></order-modal>
             <order-success-modal></order-success-modal>
             <balance-modal></balance-modal>
+            <support-modal></support-modal>
             <main-modal name="logout-modal" :show="$store.getters.isLogoutDialogOpened"
                         @closed="$store.commit('closeLogoutDialog')"
                         class="logout-modal">
@@ -34,6 +35,7 @@
     import OrderSuccessModal from "../../components/lk/modals/OrderSuccessModal"
     import BalanceModal from "../../components/lk/modals/BalanceModal"
     import SecondaryButton from "../../components/common/ui/SecondaryButton"
+    import SupportModal from "../../components/lk/modals/SupportModal"
 
     export default {
         name: "Customer",
@@ -45,7 +47,8 @@
             OrderModal,
             SecondaryButton,
             LkHeader,
-            OrderSuccessModal
+            OrderSuccessModal,
+            SupportModal
         },
         methods: {
             logout() {

@@ -34,8 +34,13 @@
                 } else {
                     this.$modal.hide(this.name);
                 }
-            }
+            },
         },
+        mounted() {
+            if(this.show) {
+                this.$modal.show(this.name);
+            }
+        }
     }
 </script>
 

@@ -23,13 +23,13 @@
                                     {{
                                         order.status == 3 ? 'Выполнен' :
                                         order.status == 1 ? 'В обработке' :
-                                        order.status == 2 ? 'Выполняется' :
+                                        order.status == 2 ? 'Выполняется' + (order.is_bot ? ` ${order.speed}/ч` : `: ${order.current_count}/${order.count}`) :
                                         order.status == 5 ? 'Не оплачено' :
                                         order.status == 4 ? 'Ошибка' : ''
                                     }}
                                 </span>
-                    <a v-if="order.status == 'Выполнено'" href="#">Что делать?</a>
-                    <a v-if="order.status == 'Ошибка'" href="#">Оплатить</a>
+                    <a v-if="order.status == 4" href="#">Что делать?</a>
+                    <a v-if="order.status == 5" href="#">Оплатить</a>
                 </div>
             </div>
             <div class="order-item__info-bottom">

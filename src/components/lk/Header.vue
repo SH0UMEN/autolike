@@ -90,6 +90,13 @@
                             selected: true
                         },
                         {
+                            title: "Техподдержка",
+                            hoverColor: "accent",
+                            callback: () => {
+                                this.$store.commit('openSupportModal')
+                            }
+                        },
+                        {
                             title: "Сменить пароль",
                             type: 'router-link',
                             link: { name: 'change-password' },
@@ -139,6 +146,13 @@
                             }
                         },*/
                         {
+                            title: "Техподдержка",
+                            hoverColor: "accent",
+                            callback: () => {
+                                this.$store.commit('openSupportModal')
+                            }
+                        },
+                        {
                             title: "Сменить пароль",
                             type: 'router-link',
                             link: { name: 'change-password' },
@@ -184,6 +198,13 @@
                                 this.$router.push({ name: 'change-password' })
                             }
                         },*/
+                        {
+                            title: "Техподдержка",
+                            hoverColor: "accent",
+                            callback: () => {
+                                this.$store.commit('openSupportModal')
+                            }
+                        },
                         {
                             title: "Сменить пароль",
                             type: 'router-link',

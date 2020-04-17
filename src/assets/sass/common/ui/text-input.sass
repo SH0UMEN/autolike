@@ -9,14 +9,31 @@
     &__label
         position: absolute
         top: 0
-        left: 50%
         display: flex
         align-items: center
-        justify-content: center
         height: 0
         font-size: 12px
         font-weight: 600
         width: 0
+
+    &_center
+        .text-input
+            &__label
+                justify-content: center
+                left: 50%
+
+            &__input
+                padding: 13px 10px
+                text-align: center
+
+    &_left
+        .text-input
+            &__label
+                left: 16px
+
+            &__input
+                padding: 13px 16px
+                text-align: justify
 
     &__label-span
         white-space: nowrap
@@ -28,12 +45,11 @@
         background-color: $white-color
 
     &__input
+        font-family: "Segoe UI", SegoeUI
         width: 100%
         display: block
         font-size: 16px
         border: 1px solid #D9D9D9
-        text-align: center
-        padding: 13px 10px
         border-radius: 3px
         transition: border-color .3s
 

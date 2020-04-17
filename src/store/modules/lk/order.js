@@ -22,7 +22,10 @@ export default {
         ],
 
         // Создание нового заказа
-        newOrder: Object.assign({}, orderExample)
+        newOrder: Object.assign({}, orderExample),
+
+        // Тех. поддержка
+        supportModalShown: false
     },
     getters: {
         orderModalIsShown(state) {
@@ -128,6 +131,12 @@ export default {
         },
         setNewOrderLink(state, link) {
             state.newOrder.link = link;
+        },
+        openSupportModal(state) {
+            state.supportModalShown = true;
+        },
+        closeSupportModal(state) {
+            state.supportModalShown = false;
         }
     }
 }
