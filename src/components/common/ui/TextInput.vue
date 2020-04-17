@@ -7,6 +7,7 @@
                @input="$emit('input', type == 'number' ? parseInt(tValue) : tValue)"
                @blur="$emit('blur', tValue)"
                v-if="tag == 'input'"
+               :autocomplete="autocomplete"
                :name="name" :class="{ 'text-input__input_error': error != '' }">
         <textarea :style="{ height: height+'px' }"
                 class="text-input__input"
@@ -61,6 +62,10 @@
             height: {
                 default: 200,
                 type: Number
+            },
+            autocomplete: {
+                type: String,
+                default: "on"
             }
         },
         data() {

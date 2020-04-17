@@ -4,6 +4,7 @@
             <text-input class="order-slide-two__input"
                         name="link" v-model="link"
                         @blur="$v.link.$touch()"
+                        autocomplete="off"
                         :error="$v.link.$error ? 'Поле не заполнено' : ''">
                 Ссылка на аккаунт/видео/пост/группу
             </text-input>

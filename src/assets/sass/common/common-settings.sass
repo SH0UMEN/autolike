@@ -33,10 +33,28 @@ a
 .mobile-only
     display: none
 
+.inline-button
+    color: $accent-color
+    padding: 0
+    cursor: pointer
+    display: inline-block
+    border: none
+    background-color: transparent
+
+    &:hover
+        text-decoration: underline
+
 body
     color: $secondary-color
     font-size: $main-font-size
 
+.title
+    font-size: 24px
+    font-weight: bold
+
 @media screen and (max-width: $sm)
+    .title
+        font-size: 20px
+
     .mobile-only
         display: unset

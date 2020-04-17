@@ -1,0 +1,66 @@
+@import "../../common/vars"
+
+.lk-doer
+    height: 100%
+
+    *
+        box-sizing: border-box
+
+    &__main
+        padding-top: 67px
+        height: 100%
+        overflow: hidden
+        position: relative !important
+
+    &__container
+        display: flex
+        height: 100%
+        margin-left: auto
+        margin-right: auto
+        max-width: $template-width
+        padding-left: 15px
+        padding-right: 15px
+
+        &_fullscreen
+            .lk-doer
+                &__socials
+                    padding-left: 0
+
+    &__tasks
+        position: relative
+        width: 100%
+
+    &__socials
+        padding-top: 32px
+        padding-left: 24px
+        position: relative
+        
+        &:after
+            content: ''
+            display: block
+            height: 100%
+            top: 0
+            left: -300vw
+            width: 1000vw
+            background-color: #FAFAFA
+            position: absolute
+            z-index: -1
+            border-bottom: 1px solid #D5D5D5
+            box-sizing: border-box
+
+    &__soc-selector
+        width: 100%
+        margin-top: 12px
+
+    &__task-list
+        padding-left: 24px
+
+    &__task
+        padding: 6px
+        padding-left: 16px
+
+        &-picture
+            height: 32px
+            width: 32px
+            opacity: .6
+            filter: grayscale(100%)

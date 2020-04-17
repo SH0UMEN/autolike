@@ -7,6 +7,15 @@
             :disabled="disabled">
         <slot></slot>
     </button>
+    <a v-else-if="tag == 'a'"
+       :href="link"
+       @click="$emit('click')"
+       class="accent-button"
+       :class="'accent-button_'+theme"
+       :type="type == 'submit' ? type : 'button'"
+       :disabled="disabled">
+        <slot></slot>
+    </a>
 </template>
 
 <script>
@@ -28,7 +37,11 @@
             disabled: {
                 default: false,
                 type: Boolean
-            }
+            },
+            link: {
+                type: String,
+                default: "#",
+            },
         }
     }
 </script>
