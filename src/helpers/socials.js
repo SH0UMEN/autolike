@@ -10,24 +10,28 @@ export default [
                 title: "Подписка на аккаунт",
                 id: 2,
                 parentID: 1,
-                inflectionForms: ["Подписка", "Подписки", "Подписок"]
+                inflectionForms: ["Подписка", "Подписки", "Подписок"],
+                action: "Подписаться на аккаунт",
             },
             {
                 title: "Лайк поста",
                 id: 1,
                 parentID: 1,
+                action: "Лайкнуть пост",
                 inflectionForms: ["Лайк", "Лайка", "Лайков"]
             },
             {
                 title: "Сохранение поста",
                 id: 5,
                 parentID: 1,
+                action: "Сохранить пост",
                 inflectionForms: ["Сохранение", "Сохранения", "Сохранений"]
             },
             {
                 title: "Комментарий",
                 id: 3,
                 parentID: 1,
+                action: "Оставить комментарий под постом",
                 inflectionForms: ["Комментарий", "Комментария", "Комментариев"]
             }
         ]
@@ -43,24 +47,28 @@ export default [
                 title: "Подписка на группу",
                 id: 2,
                 parentID: 2,
+                action: "Подписаться на группу",
                 inflectionForms: ["Подписка", "Подписки", "Подписок"]
             },
             {
                 title: "Лайк поста",
                 id: 1,
                 parentID: 2,
+                action: "Лайкнуть пост",
                 inflectionForms: ["Лайк", "Лайка", "Лайков"]
             },
             {
                 title: "Репост поста",
                 id: 6,
                 parentID: 2,
+                action: "Сделать репост",
                 inflectionForms: ["Репост", "Репоста", "Репостов"]
             },
             {
                 title: "Комментарий под постом",
                 id: 3,
                 parentID: 2,
+                action: "Оставить комментарий под постом",
                 inflectionForms: ["Комментарий", "Комментария", "Комментариев"]
             }
         ]
@@ -76,12 +84,14 @@ export default [
                 title: "Вступление в группу",
                 id: 2,
                 parentID: 3,
+                action: "Вступить в группу",
                 inflectionForms: ["Вступление", "Вступления", "Вступлений"]
             },
             {
                 title: "Просмотр постов",
                 id: 7,
                 parentID: 3,
+                action: "Просмотреть пост",
                 inflectionForms: ["Просмотр", "Просмотра", "Просмотров"]
             },
         ]
@@ -97,18 +107,21 @@ export default [
                 title: "Подписка",
                 id: 2,
                 parentID: 4,
+                action: "Подписаться",
                 inflectionForms: ["Подписка", "Подписки", "Подписок"]
             },
             {
                 title: "Лайк поста",
                 id: 1,
                 parentID: 4,
+                action: "Лайкнуть пост",
                 inflectionForms: ["Лайк", "Лайка", "Лайков"]
             },
             {
                 title: "Ретвит поста",
                 id: 6,
                 parentID: 4,
+                action: "Ретвитнуть пост",
                 inflectionForms: ["Ретвит", "Ретвита", "Ретвитов"]
             },
         ]
@@ -125,6 +138,7 @@ export default [
                 title: "Вступить в группу",
                 inflectionForms: ["Вступление", "Вступления", "Вступлений"],
                 id: 2,
+                action: "Вступить в группу",
                 parentID: 5,
             },
         ]
@@ -141,12 +155,14 @@ export default [
                 title: "Подписка на канал",
                 inflectionForms: ["Подписка", "Подписки", "Подписок"],
                 id: 2,
+                action: "Подписаться на канал",
                 parentID: 6,
             },
             {
                 title: "Лайк видео",
                 id: 1,
                 parentID: 6,
+                action: "Лакнуть видео",
                 inflectionForms: ["Лайк", "Лайка", "Лайков"]
             },
         ]
@@ -163,12 +179,14 @@ export default [
                 title: "Подписка",
                 id: 2,
                 parentID: 7,
+                action: "Подписаться",
                 inflectionForms: ["Подписка", "Подписки", "Подписок"],
             },
             {
                 title: "Лайк",
                 id: 1,
                 parentID: 7,
+                action: "Лайкнуть",
                 inflectionForms: ["Лайк", "Лайка", "Лайков"]
             },
         ]

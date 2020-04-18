@@ -2,7 +2,7 @@
     <main-modal class="support-modal"
                 :show="$store.state.LK.supportModalShown"
                 @closed="$store.commit('closeSupportModal')"
-                name="lk-support">
+                name="support-modal">
         <div class="modal__container">
             <span class="modal__title">Поддержка</span>
             <p class="modal__paragraph">Подробно опишите вашу проблему и мы свяжемся с вами в течении 24 часов.</p>

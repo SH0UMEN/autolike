@@ -1,19 +1,24 @@
 @import "../vars"
 
-.v--modal-box
-    max-width: 552px
-    width: 100% !important
-    margin-left: auto
-    left: 0 !important
-    margin-right: auto
-    box-sizing: border-box
-
-.v--modal-background-click
-    box-sizing: border-box
-    padding-left: 15px
-    padding-right: 15px
-
 .modal
+    box-sizing: border-box
+
+    &-dialog
+        overflow: hidden
+        max-width: 552px
+        width: 100% !important
+
+    &-body
+        padding: 0
+
+    &-content
+        border: none !important
+        border-radius: 3px !important
+        overflow: hidden
+
+    &-footer, &-header
+        display: none
+
     &__container
         max-width: 408px
         margin-left: auto
@@ -23,7 +28,7 @@
         flex-direction: column
         align-items: center
 
-    &__main-button
+    button.modal__main-button
         width: calc(100% + 30px)
         margin-left: -15px
         border-radius: 0
@@ -86,6 +91,10 @@
         padding: 0
 
     @media screen and (max-width: $sm)
+        button.modal__main-button
+            height: 48px
+            font-size: 14px
+
         .modal
             &__close-modal-border
                 display: none

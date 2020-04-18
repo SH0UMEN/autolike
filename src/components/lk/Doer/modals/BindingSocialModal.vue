@@ -2,7 +2,7 @@
     <main-modal class="binding-modal"
                 :show="$store.state.LK.bindingModalShown"
                 @closed="$store.commit('closeBindingSocialModal')"
-                name="lk-doer-binding">
+                name="binding-modal">
         <stepper title="Привязать аккаунт" :steps="steps">
             <binding-1></binding-1>
             <binding-2></binding-2>

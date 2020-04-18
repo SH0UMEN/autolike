@@ -2,7 +2,7 @@
     <main-modal class="order-modal"
                 :show="$store.state.LK.orderModalShown"
                 @closed="close"
-                name="lk-order">
+                name="order-modal">
 
         <stepper :steps="steps" title="Оформление заказа">
             <order1></order1>

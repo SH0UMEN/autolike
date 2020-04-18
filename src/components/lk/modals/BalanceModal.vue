@@ -1,7 +1,7 @@
 <template>
     <main-modal class="balance-modal"
                 :show="$store.getters.balanceModalIsShown"
-                @closed="$store.commit('closeBalanceModal')" name="lk-balance">
+                @closed="$store.commit('closeBalanceModal')" name="balance-modal">
         <tab title="Пополнение баланса" :tabs="['Пополнить баланс', 'История пополнений']">
             <balance-tab></balance-tab>
             <balance-history></balance-history>

@@ -3,7 +3,10 @@
         <lk-header title="Работа" class="lk-doer__header"></lk-header>
         <main class="lk-doer__main">
             <div class="lk-doer__container" :class="{ 'lk-doer__container_fullscreen': !socialPanelOpened }">
-                <social-panel :opened="socialPanelOpened" @triggered="socialPanelOpened = $event"></social-panel>
+                <social-panel ref="social-panel"
+                              :opened="socialPanelOpened"
+                              :style="{ left: offsetLeft }"
+                              @triggered="socialPanelOpened = $event"></social-panel>
                 <div class="lk-doer__tasks">
                     <div class="lk-doer__socials">
                         <span class="title lk-doer__socials-title">Ваши задания</span>
@@ -11,7 +14,21 @@
                     </div>
                     <div class="lk-doer__task-list">
                         <div class="lk-doer__task" v-for="activity in activities">
-                            <img :src="socials.find((el) => el.id == activity.parentID).pictureMini" alt="" class="lk-doer__task-picture">
+                            <div class="lk-doer__task-left">
+                                <img :src="socials.find((el) => el.id == activity.parentID).pictureMini" alt="" class="lk-doer__task-picture">
+                                <span class="lk-doer__task-title">
+                                    {{ activity.action }}
+                                </span>
+                            </div>
+                            <div class="lk-doer__task-right">
+                                <span class="lk-doer__task-reward">12 баллов</span>
+                                <secondary-button class="lk-doer__task-reject" theme="dark">
+                                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12 12L20 20" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        <path d="M20 12L12 20" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </secondary-button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -58,6 +75,7 @@
                 socialPanelOpened: true,
                 socials: socials,
                 currentSoc: { id: 0 },
+                offsetLeft: 0
             }
         },
         methods: {
@@ -66,6 +84,14 @@
                     this.$router.push({ name: 'login' })
                 })
             },
+            setLeftOffset() {
+                let offset = document.querySelector('.lk-header__container').offsetLeft;
+                this.offsetLeft = offset+"px";
+            }
+        },
+        mounted() {
+            this.setLeftOffset();
+            window.addEventListener("resize", this.setLeftOffset);
         },
         computed: {
             activities() {
@@ -79,7 +105,7 @@
 
                 return res;
             }
-        }
+        },
     }
 </script>
 

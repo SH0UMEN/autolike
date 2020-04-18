@@ -1,13 +1,12 @@
 @import "../../common/vars"
 
 .lk-doer
-    height: 100%
+    min-height: 100%
 
     *
         box-sizing: border-box
 
     &__main
-        padding-top: 67px
         height: 100%
         overflow: hidden
         position: relative !important
@@ -18,12 +17,17 @@
         margin-left: auto
         margin-right: auto
         max-width: $template-width
-        padding-left: 15px
         padding-right: 15px
+        padding-left: 370px
 
         &_fullscreen
+            padding-left: 15px
+
             .lk-doer
                 &__socials
+                    padding-left: 0
+
+                &__task-list
                     padding-left: 0
 
     &__tasks
@@ -53,14 +57,46 @@
         margin-top: 12px
 
     &__task-list
+        padding: 24px 0
         padding-left: 24px
 
     &__task
         padding: 6px
         padding-left: 16px
+        border: 1px solid transparent
+        border-radius: 3px
+        cursor: pointer
+        display: flex
+        align-items: center
+        justify-content: space-between
+
+        &:not(:last-child)
+            margin-bottom: 8px
 
         &-picture
             height: 32px
             width: 32px
             opacity: .6
+            margin-right: 16px
             filter: grayscale(100%)
+
+        &-left, &-right
+            display: flex
+            align-items: center
+
+        &-reject
+            font-size: 22px
+            height: 44px
+            width: 44px
+            padding: 0 !important
+            display: flex
+            align-items: center
+            justify-content: center
+
+        &-reward
+            font-weight: 600
+            color: #7A7A7A
+            margin-right: 16px
+
+        &:hover
+            border-color: #D9D9D9

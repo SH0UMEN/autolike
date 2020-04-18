@@ -5,11 +5,13 @@
     max-width: 370px
     border-right: 1px solid rgba(0, 0, 0, 0.15)
     height: 100%
-    position: relative
+    position: fixed
+    padding-left: 15px
+    top: 67px
     background-color: $white-color
 
     &__inner
-        padding-top: 32px
+        padding-top: 28px
         height: 100%
         padding-right: 24px
 
@@ -69,15 +71,12 @@
             font-size: 16px
 
     &_closed
-        left: 0
-        top: 67px
+        left: 0 !important
         bottom: 0
+        padding-left: 0
         max-width: 71px
         height: unset
         z-index: 10
-
-        &.social-panel
-            position: absolute
 
         .social-panel
             &__inner
