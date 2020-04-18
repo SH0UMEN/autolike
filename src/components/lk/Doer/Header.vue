@@ -7,7 +7,7 @@
             </div>
 
             <div class="lk-header__right-side">
-                <secondary-button class="lk-header__put-money">Вывести средства</secondary-button>
+                <secondary-button class="lk-header__put-money" @click="$store.commit('openBalanceModal')">Вывести средства</secondary-button>
                 <span class="lk-header__balance">{{ $store.getters.getUser.balance }} бал.</span>
                 <dropdown-menu class="lk-header__profile-dropdown lk-header__profile-dropdown_desktop"
                                :label="dropdownOptions.label"
@@ -153,6 +153,10 @@
                     ],
                     itemsForMobile: [
                         {
+                            title: "",
+                            hoverColor: "accent",
+                        },
+                        {
                             title: "Работать",
                             style: "radio",
                             type: 'router-link',
@@ -164,10 +168,6 @@
                             style: "radio",
                             type: 'router-link',
                             link: { name: "lk-customer" },
-                        },
-                        {
-                            title: "",
-                            hoverColor: "accent",
                         },
                         {
                             title: "Пополнить баланс",

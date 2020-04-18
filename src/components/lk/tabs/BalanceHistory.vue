@@ -20,10 +20,11 @@
 <script>
     export default {
         name: "BalanceHistory",
-        data() {
-            return {
-                history: this.$store.getters.getDonationHistory
+        props: {
+            history: {
+                type: Array,
+                required: true
             }
-        }
+        },
     }
 </script>

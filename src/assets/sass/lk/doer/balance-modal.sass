@@ -1,0 +1,41 @@
+@import "../../common/vars"
+
+.get-money
+    &__payment-systems
+        display: flex
+        justify-content: space-between
+        margin-top: 35px
+        margin-bottom: 40px
+
+    &__payment-system
+        cursor: pointer
+
+    &__payment-picture
+        max-width: 100%
+        filter: grayscale(1)
+        opacity: .4
+        transition: filter .3s, opacity .3s
+
+    &__payment-input
+        height: 0
+        width: 0
+        position: absolute
+        visibility: hidden
+        left: -1000%
+
+        &:checked+.get-money__payment-picture
+            opacity: 1
+            filter: grayscale(0)
+
+    &__quantity
+        margin-top: 35px
+
+    &__min
+        font-size: 12px
+        opacity: .4
+        font-weight: 600
+        margin-bottom: 0
+
+    &__balance-price
+        margin-top: 40px
+

@@ -4,7 +4,63 @@ import authState from "../auth/index"
 export default {
     state: {
         balanceModalShown: false,
-        history: [
+        gettingHistory: [
+            {
+                status: 0,
+                money: 25,
+                score: 50,
+                date: "13:27 23.02.2020"
+            },
+            {
+                status: 1,
+                money: 25,
+                score: 50,
+                date: "13:27 23.02.2020"
+            },
+            {
+                status: 2,
+                money: 25,
+                score: 50,
+                date: "13:27 23.02.2020"
+            },
+            {
+                status: 0,
+                money: 25,
+                score: 50,
+                date: "13:27 23.02.2020"
+            },
+            {
+                status: 0,
+                money: 25,
+                score: 50,
+                date: "13:27 23.02.2020"
+            },
+            {
+                status: 1,
+                money: 25,
+                score: 50,
+                date: "13:27 23.02.2020"
+            },
+            {
+                status: 2,
+                money: 25,
+                score: 50,
+                date: "13:27 23.02.2020"
+            },
+            {
+                status: 0,
+                money: 25,
+                score: 50,
+                date: "13:27 23.02.2020"
+            },
+            {
+                status: 0,
+                money: 25,
+                score: 50,
+                date: "13:27 23.02.2020"
+            },
+        ],
+        donationHistory: [
             {
                 status: 0,
                 money: 25,
@@ -93,10 +149,13 @@ export default {
     },
     getters: {
         balanceModalIsShown(state) {
-            return state.balanceModalShown
+            return state.balanceModalShown;
         },
         getDonationHistory(state) {
-            return state.history;
+            return state.donationHistory;
+        },
+        getGettingHistory(state) {
+            return state.gettingHistory;
         }
     },
     actions: {

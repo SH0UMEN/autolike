@@ -1,5 +1,5 @@
 <template>
-    <div class="lk-doer">
+    <div class="lk-doer" v-scroll-lock="blockScroll">
         <lk-header title="Работа" class="lk-doer__header"></lk-header>
         <main class="lk-doer__main">
             <div class="lk-doer__container" :class="{ 'lk-doer__container_fullscreen': !socialPanelOpened }">
@@ -36,6 +36,7 @@
         </main>
 
         <binding-social-modal></binding-social-modal>
+        <balance-modal></balance-modal>
 
         <main-modal name="logout-modal" :show="$store.getters.isLogoutDialogOpened"
                     @closed="$store.commit('closeLogoutDialog')"
@@ -59,6 +60,7 @@
     import SocialPanel from "../../components/lk/Doer/SocialPanel"
     import socials from "../../helpers/socials"
     import BindingSocialModal from "../../components/lk/Doer/modals/BindingSocialModal"
+    import BalanceModal from "../../components/lk/Doer/modals/BalanceModal"
 
     export default {
         name: "Doer",
@@ -69,13 +71,15 @@
             SocialPanel,
             SocSelector,
             LkHeader,
+            BalanceModal
         },
         data() {
             return {
                 socialPanelOpened: true,
                 socials: socials,
                 currentSoc: { id: 0 },
-                offsetLeft: 0
+                offsetLeft: 0,
+                currentWidth: 0
             }
         },
         methods: {
@@ -91,9 +95,17 @@
         },
         mounted() {
             this.setLeftOffset();
-            window.addEventListener("resize", this.setLeftOffset);
+            this.currentWidth = window.innerWidth;
+
+            window.addEventListener("resize", ()=>{
+                this.setLeftOffset();
+                this.currentWidth = window.innerWidth;
+            });
         },
         computed: {
+            blockScroll() {
+                return this.currentWidth <= 767 && this.socialPanelOpened
+            },
             activities() {
                 let res = [];
 

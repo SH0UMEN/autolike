@@ -9,9 +9,12 @@ import Paginate from 'vuejs-paginate'
 import vueSmoothScroll from 'vue2-smooth-scroll'
 import PerfectScrollbar from 'vue2-perfect-scrollbar'
 import 'vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css'
+import VScrollLock from 'v-scroll-lock'
+
 
 Vue.config.productionTip = false
 
+Vue.use(VScrollLock)
 Vue.use(PerfectScrollbar)
 Vue.use(vueSmoothScroll)
 Vue.use(Vuelidate)

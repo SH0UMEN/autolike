@@ -8,6 +8,7 @@
     position: fixed
     padding-left: 15px
     top: 67px
+    z-index: 1000 !important
     background-color: $white-color
 
     &__inner
@@ -98,3 +99,20 @@
 
             &__trigger
                 transform: rotate(0deg)
+
+    @media screen and (max-width: $md)
+        max-width: unset
+        background-color: $white-color
+        z-index: 100
+        right: 0
+        border-right: none
+
+        &_closed
+            max-width: 71px
+            border-right: 1px solid rgba(0, 0, 0, 0.15)
+
+    @media screen and (max-width: $sm)
+        top: 47px
+
+        &_closed
+            max-width: 50px

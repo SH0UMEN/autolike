@@ -168,6 +168,9 @@
                     ],
                     itemsForMobile: [
                         {
+                            title: "Баланс"
+                        },
+                        {
                             title: "Работать",
                             style: "radio",
                             type: 'router-link',
@@ -179,10 +182,6 @@
                             type: 'router-link',
                             link: { name: "lk-customer" },
                             selected: true
-                        },
-                        {
-                            title: "",
-                            hoverColor: "accent",
                         },
                         {
                             title: "Пополнить баланс",
