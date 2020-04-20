@@ -49,7 +49,7 @@
         },
         mounted() {
             if(this.show) {
-                this.$modal.show(this.name);
+                this.$refs[this.name].show();
             }
         }
     }

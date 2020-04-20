@@ -1,7 +1,7 @@
 <template>
     <div class="order-slide order-slide-three">
         <div class="stepper__container">
-            <img :src="currentSoc.picture" class="order-slide-three__soc-image">
+            <img :src="currentSoc.pictureGray" class="order-slide-three__soc-image">
             <div class="order-slide-three__order-info">
                 <div class="order-slide-three__order-quantity">{{ quantity }} {{ inflection }}</div>
                 <div class="order-slide-three__order-doer">

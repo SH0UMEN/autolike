@@ -1,7 +1,7 @@
 <template>
     <div class="binding-modal__slide binding-modal-slide-two">
         <div class="stepper__container binding-modal-slide-two__container">
-            <img :src="currentSoc.picture" class="binding-modal-slide-two__picture" alt="">
+            <img :src="currentSoc.pictureGray" class="binding-modal-slide-two__picture" alt="">
             <span class="binding-modal-slide__title binding-modal-slide-two__title">Выполните тестовое задание</span>
             <p class="modal__paragraph binding-modal-slide-two__paragraph">Подождите 2-3 секунды после вступления в группу, а затем закройте окно.</p>
         </div>

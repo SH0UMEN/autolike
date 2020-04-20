@@ -8,7 +8,7 @@
                         placeholder="example@gmail.com"
                         @blur="$v.email.$touch()">Электронная почта</text-input>
             <text-input class="auth-input" name="password"
-                        :error="$v.password.$error ? 'Минимум 5 символов' : ''"
+                        :error="$v.password.$error ? 'Минимум 6 символов' : ''"
                         v-model="password"
                         @blur="$v.password.$touch()"
                         type="password">Пароль</text-input>
@@ -54,7 +54,7 @@
             },
             password: {
                 required,
-                minLength: minLength(5)
+                minLength: minLength(6)
             }
         },
         computed: {

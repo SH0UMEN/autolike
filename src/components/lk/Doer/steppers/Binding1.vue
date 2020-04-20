@@ -1,7 +1,7 @@
 <template>
     <div class="binding-modal__slide binding-modal-slide-one">
         <div class="stepper__container binding-modal-slide-one__container">
-            <img :src="currentSoc.picture" class="binding-modal-slide-one__picture" alt="">
+            <img :src="currentSoc.pictureGray" class="binding-modal-slide-one__picture" alt="">
             <span class="binding-modal-slide__title binding-modal-slide-one__title">{{ currentSoc.title }}</span>
             <text-input autocomplete="off"
                         v-model="login" name="login"

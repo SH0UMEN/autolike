@@ -4,7 +4,7 @@
         <form class="login__form auth-form" @submit.prevent="checkForm">
             <text-input class="auth-input" name="password"
                         v-model="password"
-                        :error="$v.password.$error ? 'Не менее 5 символов' : ''"
+                        :error="$v.password.$error ? 'Не менее 6 символов' : ''"
                         type="password"
                         @blur="$v.password.$touch()">Новый пароль</text-input>
             <text-input class="auth-input" name="repeat_password"
@@ -46,7 +46,7 @@
         validations: {
             password: {
                 required,
-                minLength: minLength(5)
+                minLength: minLength(6)
             },
             repeatPassword: {
                 required,
