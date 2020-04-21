@@ -38,7 +38,7 @@
                 </div>
 
                 <landing-button tag="router-link" theme="client"
-                                radius="circled" to="/auth/registration">
+                                radius="circled" :to="{ name: 'registration', query: { role: 0 } }">
                     Зарегистрироваться
                 </landing-button>
             </div>
