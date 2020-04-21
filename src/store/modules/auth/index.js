@@ -6,7 +6,8 @@ export default {
         status: '',
         user: null,
         logoutDialogOpened: false,
-        socials: []
+        socials: [],
+        pwChangeInfoModalShown: false,
     },
     getters: {
         isAuthenticated(state) {
@@ -23,6 +24,9 @@ export default {
         },
         getSocials(state) {
             return state.socials;
+        },
+        pwChangeInfoModalShown(state) {
+            return state.pwChangeInfoModalShown
         }
     },
     actions: {
@@ -91,7 +95,7 @@ export default {
             return new Promise((resolve, reject) => {
                 axios({
                     method: "post",
-                    url: context.getters.getAPIurl + "/password/change",
+                    url: context.getters.getAPIurl + "/password/set",
                     params: params
                 }).then((res) => {
                     resolve(res.data)
@@ -100,11 +104,12 @@ export default {
                 })
             })
         },
-        requestChangePassword(context, email) {
+        requestChangePassword(context, email=false) {
             return new Promise((resolve, reject) => {
                 axios({
                     method: "post",
-                    url: context.getters.getAPIurl + "/password/recover?email=" + email,
+                    url: context.getters.getAPIurl + "/password/"+ (email ? 'recover' : 'change'),
+                    data: email ? { email: email } : {}
                 }).then((res) => {
                     resolve(res.data)
                 }).catch((err)=>{
@@ -142,6 +147,12 @@ export default {
         },
         closeLogoutDialog(state) {
             state.logoutDialogOpened = false;
+        },
+        openPwChangeInfoModal(state) {
+            state.pwChangeInfoModalShown = true;
+        },
+        closePwChangeInfoModal(state) {
+            state.pwChangeInfoModalShown = false;
         }
     }
 }

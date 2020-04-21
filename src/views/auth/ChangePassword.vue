@@ -70,6 +70,8 @@
                         password_confirmation: this.repeatPassword
                     };
 
+                    params.email = params.email.replace("%40", "@");
+
                     this.$store.dispatch('changePassword', params).then(() => {
                         this.errors = false;
                         this.$router.push({ name: 'restore-successful' })

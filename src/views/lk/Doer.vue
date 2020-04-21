@@ -42,6 +42,7 @@
 
         <binding-social-modal></binding-social-modal>
         <balance-modal></balance-modal>
+        <pw-change-info-modal></pw-change-info-modal>
 
         <main-modal name="logout-modal" :show="$store.getters.isLogoutDialogOpened"
                     @closed="$store.commit('closeLogoutDialog')"
@@ -66,6 +67,7 @@
     import socials from "../../helpers/socials"
     import BindingSocialModal from "../../components/lk/Doer/modals/BindingSocialModal"
     import BalanceModal from "../../components/lk/Doer/modals/BalanceModal"
+    import PwChangeInfoModal from "../../components/lk/modals/PwChangeInfoModal"
     import axios from "axios"
 
     export default {
@@ -77,7 +79,8 @@
             SocialPanel,
             SocSelector,
             LkHeader,
-            BalanceModal
+            BalanceModal,
+            PwChangeInfoModal
         },
         data() {
             return {

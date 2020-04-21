@@ -3,7 +3,7 @@
         <auth-message title="Новый пароль успешно установлен"
                       icon="/images/success.svg">
         </auth-message>
-        <router-link :to="{ name: 'lk-index' }">
+        <router-link :to="{ name: 'auth' }">
             <access-button>Войти в личный кабинет</access-button>
         </router-link>
     </div>

@@ -61,6 +61,13 @@
                 return this.$store.getters.getUser;
             }
         },
+        methods: {
+            changePassword() {
+                this.$store.dispatch("requestChangePassword").then((res)=>{
+                    this.$store.commit("openPwChangeInfoModal");
+                })
+            }
+        },
         data() {
             return {
                 dropdownOptions: {
@@ -98,9 +105,10 @@
                         },
                         {
                             title: "Сменить пароль",
-                            type: 'router-link',
-                            link: { name: 'change-password' },
-                            hoverColor: 'accent'
+                            hoverColor: 'accent',
+                            callback: () => {
+                                this.changePassword();
+                            }
                         },
                         {
                             title: "Выйти из аккаунта",
@@ -154,8 +162,9 @@
                         },
                         {
                             title: "Сменить пароль",
-                            type: 'router-link',
-                            link: { name: 'change-password' },
+                            callback: () => {
+                                this.changePassword();
+                            },
                             hoverColor: 'accent'
                         },
                         {
@@ -206,8 +215,9 @@
                         },
                         {
                             title: "Сменить пароль",
-                            type: 'router-link',
-                            link: { name: 'change-password' },
+                            callback: () => {
+                                this.changePassword();
+                            },
                             hoverColor: 'accent'
                         },
                         {

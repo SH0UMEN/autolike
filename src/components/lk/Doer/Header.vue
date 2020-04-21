@@ -52,6 +52,13 @@
                 },
             }
         },
+        methods: {
+            changePassword() {
+                this.$store.dispatch("requestChangePassword").then((res)=>{
+                    this.$store.commit("openPwChangeInfoModal");
+                })
+            }
+        },
         mounted() {
             this.dropdownOptions.itemsForMobile[0].title = `${ this.user ? this.user.balance : "" } бал.`
         },
@@ -90,8 +97,9 @@
                         },
                         {
                             title: "Сменить пароль",
-                            type: 'router-link',
-                            link: { name: 'change-password' },
+                            callback: () => {
+                                this.changePassword();
+                            },
                             hoverColor: 'accent'
                         },
                         {
@@ -139,8 +147,9 @@
                         },*/
                         {
                             title: "Сменить пароль",
-                            type: 'router-link',
-                            link: { name: 'change-password' },
+                            callback: () => {
+                                this.changePassword();
+                            },
                             hoverColor: 'accent'
                         },
                         {
@@ -185,8 +194,9 @@
                         },*/
                         {
                             title: "Сменить пароль",
-                            type: 'router-link',
-                            link: { name: 'change-password' },
+                            callback: () => {
+                                this.changePassword();
+                            },
                             hoverColor: 'accent'
                         },
                         {

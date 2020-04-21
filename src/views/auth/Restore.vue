@@ -49,7 +49,7 @@
         methods: {
             sendMail() {
                 if(!(this.$v.email.$invalid || this.$v.email.$anyError)) {
-                    this.$store.dispatch('requestChangePassword', this.email).then(() => {
+                    this.$store.dispatch('requestChangePassword', this.email).then((res) => {
                         this.errors = false;
                         this.$router.push({ name: 'restore-confirming' })
                     }).catch(()=>{

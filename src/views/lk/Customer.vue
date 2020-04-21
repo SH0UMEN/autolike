@@ -7,6 +7,7 @@
             <order-success-modal></order-success-modal>
             <balance-modal></balance-modal>
             <support-modal></support-modal>
+            <pw-change-info-modal></pw-change-info-modal>
             <main-modal name="logout-modal" :show="$store.getters.isLogoutDialogOpened"
                         @closed="$store.commit('closeLogoutDialog')"
                         class="logout-modal">
@@ -36,11 +37,13 @@
     import BalanceModal from "../../components/lk/modals/BalanceModal"
     import SecondaryButton from "../../components/common/ui/SecondaryButton"
     import SupportModal from "../../components/lk/modals/SupportModal"
+    import PwChangeInfoModal from "../../components/lk/modals/PwChangeInfoModal"
 
     export default {
         name: "Customer",
         components: {
             BalanceModal,
+            PwChangeInfoModal,
             LkFooter,
             OrderList,
             MainModal,

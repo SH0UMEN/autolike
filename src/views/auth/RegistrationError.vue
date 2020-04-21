@@ -17,7 +17,6 @@
     import AuthMessage from '../../components/auth/AuthMessage'
     import AccentButton from '../../components/common/ui/AccentButton'
     import TextInput from "../../components/common/ui/TextInput"
-    import getQueryParameter from "../../helpers/getQueryParameter"
     import axios from "axios"
 
     export default {
@@ -35,7 +34,7 @@
             }
         },
         mounted() {
-            let email = getQueryParameter("email");
+            let email = this.$route.query.email;
 
             if(email) {
                 this.email = email;
