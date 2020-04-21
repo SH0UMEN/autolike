@@ -55,7 +55,7 @@
                 email: "",
                 password: "",
                 repeatPassword: "",
-                role: getQueryParameter("role") || 1,
+                role: getQueryParameter("role") == "0" ? false : true,
                 errors: {}
             }
         },
@@ -94,7 +94,7 @@
                         password: this.password,
                         password_confirmation: this.repeatPassword,
                         email: this.email,
-                        role: parseInt(this.role)
+                        role: this.role
                     };
 
                     let args = {
