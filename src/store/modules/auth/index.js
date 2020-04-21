@@ -5,7 +5,8 @@ export default {
         token: localStorage.getItem("token") || "",
         status: '',
         user: null,
-        logoutDialogOpened: false
+        logoutDialogOpened: false,
+        socials: []
     },
     getters: {
         isAuthenticated(state) {
@@ -19,6 +20,9 @@ export default {
         },
         isLogoutDialogOpened(state) {
             return state.logoutDialogOpened;
+        },
+        getSocials(state) {
+            return state.socials;
         }
     },
     actions: {
@@ -69,9 +73,14 @@ export default {
                     .then((res)=>{
                         let token = args.url == "/register" ? res.data.token : res.data.access_token;
                         context.commit('authSuccess', token);
-                        context.dispatch("getUserData").then((res) => {
+
+                        if(args.url != "/register") {
+                            context.dispatch("getUserData").then((res) => {
+                                resolve(res)
+                            })
+                        } else {
                             resolve(res)
-                        })
+                        }
                     }).catch((err)=>{
                         context.commit('authError');
                         reject(err);
@@ -109,6 +118,9 @@ export default {
         logout(state) {
             localStorage.removeItem("token");
             state.token = "";
+        },
+        setUserSocials(state, socials) {
+            state.socials = socials;
         },
         setUser(state, user) {
             state.user = user;

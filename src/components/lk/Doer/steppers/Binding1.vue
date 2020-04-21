@@ -11,7 +11,7 @@
                         class="binding-modal-slide-one__input">Логин</text-input>
             <p class="modal__paragraph binding-modal-slide-one__paragraph">Мы не распостраняем информацию своих пользователей третьим лицам.</p>
         </div>
-        <accent-button :disabled="!$v.login.required" data-next="1" class="stepper__main-button">Следующий шаг</accent-button>
+        <accent-button :disabled="!$v.login.required" @click="setData" data-next="1" class="stepper__main-button">Следующий шаг</accent-button>
     </div>
 </template>
 
@@ -35,6 +35,11 @@
         validations: {
             login: {
                 required: required
+            }
+        },
+        methods: {
+            setData() {
+                this.$store.commit("setSocData", this.login);
             }
         },
         computed: {

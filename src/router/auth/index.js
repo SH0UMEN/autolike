@@ -6,7 +6,8 @@ import RestoreConfirming from "../../views/auth/RestoreConfirming"
 import ChangePassword from "../../views/auth/ChangePassword"
 import RestoreSuccessful from "../../views/auth/RestoreSuccessful"
 import RegistrationConfirming from "../../views/auth/RegistrationConfirming"
-import RegistrationSuccessful from "../../views/auth/RegistationSuccessful"
+import RegistrationSuccessful from "../../views/auth/RegistrationSuccessful"
+import RegistrationError from "../../views/auth/RegistrationError"
 import DonationSuccessful from "../../views/auth/DonationSuccessful"
 
 export default [
@@ -42,6 +43,11 @@ export default [
                 path: '/auth/registration/successful',
                 name: 'registration-successful',
                 component: RegistrationSuccessful
+            },
+            {
+                path: '/auth/registration/error',
+                name: 'registration-error',
+                component: RegistrationError
             },
             {
                 path: '/auth/restore/confirming',

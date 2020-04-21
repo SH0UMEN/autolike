@@ -13,23 +13,28 @@
                         <soc-selector class="lk-doer__soc-selector" v-model="currentSoc" :items="socials"></soc-selector>
                     </div>
                     <div class="lk-doer__task-list">
-                        <div class="lk-doer__task" v-for="activity in activities">
-                            <div class="lk-doer__task-left">
-                                <img :src="socials.find((el) => el.id == activity.parentID).pictureMini" alt="" class="lk-doer__task-picture">
-                                <span class="lk-doer__task-title">
-                                    {{ activity.action }}
-                                </span>
-                            </div>
-                            <div class="lk-doer__task-right">
-                                <span class="lk-doer__task-reward">12 баллов</span>
-                                <secondary-button class="lk-doer__task-reject" theme="dark">
-                                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12 12L20 20" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        <path d="M20 12L12 20" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
-                                </secondary-button>
-                            </div>
+                        <div class="lk-doer__task-placeholder" v-if="$store.getters.getSocials.length == 0">
+                            <img class="lk-doer__task-placeholder-picture" src="/images/alert-circle-gray.svg" alt="">
+                            <p class="lk-doer__task-placeholder-text">Пожалуйста, привяжите свои социальные сети, чтобы получать задания. <br>
+                                Чем больше социальных сетей - тем больше заданий вы получите.</p>
                         </div>
+                        <!--<div class="lk-doer__task" v-for="activity in activities">-->
+                            <!--<div class="lk-doer__task-left">-->
+                                <!--<img :src="socials.find((el) => el.id == activity.parentID).pictureMini" alt="" class="lk-doer__task-picture">-->
+                                <!--<span class="lk-doer__task-title">-->
+                                    <!--{{ activity.action }}-->
+                                <!--</span>-->
+                            <!--</div>-->
+                            <!--<div class="lk-doer__task-right">-->
+                                <!--<span class="lk-doer__task-reward">12 баллов</span>-->
+                                <!--<secondary-button class="lk-doer__task-reject" theme="dark">-->
+                                    <!--<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+                                        <!--<path d="M12 12L20 20" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>-->
+                                        <!--<path d="M20 12L12 20" stroke="#222222" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>-->
+                                    <!--</svg>-->
+                                <!--</secondary-button>-->
+                            <!--</div>-->
+                        <!--</div>-->
                     </div>
                 </div>
             </div>
@@ -61,6 +66,7 @@
     import socials from "../../helpers/socials"
     import BindingSocialModal from "../../components/lk/Doer/modals/BindingSocialModal"
     import BalanceModal from "../../components/lk/Doer/modals/BalanceModal"
+    import axios from "axios"
 
     export default {
         name: "Doer",
@@ -96,6 +102,10 @@
         mounted() {
             this.setLeftOffset();
             this.currentWidth = window.innerWidth;
+
+            // axios.get(this.$store.getters.getAPIurl + "/user/social/check", { type: 1 }).then((res)=>{
+            //     console.log(res);
+            // });
 
             window.addEventListener("resize", ()=>{
                 this.setLeftOffset();

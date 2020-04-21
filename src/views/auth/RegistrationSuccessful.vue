@@ -3,7 +3,7 @@
         <auth-message title="Регистрация успешно завершена"
                       icon="/images/success.svg">
         </auth-message>
-        <router-link :to="{ name: 'lk-index' }"><accent-button>Перейти в личный кабинет</accent-button></router-link>
+        <router-link :to="{ name: 'login' }"><accent-button>Войти в систему</accent-button></router-link>
     </div>
 </template>
 
@@ -12,11 +12,11 @@
     import AccentButton from '../../components/common/ui/AccentButton'
 
     export default {
-        name: "RegistationSuccessful",
+        name: "RegistrationSuccessful",
         components: {
             AuthMessage,
             AccentButton
-        }
+        },
     }
 </script>
 

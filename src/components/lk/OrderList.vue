@@ -345,22 +345,25 @@
                 })
             },
             updateOrders(next = false) {
-                let params = {}
-                params.page = this.currentPage
-                params.limit = this.filter.paginationLimit.value
-                params.filter_by_order_type = this.orderType.id
-                params.filter_by_status = this.filter.status.status != 0 ? this.filter.status.status : null
-                params.sort_by = this.filter.filterType
-                params.sort_type = this.filter.sortDirection
+                let params = {};
+                params.page = this.currentPage;
+                params.limit = this.filter.paginationLimit.value;
+                params.filter_by_order_type = this.orderType.id;
+                params.sort_by = this.filter.filterType;
+                params.sort_type = this.filter.sortDirection;
                 params.bot = this.doerType.type;
+
+                if(this.filter.status.status != 0) {
+                    params.filter_by_status = this.filter.status.status;
+                }
 
                 if(this.selectedSoc.id != 0) {
                     params.filter_by_social_type = this.selectedSoc.id;
                 }
 
-                let settings = {}
-                settings.params = params
-                settings.next = next
+                let settings = {};
+                settings.params = params;
+                settings.next = next;
 
                 this.$store.dispatch('getOwnOrders', settings)
             },

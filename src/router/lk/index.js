@@ -7,15 +7,22 @@ function isAuthenticated(to, from, next) {
     if(store.getters.isAuthenticated) {
         if(!store.getters.getUser) {
             store.dispatch("getUserData").then(()=>{
-                next()
-                return
+                if(to.name == "lk-index") {
+                    store.getters.getUser.register_as == 0 ? next({ name: 'lk-customer' }) : next({ name: 'lk-doer' })
+                }
+                next({ name: "lk-customer" })
             })
         } else {
+            if(to.name == "lk-index") {
+                store.getters.getUser.register_as == 0 ? next({ name: 'lk-customer' }) : next({ name: 'lk-doer' })
+                return
+            }
             next()
         }
     } else {
         next("/auth/login")
     }
+    return
 }
 
 export default [
@@ -24,9 +31,6 @@ export default [
         name: 'lk-index',
         component: Index,
         beforeEnter: isAuthenticated,
-        redirect: to => {
-            return "/lk/customer"
-        },
         children: [
             {
                 path: '/lk/doer',
