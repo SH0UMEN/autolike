@@ -1,10 +1,10 @@
 <template>
-    <button type="button" v-if="tag == 'button'" @click="$emit('click')" class="secondary-button"
+    <button type="button" v-if="tag == 'button'" @click="$emit('click', $event)" class="secondary-button"
             :class="'secondary-button_'+theme">
         <slot></slot>
     </button>
     <a :class="'secondary-button_'+theme" v-else-if="tag == 'a'"
-       @click="$emit('click')"
+       @click="$emit('click', $event)"
        :href="to" class="secondary-button">
         <slot></slot>
     </a>

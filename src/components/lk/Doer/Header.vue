@@ -96,6 +96,13 @@
                             link: { name: "lk-customer" },
                         },
                         {
+                            title: "Техподдержка",
+                            hoverColor: "accent",
+                            callback: () => {
+                                this.$store.commit('openSupportModal')
+                            }
+                        },
+                        {
                             title: "Сменить пароль",
                             callback: () => {
                                 this.changePassword();
@@ -146,6 +153,13 @@
                             }
                         },*/
                         {
+                            title: "Техподдержка",
+                            hoverColor: "accent",
+                            callback: () => {
+                                this.$store.commit('openSupportModal')
+                            }
+                        },
+                        {
                             title: "Сменить пароль",
                             callback: () => {
                                 this.changePassword();
@@ -192,6 +206,13 @@
                                 this.$router.push({ name: 'change-password' })
                             }
                         },*/
+                        {
+                            title: "Техподдержка",
+                            hoverColor: "accent",
+                            callback: () => {
+                                this.$store.commit('openSupportModal')
+                            }
+                        },
                         {
                             title: "Сменить пароль",
                             callback: () => {

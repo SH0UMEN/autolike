@@ -6,7 +6,6 @@ export default {
         status: '',
         user: null,
         logoutDialogOpened: false,
-        socials: [],
         pwChangeInfoModalShown: false,
     },
     getters: {
@@ -21,9 +20,6 @@ export default {
         },
         isLogoutDialogOpened(state) {
             return state.logoutDialogOpened;
-        },
-        getSocials(state) {
-            return state.socials;
         },
         pwChangeInfoModalShown(state) {
             return state.pwChangeInfoModalShown

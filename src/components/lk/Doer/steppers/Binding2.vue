@@ -32,7 +32,9 @@
                     type: this.currentSoc.id
                 }
 
-                this.$store.dispatch("bindSocial", data);
+                this.$store.dispatch("bindSocial", data).then(()=>{
+                    this.$store.dispatch("getBindedSocials")
+                });
             }
         },
         computed: {

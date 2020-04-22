@@ -52,6 +52,7 @@
         display: flex
         align-items: center
         justify-content: space-between
+        position: relative
 
         &:last-child
             margin-bottom: 35px
@@ -70,6 +71,28 @@
 
         &-title
             font-size: 16px
+
+            &_error
+                color: $error-color
+
+            &_warning
+                color: $handling-color
+
+        &-status
+            margin-left: 8px
+            display: flex
+            position: relative
+            bottom: -1px
+
+            &-icon
+                width: 16px
+                height: 16px
+                display: inline-block
+
+            &_binded
+                .social-panel__social-status
+                    &-icon
+                        filter: brightness(0.7)
 
     &_closed
         left: 0 !important
@@ -91,6 +114,20 @@
                 display: none
 
             &__social
+                &-status
+                    bottom: unset
+                    right: -5px
+                    top: -6px
+                    position: absolute
+
+                    &-icon
+                        background-color: $white-color
+                        border-radius: 50%
+                        border: 1px solid $white-color
+
+                    &_binded
+                        display: none
+
                 &-picture
                     margin-right: 0
 

@@ -10,7 +10,7 @@ function isAuthenticated(to, from, next) {
                 if(to.name == "lk-index") {
                     store.getters.getUser.register_as == 0 ? next({ name: 'lk-customer' }) : next({ name: 'lk-doer' })
                 }
-                next({ name: "lk-customer" })
+                next()
             })
         } else {
             if(to.name == "lk-index") {
