@@ -73,7 +73,7 @@
                         message: this.message
                     };
 
-                    axios.post(this.$store.getters.getAPIurl + "/support/create", param).then((res) => {
+                    axios.post(this.$store.getters.getAPIurl + "/support", param).then(() => {
                         this.$store.commit("closeSupportModal");
                         this.$store.commit("openSuccessModal", "Сообщение отправлено в тех. поддержку")
                     })

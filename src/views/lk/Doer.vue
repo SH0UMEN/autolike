@@ -45,6 +45,7 @@
 
         <binding-social-modal></binding-social-modal>
         <balance-modal></balance-modal>
+        <success-modal></success-modal>
         <pw-change-info-modal></pw-change-info-modal>
         <task-modal :task="activities[currentTask] || {}"></task-modal>
         <support-modal></support-modal>
@@ -75,6 +76,7 @@
     import TaskModal from "../../components/lk/Doer/modals/TaskModal"
     import PwChangeInfoModal from "../../components/lk/modals/PwChangeInfoModal"
     import SupportModal from "../../components/lk/modals/SupportModal"
+    import SuccessModal from "../../components/lk/modals/SuccessModal"
     import inflector from "../../helpers/inflector"
     import axios from "axios"
 
@@ -84,6 +86,7 @@
             BindingSocialModal,
             SecondaryButton,
             MainModal,
+            SuccessModal,
             SocialPanel,
             SupportModal,
             SocSelector,
