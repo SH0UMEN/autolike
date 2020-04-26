@@ -53,7 +53,7 @@
             order() {
                 this.$store.dispatch("createOrder").then(()=>{
                     this.$store.commit("closeOrderModal");
-                    this.$store.commit("openOrderSuccessModal");
+                    this.$store.commit("openSuccessModal", "Заказ успешно оформлен");
                     this.$store.dispatch("retryGetOwnOrders");
                 });
             },

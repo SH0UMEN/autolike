@@ -15,7 +15,6 @@ export default {
             all: 0.87
         },
         orderModalShown: false,
-        orderSuccessModalShown: false,
         lastParams: {},
         pageCount: 0,
         orders: [
@@ -98,12 +97,6 @@ export default {
         closeOrderModal(state) {
             state.orderModalShown = false;
             state.newOrder = Object.assign({}, orderExample)
-        },
-        openOrderSuccessModal(state) {
-            state.orderSuccessModalShown = true;
-        },
-        closeOrderSuccessModal(state) {
-            state.orderSuccessModalShown = false;
         },
         setListOrders(state, data) {
             state.pageCount = data.pageCount;

@@ -9,12 +9,18 @@ export default {
         ...order.state,
         ...balance.state,
         ...tasks.state,
+        successModalText: "",
+        successModalShown: false,
     },
     getters: {
         ...socials.getters,
         ...order.getters,
         ...balance.getters,
         ...tasks.getters,
+
+        getSuccessModalText(state) {
+            return state.successModalText;
+        }
     },
     actions: {
         ...socials.actions,
@@ -27,5 +33,13 @@ export default {
         ...order.mutations,
         ...balance.mutations,
         ...tasks.mutations,
+
+        openSuccessModal(state, text) {
+            state.successModalText = text;
+            state.successModalShown = true;
+        },
+        closeSuccessModal(state) {
+            state.successModalShown = false;
+        },
     }
 }
