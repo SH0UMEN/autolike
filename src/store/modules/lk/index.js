@@ -9,6 +9,7 @@ export default {
         ...order.state,
         ...balance.state,
         ...tasks.state,
+        successModalTitle: "",
         successModalText: "",
         successModalShown: false,
     },
@@ -18,6 +19,9 @@ export default {
         ...balance.getters,
         ...tasks.getters,
 
+        getSuccessModalTitle(state) {
+            return state.successModalTitle;
+        },
         getSuccessModalText(state) {
             return state.successModalText;
         }
@@ -34,8 +38,9 @@ export default {
         ...balance.mutations,
         ...tasks.mutations,
 
-        openSuccessModal(state, text) {
-            state.successModalText = text;
+        openSuccessModal(state, data) {
+            state.successModalTitle = data.title;
+            state.successModalText = data.text || "";
             state.successModalShown = true;
         },
         closeSuccessModal(state) {

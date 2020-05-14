@@ -177,6 +177,9 @@ export default {
                     reject(err)
                 })
             })
+        },
+        balanceRequest(context, data) {
+            return axios.post(context.getters.getAPIurl + "/balance/request", data);
         }
     },
     mutations: {

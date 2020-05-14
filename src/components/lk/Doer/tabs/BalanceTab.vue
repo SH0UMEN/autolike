@@ -4,14 +4,14 @@
             <span class="balance-slide-one__balance">
                 Баланс: <span class="balance-slide-one__balance-bold">{{ $store.getters.getUser.balance }} бал.</span>
             </span>
-            
+
             <div class="get-money__payment-systems">
                 <label class="get-money__payment-system">
-                    <input type="radio" v-model="paymentSystemID" :value="0" class="get-money__payment-input">
+                    <input type="radio" v-model="paymentSystemID" :value="1" class="get-money__payment-input">
                     <img src="/images/ya-money.svg" alt="" class="get-money__payment-picture">
                 </label>
                 <label class="get-money__payment-system">
-                    <input type="radio" v-model="paymentSystemID" :value="1" class="get-money__payment-input">
+                    <input type="radio" v-model="paymentSystemID" :value="3" class="get-money__payment-input">
                     <img src="/images/qiwi.svg" alt="" class="get-money__payment-picture">
                 </label>
                 <label class="get-money__payment-system">
@@ -19,18 +19,18 @@
                     <img src="/images/webmoney.svg" alt="" class="get-money__payment-picture">
                 </label>
             </div>
-            
+
             <div class="balance-modal__form-wrapper modal-form-container">
                 <text-input name="account" v-model="account">
                     {{
-                        paymentSystemID == 0 ? 'Номер Яндекс-кошелька':
-                        paymentSystemID == 1 ? 'Номер Qiwi-кошелька' : 'Номер WebMoney-кошелька'
+                    paymentSystemID == 1 ? 'Номер Яндекс-кошелька':
+                    paymentSystemID == 3 ? 'Номер Qiwi-кошелька' : 'Номер WebMoney-кошелька'
                     }}
                 </text-input>
                 <number-input v-model="money"
                               class="get-money__quantity"
                               @blur="$v.money.$touch()"
-                              :error="money < 1 ? 'Не менее 1 балла' :
+                              :error="money < 1 ? 'Не менее 100 баллов' :
                                           !$v.money.integer ? 'Введите число' : ''">
                     Cумма на вывод
                 </number-input>
@@ -38,6 +38,12 @@
 
             <div class="balance-modal__links get-money__min">
                 <span>Минимальная сумма вывода: 100 бал.</span>
+            </div>
+
+            <div class="get-money__errors">
+                <span v-for="error in errors" class="get-money__error">
+                    {{ error }}
+                </span>
             </div>
 
             <div class="balance-slide-one__balance-price get-money__balance-price">
@@ -51,8 +57,8 @@
             </div>
         </form>
 
-        <accent-button @click="raiseBalance" type="submit" class="tab__main-button"
-                       :disabled="!formIsValid">
+        <accent-button type="submit" class="tab__main-button"
+                       :disabled="!formIsValid" @click="doRequest">
             Подтвердить сумму
         </accent-button>
     </div>
@@ -63,15 +69,16 @@
     import AccentButton from "../../../../components/common/ui/AccentButton"
     import SecondaryButton from "../../../../components/common/ui/SecondaryButton"
     import NumberInput from "../../../../components/common/ui/NumberInput"
-    import { required, minValue, integer } from 'vuelidate/lib/validators'
+    import {required, minValue, integer} from "vuelidate/lib/validators"
 
     export default {
         name: "BalanceTab",
         data() {
             return {
                 money: 1000,
-                paymentSystemID: 0,
-                account: ""
+                paymentSystemID: 1,
+                account: "",
+                errors: []
             }
         },
         components: {
@@ -82,13 +89,14 @@
         },
         computed: {
             formIsValid() {
-                return !(this.$v.money.$invalid || this.$v.money.$anyError)
+                return !(this.$v.money.$invalid || this.$v.money.$anyError ||
+                    this.$v.account.$invalid || this.$v.account.$anyError)
             }
         },
         validations: {
             money: {
                 required,
-                minValue: minValue(1),
+                minValue: minValue(100),
                 integer: integer
             },
             account: {
@@ -96,11 +104,27 @@
             }
         },
         methods: {
-            raiseBalance() {
-                let resMoney = this.money;
+            doRequest() {
+                this.$store.dispatch("balanceRequest", {
+                    username: this.account,
+                    amount: this.money,
+                    type: this.paymentSystemID
+                }).then((res) => {
+                    this.errors = [];
+                    this.$store.commit("closeBalanceModal");
+                    this.$store.commit("openSuccessModal", {
+                        title: "Вывод успешно оформлен",
+                        text: "Вывод занимает минимум 3 дня. Отслеживать состояние вывода можно в разделе \"История выводов\""
+                    })
+                }).catch((err) => {
+                    this.errors = [];
+                    let errors = err.response.data.errors;
 
-                this.$store.dispatch("donation", this.money).then(()=>{
-                    this.$router.push({ name: "donation-successful", params: { 'donations': resMoney } })
+                    for(let e in errors) {
+                        for(let error of errors[e]) {
+                            this.errors.push(error);
+                        }
+                    }
                 })
             }
         }

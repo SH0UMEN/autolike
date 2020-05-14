@@ -14,6 +14,7 @@
     import Tab from "../../../../components/common/ui/Tab"
     import BalanceTab from "../tabs/BalanceTab"
     import BalanceHistory from "../../tabs/BalanceHistory"
+    import axios from "axios"
 
     export default {
         name: "BalanceModal",
@@ -23,6 +24,11 @@
             BalanceTab,
             MainModal,
         },
+        mounted() {
+            // axios.post(this.$store.getters.getAPIurl + "/balance/list").then((res) => {
+            //     console.log(res.data);
+            // })
+        }
     }
 </script>
 
