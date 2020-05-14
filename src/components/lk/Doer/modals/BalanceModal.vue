@@ -4,7 +4,7 @@
                 @closed="$store.commit('closeBalanceModal')" name="balance-modal">
         <tab title="Пополнение баланса" :tabs="['Оформить вывод', 'История выводов']">
             <balance-tab></balance-tab>
-            <balance-history :history="$store.getters.getGettingHistory"></balance-history>
+            <balance-history :history="history"></balance-history>
         </tab>
     </main-modal>
 </template>
@@ -24,10 +24,15 @@
             BalanceTab,
             MainModal,
         },
+        data() {
+            return {
+                history: []
+            }
+        },
         mounted() {
-            // axios.post(this.$store.getters.getAPIurl + "/balance/list").then((res) => {
-            //     console.log(res.data);
-            // })
+            this.$store.dispatch("getTransactionRequests").then((res) => {
+                this.history = res.data.list;
+            })
         }
     }
 </script>

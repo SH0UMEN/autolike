@@ -180,6 +180,9 @@ export default {
         },
         balanceRequest(context, data) {
             return axios.post(context.getters.getAPIurl + "/balance/request", data);
+        },
+        getTransactionRequests(context) {
+            return axios.post(context.getters.getAPIurl + "/balance/list");
         }
     },
     mutations: {
