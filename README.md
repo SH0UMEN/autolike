@@ -1,4 +1,4 @@
-# autolike
+# ex1
 
 ## Project setup
 ```
